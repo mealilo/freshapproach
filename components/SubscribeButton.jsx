@@ -1,6 +1,6 @@
 const SubscribeButton = () => {
     return (
-        <a className="button">Button Here</a>
+        <a className="subscribe-button">Subscribe</a>
     );
 };
 

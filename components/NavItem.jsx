@@ -3,7 +3,7 @@ const NavItem = ({ text, href, active }) => {
   return (
       <Link legacyBehavior href={href}>
       <a
-        className={`nav__item ${
+        className={`nav-item ${
           active ? "active" : ""
         }`}
       >

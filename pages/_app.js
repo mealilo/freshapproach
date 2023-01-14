@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 //import 'bootstrap/dist/css/bootstrap.css'
-import '../styles/NavBar.css';
+import '../styles/Navbar.css';
 
 
 

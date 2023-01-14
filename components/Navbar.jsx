@@ -6,6 +6,7 @@ import styles from '../styles/Home.module.css';
 import SubscribeButton from "./SubscribeButton";
 
 
+
 const MENU_LIST = [
     { text: "Become a Vendor", href: "/" },
     { text: "Explore Produce", href: "https:www.google.com" }
