@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import NavItem from "./NavItem";
 import styles from '../styles/Home.module.css';
+import SubscribeButton from "./SubscribeButton";
 
 
 const MENU_LIST = [
@@ -18,11 +19,11 @@ const Navbar = () => {
             <nav className={`nav`}>
 
                 <Image
-                    src="/vercel.svg"
-                    alt="Vercel Logo"
+                    src="/carrot.png"
+                    alt="Fresh Approach"
                     className={styles.vercelLogo}
                     width={100}
-                    height={24}
+                    height={100}
                     priority
                 />
 
@@ -46,6 +47,8 @@ const Navbar = () => {
                             <NavItem active={activeIdx === idx} {...menu} />
                         </div>
                     ))}
+                    <SubscribeButton></SubscribeButton>
+
                 </div>
             </nav>
         </header>
