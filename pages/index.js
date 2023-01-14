@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
-
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -40,14 +39,12 @@ export default function Home() {
         </div>
 
         <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
+         <p>
+          Discover Local Produce
+        </p>
+         <p>
+          Get our newsletter to be informed on fresh, local produce.
+         </p>
           <div className={styles.thirteen}>
             <Image
               src="/thirteen.svg"
@@ -66,11 +63,14 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
+          <div>
+            <img src="/images/Fruit.png" alt=""/>
+            </div>
             <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
+              Fruit <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
+            Find fruit sellers in your neighborhood
             </p>
           </a>
 
@@ -80,11 +80,14 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
+               <div>
+            <img src="/images/Veggies.png" alt=""/>
+            </div>
             <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
+              Veggies <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
+            Find veggie sellers in your neighborhood
             </p>
           </a>
 
@@ -94,11 +97,14 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
+               <div>
+            <img src="/images/Nuts.png" alt=""/>
+            </div>
             <h2 className={inter.className}>
-              Templates created by brennan<span>-&gt;</span>
+             Nuts <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
+            Find nut sellers in your neighborhood
             </p>
           </a>
 
@@ -108,12 +114,31 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
+               <div>
+            <img src="/images/Honey.png" alt=""/>
+            </div>
             <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
+              Honey <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
+            Find honey sellers in your neighborhood
+            </p>
+          </a>
+          <a
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            className={styles.card}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+               <div>
+            <img src="/images/Eggs.png" alt=""/>
+            </div>
+            <h2 className={inter.className}>
+              Eggs <span>-&gt;</span>
+            </h2>
+            <p className={inter.className}>
+              Find egg sellers in your neighborhood
+              
             </p>
           </a>
         </div>
