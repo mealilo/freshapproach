@@ -2,10 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from "react";
 import NavItem from "./NavItem";
+import styles from '../styles/Home.module.css';
+
 
 const MENU_LIST = [
-    { text: "Home", href: "/" },
-    { text: "Blah", href: "https:www.google.com" }
+    { text: "Become a Vendor", href: "/" },
+    { text: "Explore Produce", href: "https:www.google.com" }
 ];
 const Navbar = () => {
     const [navActive, setNavActive] = useState(null);
@@ -14,11 +16,16 @@ const Navbar = () => {
     return (
         <header>
             <nav className={`nav`}>
-                <Link legacyBehavior href={"/"}>
-                    <a>
-                        <h1 className="logo">CodeWithMarish</h1>
-                    </a>
-                </Link>
+
+                <Image
+                    src="/vercel.svg"
+                    alt="Vercel Logo"
+                    className={styles.vercelLogo}
+                    width={100}
+                    height={24}
+                    priority
+                />
+
                 <div
                     onClick={() => setNavActive(!navActive)}
                     className={`nav__menu-bar`}

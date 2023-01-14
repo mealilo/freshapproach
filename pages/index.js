@@ -27,7 +27,7 @@ export default function Home() {
               <div className={styles.description}>
                
           <p>
-            Nav bar here
+            Nav bar here        
             <code className={styles.code}>pages/index.js</code>
           </p>
           <div>
@@ -37,14 +37,7 @@ export default function Home() {
               rel="noopener noreferrer"
             >
               By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
+
             </a>
           </div>
         </div>
