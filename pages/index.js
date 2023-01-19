@@ -25,7 +25,7 @@ export default function Home() {
 
         <div className={styles.center}>
          <p>
-          Discover Local Produce!!!
+          Discover Local Produce!!!  yrdyrsgdsyr
         </p>
          <p>
           Get our newsletter to be informed on fresh, local produce.
