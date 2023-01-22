@@ -14,6 +14,7 @@ function Header() {
         <div className="flex items-center space-x-4 justify-end">
             <p>Become a Vendor</p>
             <p>Explore Produce</p>
+            <p>Sign In/Sign Up</p>
             <button
     type="button"
     data-mdb-ripple="true"

@@ -7,7 +7,9 @@ module.exports = {
   theme: {
     extend:{
     colors: {
-      'closecropgreen':'#08302F'
+      'closecropgreen':'#08302F',
+      'Sage': '#7FA966',
+      'Orange': '#F99A01',
     },
   },
   plugins: [],
