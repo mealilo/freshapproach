@@ -5,7 +5,11 @@ module.exports = {
 ],
 
   theme: {
-    extend: {},
+    extend:{
+    colors: {
+      'closecropgreen':'#08302F'
+    },
   },
   plugins: [],
+}
 }
