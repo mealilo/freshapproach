@@ -10,6 +10,7 @@ module.exports = {
       'closecropgreen':'#08302F',
       'Sage': '#7FA966',
       'Orange': '#F99A01',
+      'greenText': '#0E8044',
     },
   },
   plugins: [],
