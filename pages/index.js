@@ -53,9 +53,19 @@ export default function Home() {
          <button type="button" class="inline-block px-6 py-2.5 bg-Orange text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-500 hover:shadow-lg focus:bg-orange-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out">Explore Produce</button>
        </div>
        </Link>
+
+
+
       </section>
    
     </main>
+    <div class="flex-grow grid grid-cols-3 h-96">
+  <div className="bg-blueGreenCustom">Finding Local Produce is Easy</div>
+
+  <div className="bg-Orange">1. Sign Up 2.Select Preferences 3.Enjoy Produce</div>
+  <div className="bg-Sage">Every week you get alerted about new available produce, based on your preferences, sent right to your inbox.</div>
+</div>
+       
     <Footer />
     </div>
   );
