@@ -11,10 +11,8 @@ export default function Home() {
         <title> Close Crop</title>
         <link rel="icon" href="/favicon.ico"/>
       </Head>
-    <Header/>
     <Banner/>
    <MainContent/>
-    <Footer />
     </div>
   );
 }
