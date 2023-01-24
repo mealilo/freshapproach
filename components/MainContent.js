@@ -7,11 +7,9 @@ function MainContent(){
         <section className="pt-6">
           <h2 className="text-4xl font-semibold pb-5 text-center text-cyan-800"> Explore Produce </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        <Link href="/fruit"> 
       <div className="flex items-center m-2 mt-5 space-x-4 rounded-xl cursor-pointer " >
            <img alt="fruit" src="/images/Fruit.png" className="w-36"/>
            </div>
-           </Link>
            <div className="flex items-center m-2 mt-5 space-x-4 rounded-xl cursor-pointer">
            <img alt="veggies" src="/images/Veggies.png" className="w-36"/>
            </div>
@@ -26,11 +24,11 @@ function MainContent(){
         </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"> 
-          <p className="py-3"> Fruit</p>
-          <p> Veggies</p>
-          <p> Nuts</p>
-          <p> Honey</p>
-          <p> Eggs</p>
+          <p className="w-40 text-center"> Fruit</p>
+          <p className="w-40 text-center"> Veggies</p>
+          <p className="w-40 text-center"> Nuts</p>
+          <p className="w-40 text-center"> Honey</p>
+          <p className="w-40 text-center"> Eggs</p>
           </div>
           <Link href="/ExploreProduce">
           <div class="flex justify-center items-center py-5 ">
