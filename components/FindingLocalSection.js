@@ -2,7 +2,7 @@ import SubscribeButton from "../components/SubscribeButton"
 
 function FindingLocalSection(){
     return(
-        <div class="flex-grow grid grid-cols-3 h-50 text-white text-center text-2xl">
+        <div className="flex-grow grid grid-cols-3 h-50 text-white text-center text-2xl">
         <div className="bg-blueGreenCustom place-content-center py-52 ">
         <p> Finding Local Produce is Easy</p>
         </div>

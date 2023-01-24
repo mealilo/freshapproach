@@ -1,7 +1,5 @@
 import Head from 'next/head'
-import Header from '../components/Header'
 import Banner from "../components/Banner"
-import Footer from "../components/Footer"
 import FindingLocalSection from "../components/FindingLocalSection"
 import MainContent from "../components/MainContent"
 export default function Home() {
@@ -13,6 +11,7 @@ export default function Home() {
       </Head>
     <Banner/>
    <MainContent/>
+   <FindingLocalSection/>
     </div>
   );
 }
