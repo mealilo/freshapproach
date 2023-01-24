@@ -1,5 +1,5 @@
 
-import Link from "next/Link"
+import Link from "next/link"
 import Image from "next/image";
 import {MenuIcon, UserCircleIcon} from '@heroicons/react/solid';
 function Header() {
