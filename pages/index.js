@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Banner from "../components/Banner"
 import FindingLocalSection from "../components/FindingLocalSection"
 import MainContent from "../components/MainContent"
+import HowWeGotStarted from "../components/HowWeGotStarted"
 export default function Home() {
   return (
     <div className="">
@@ -12,6 +13,7 @@ export default function Home() {
     <Banner/>
    <MainContent/>
    <FindingLocalSection/>
+   <HowWeGotStarted/>
     </div>
   );
 }
