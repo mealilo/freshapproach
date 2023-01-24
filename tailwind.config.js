@@ -12,6 +12,7 @@ module.exports = {
       'Orange': '#F99A01',
       'greenText': '#0E8044',
       'blueGreenCustom': '#04676A',
+      'customPurple': "#792299",
     },
   },
   plugins: [],

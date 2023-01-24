@@ -2,7 +2,7 @@
 import Link from "next/Link"
 import Image from "next/image";
 import {MenuIcon, UserCircleIcon,SearchIcon} from '@heroicons/react/solid';
-
+import SubscribeButton from '../components/SubscribeButton'
 function Header() {
   return (
   <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-60">
@@ -29,11 +29,7 @@ function Header() {
             <p>Sign In</p>
             </Link>
             <Link href="/Subscribe">
-            <button
-    type="button"
-    data-mdb-ripple="true"
-    data-mdb-ripple-color="light"
-    class="inline-block px-6 py-2.5 bg-cyan-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-cyan-900 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out h6">Subscribe</button>
+         <SubscribeButton/>
     </Link>
      <div className="flex items-center space-x-2 border-2 p-2 rounded-full">
         <MenuIcon className='h-6'/>

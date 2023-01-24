@@ -31,12 +31,7 @@ export default function Home() {
        <img alt="peaches" src="/images/treePeaches.png" classname="px-8"/>
        </div>
        <PricingCard></PricingCard>
-    
-       </div>
-       
-    
-       
-      
+       </div>   
     </main>
     <Footer />
     </div>
