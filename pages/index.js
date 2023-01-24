@@ -13,8 +13,7 @@ export default function Home() {
       </Head>
     <Header/>
     <Banner/>
-    <MainContent/>
-    <FindingLocalSection/>
+   <MainContent/>
     <Footer />
     </div>
   );
