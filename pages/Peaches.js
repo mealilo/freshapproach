@@ -12,8 +12,7 @@ export default function Home() {
         <title> Close Crop</title>
         <link rel="icon" href="/favicon.ico"/>
       </Head>
-    
-    <Header/>
+
     <main className="max-w-7xl mx-auto px-8 sm:px-16">
       <section className="pt-6">
         <h1 className="text-4xl font-semibold pb-5 text-greenText"> Peaches</h1>
@@ -38,7 +37,6 @@ export default function Home() {
        
       
     </main>
-    <Footer />
     </div>
   );
 }
