@@ -20,7 +20,7 @@ function Header() {
         {/* Right */}
         <div className="flex items-center space-x-4 justify-end">
             <Link href="/BecomeVendor"> 
-               <p>Become a Vendor</p>
+               <p>Become a Vendor!</p>
             </Link>
             <Link href="ExploreProduce">
                <p>Explore Produce</p>

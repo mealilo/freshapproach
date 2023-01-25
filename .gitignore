@@ -30,5 +30,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+#random file
+.vs\freshapproach\FileContentIndex
 /.vs/freshapproach/FileContentIndex
-/.vs/slnx.sqlite
