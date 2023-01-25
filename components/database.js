@@ -6,6 +6,18 @@ async function main() {
     // ... you will write your Prisma Client queries here
     const allUsers = await prisma.user.findMany()
     console.log(allUsers)
+    const allPosts = await prisma.profile.findMany();
+    console.log(allPosts);
+
+    // create user
+    await prisma.user.create({
+        data: {
+            name: "Hello world",
+            email: "test user2gmail.com"
+
+        }
+
+    })
 }
 
 main()
