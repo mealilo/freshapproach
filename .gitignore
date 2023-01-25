@@ -34,3 +34,5 @@ yarn-error.log*
 #random file
 .vs\freshapproach\FileContentIndex
 /.vs/freshapproach/FileContentIndex
+/.vs/slnx.sqlite
+/.vs/ProjectSettings.json
