@@ -22,7 +22,7 @@ function Header() {
             <Link href="/BecomeVendor"> 
                <p>Become a Vendor!</p>
             </Link>
-            <Link href="ExploreProduce">
+            <Link href="listings">
                <p>Explore Produce</p>
             </Link>
             <Link href="SignIn">
