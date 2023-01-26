@@ -47,7 +47,7 @@ export default function Home() {
       </div>
    
         </div>
-        <Link href="/ExploreProduce">
+        <Link href="/listings">
         <div class="flex justify-center items-center py-5 ">
          <button type="button" class="inline-block px-6 py-2.5 bg-Orange text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-500 hover:shadow-lg focus:bg-orange-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out">Explore Produce</button>
        </div>
