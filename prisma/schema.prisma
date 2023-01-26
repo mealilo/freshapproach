@@ -11,6 +11,91 @@ model Test {
   id         Int     @id @default(autoincrement())
   FIRST_NAME String? @db.VarChar(255)
   EMAIL      String  @unique(map: "EMAIL") @db.VarChar(255)
+}
 
-  
+model buyer {
+  buyer_ID  Int        @id @default(autoincrement())
+  person_ID Int        @unique(map: "person_ID_UNIQUE")
+  person    person     @relation(fields: [person_ID], references: [person_ID], onDelete: NoAction, onUpdate: NoAction, map: "buyer_ibfk_1")
+  favorite  favorite[]
+}
+
+model favorite {
+  favorite_ID Int     @id @default(autoincrement())
+  buyer_ID    Int
+  listing_ID  Int
+  buyer       buyer   @relation(fields: [buyer_ID], references: [buyer_ID], onDelete: NoAction, onUpdate: NoAction, map: "favorite_ibfk_1")
+  listing     listing @relation(fields: [listing_ID], references: [listing_ID], onDelete: NoAction, onUpdate: NoAction, map: "favorite_ibfk_2")
+
+  @@index([buyer_ID], map: "buyer_ID")
+  @@index([listing_ID], map: "listing_ID")
+}
+
+model listing {
+  listing_ID              Int                  @id @default(autoincrement())
+  producer_ID             Int
+  product_sub_category_ID Int
+  title                   String               @db.VarChar(45)
+  description             String?              @db.VarChar(400)
+  quantity_available      String               @db.VarChar(45)
+  price                   Float?
+  is_available            Int
+  favorite                favorite[]
+  producer                producer             @relation(fields: [producer_ID], references: [producer_ID], onDelete: NoAction, onUpdate: NoAction, map: "listing_ibfk_1")
+  product_sub_category    product_sub_category @relation(fields: [product_sub_category_ID], references: [product_sub_category_ID], onDelete: NoAction, onUpdate: NoAction, map: "listing_ibfk_2")
+  listing_picture         listing_picture[]
+
+  @@index([producer_ID], map: "producer_ID")
+  @@index([product_sub_category_ID], map: "product_sub_category_ID")
+}
+
+model listing_picture {
+  listing_picture_ID Int     @id @default(autoincrement())
+  listing_ID         Int
+  picture_link       String  @db.VarChar(250)
+  listing            listing @relation(fields: [listing_ID], references: [listing_ID], onDelete: NoAction, onUpdate: NoAction, map: "listing_picture_ibfk_1")
+
+  @@index([listing_ID], map: "listing_ID")
+}
+
+model person {
+  person_ID            Int       @id @default(autoincrement())
+  first_name           String    @db.VarChar(100)
+  last_name            String    @db.VarChar(100)
+  email                String    @unique(map: "email_UNIQUE") @db.VarChar(100)
+  password             String    @db.VarChar(45)
+  profile_picture_link String?   @db.VarChar(250)
+  created_on           DateTime  @db.DateTime(0)
+  buyer                buyer?
+  producer             producer?
+}
+
+model producer {
+  producer_ID         Int       @id @default(autoincrement())
+  person_ID           Int?      @unique(map: "person_ID_UNIQUE")
+  address             String?   @db.VarChar(45)
+  state               String?   @db.VarChar(45)
+  zip_code            String?   @db.VarChar(45)
+  phone_number        String?   @db.VarChar(45)
+  address_public      Boolean?
+  phone_number_public Boolean?
+  email_public        Boolean?
+  listing             listing[]
+  person              person?   @relation(fields: [person_ID], references: [person_ID], onDelete: NoAction, onUpdate: NoAction, map: "producer_ibfk_1")
+}
+
+model product_category {
+  product_category_ID  Int                    @id @default(autoincrement())
+  category_name        String                 @db.VarChar(45)
+  product_sub_category product_sub_category[]
+}
+
+model product_sub_category {
+  product_sub_category_ID Int              @id @default(autoincrement())
+  sub_category_name       String           @unique(map: "sub_category_name_UNIQUE") @db.VarChar(45)
+  product_category_ID     Int
+  listing                 listing[]
+  product_category        product_category @relation(fields: [product_category_ID], references: [product_category_ID], onDelete: NoAction, onUpdate: NoAction, map: "product_sub_category_ibfk_1")
+
+  @@index([product_category_ID], map: "product_category_ID")
 }
