@@ -2,11 +2,10 @@ import Post from '../components/Post'
 import { makeSerializable } from '../lib/util'
 import prisma from '../lib/prisma';
 
-const Blog = props => {
+const AllListings = props => {
   return (
     <div>
       <div className="page">
-        <h1>My Blog</h1>
         <main>
           {props.feed.map(post => (
             <div key={post.id} className="post">
@@ -42,4 +41,4 @@ export const getServerSideProps = async () => {
   }
 }
 
-export default Blog
+export default AllListings

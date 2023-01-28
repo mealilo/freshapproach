@@ -6,7 +6,7 @@ const Post = ({ post }) => {
   // onclick login inside div  onClick={() => Router.push('/p/[id]', `/p/${post.id}`)}
   return (
     <div>
-      <h2>{post.title}</h2>
+          <h2>{post.title}</h2>
           <small> {post.description}</small>
       <style jsx>{`
         div {
