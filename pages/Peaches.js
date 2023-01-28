@@ -25,8 +25,8 @@ export default function Home() {
        <div class="basis-1/4"> 
        <img alt="peaches" src="/images/littlePeaches.png" classname="px-8"/>
        </div>
-       <div class="basis-1/4"> 
-      
+                  <div class="basis-1/4"> 
+
        <img alt="peaches" src="/images/treePeaches.png" classname="px-8"/>
        </div>
        <PricingCard></PricingCard>

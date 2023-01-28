@@ -18,6 +18,8 @@ async function main() {
     console.log(user)
 
 
+
+
     //create user
 
     //const date = new Date();
@@ -64,7 +66,7 @@ async function main() {
     })
     console.log(updatedUSER)
     
-
+    export default user;
 
 
 }
