@@ -26,7 +26,7 @@ const Blog = props => {
         }
 
         .post + .post {
-          margin-top: 2rem;
+          margin-top: 5rem;
         }
       `}</style>
     </div>
