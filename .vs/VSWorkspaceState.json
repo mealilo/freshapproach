@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\pages\\api"
+    "\\components",
+    "\\pages",
+    "\\prisma"
   ],
-  "SelectedNode": "\\package.json",
+  "SelectedNode": "\\pages\\drafts.js",
   "PreviewInSolutionExplorer": true
 }
