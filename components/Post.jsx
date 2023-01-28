@@ -8,9 +8,12 @@ const Post = ({ post }) => {
     <div>
           <h2>{post.title}</h2>
           <small> {post.description}</small>
+          <small> {post.price}</small>
+          <h1>hello</h1>
+
       <style jsx>{`
         div {
-          color: red;
+          color: blue;
           padding: 2rem;
         }
       `}</style>
