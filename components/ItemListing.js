@@ -15,16 +15,3 @@ const Listing = ({ listing }) => {
 export default Listing
 
 
-//export const getServerSideProps = async () => {
-//    const pictures = await prisma.listing_picture.findMany({
-//        where: {listing_ID: listing.listing_ID}
-
-//    })
-//    console.log(pictures);
-//    return {
-//        props: { pictures: makeSerializable(pictures) },
-//    }
-//    console.log(pictures);
-//}
-
-
