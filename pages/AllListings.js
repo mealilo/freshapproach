@@ -15,7 +15,7 @@ const allListings = props => {
                             <Listing listing={listing} />
                             
                             <img  src={ listing.listing_picture[0].picture_link }/>
-                        </div>,
+                        </div>
 
                     ))}
                 </main>
