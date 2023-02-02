@@ -16,14 +16,6 @@ const allListings = props => {
                         <div key={listing.listing_ID}>
                             <Listing listing={listing} />
 
-                            {/*{*/}
-                            {/*    listing.listing_picture.length > 0*/}
-                            {/*        ? {*/}
-                            {/*            listinglisting_picture.map(pictures => (*/}
-                            {/*            pictures.picture_link*/}
-                            {/*            ))}*/}
-                            {/*    : <h1>No Picture is available</h1>*/}
-                            {/*}*/}
 
                             {
                                 listing.listing_picture.length > 0
@@ -49,8 +41,8 @@ export const getServerSideProps = async () => {
         },
 
     })
-    console.log("Picture LINK:")
-    console.log(items[0].listing_picture[0].picture_link);
+    //console.log("Picture LINK:")
+    //console.log(items[0]);
     //console.log(items);
     return {
         props: { items: makeSerializable(items) },
