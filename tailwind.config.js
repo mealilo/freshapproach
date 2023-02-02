@@ -9,6 +9,7 @@ module.exports = {
     colors: {
       'closecropgreen':'#08302F',
       'Sage': '#7FA966',
+      'sageAnimate': '#71965B',
       'Orange': '#F99A01',
       'greenText': '#0E8044',
       'blueGreenCustom': '#04676A',
