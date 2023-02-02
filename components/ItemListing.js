@@ -2,7 +2,6 @@ import Router from 'next/router'
 import ReactMarkdown from 'react-markdown'
 
 const Listing = ({ listing }) => {
-    console.log({listing});
     return (
         <div>
             <h2>{listing.title}</h2>
