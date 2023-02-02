@@ -41,9 +41,6 @@ export const getServerSideProps = async () => {
         },
 
     })
-    //console.log("Picture LINK:")
-    //console.log(items[0]);
-    //console.log(items);
     return {
         props: { items: makeSerializable(items) },
     }
