@@ -2,6 +2,30 @@ import Head from "next/head";
 import React, { useState } from "react";
 
 export default function Home() {
+    //const handleSubmit = (event) => {
+    //    event.preventDefault();
+    //    console.log(event);
+    //    const email = event.target.elements.email.value;
+    //    console.log(email);
+
+    //};
+
+    const [form, setForm] = React.useState({
+
+    });
+
+    const handleChange = (event) => {
+        setForm({
+            ...form,
+            [event.target.id]: event.target.value,
+        });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(form);
+        alert(form.email + ' ' + form.password);
+    }
   return (
     <div className="">
       <Head>
@@ -17,7 +41,7 @@ export default function Home() {
                 Vendor Sign Up
               </h2>
             </div>
-            <form className="mt-8 space-y-6" action="#" method="POST">
+            <form onSubmit={handleSubmit} type="POST" className="mt-8 space-y-6">
               <input type="hidden" name="remember" defaultValue="true" />
               <div className="space-y-5 rounded-md shadow-xl p-8 columns-2 border-t-8 border-orange-400">
                 <div className="flex flex-col space-y-2">
@@ -30,6 +54,8 @@ export default function Home() {
                     required
                     className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                     placeholder="Enter your First Name"
+                    value={form.fname}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="flex flex-col space-y-2">
@@ -42,19 +68,22 @@ export default function Home() {
                     required
                     className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                     placeholder="Enter your Last Name"
+                    value={form.lname}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="flex flex-col space-y-2">
-                  <label htmlFor="email-address">Email</label>
+                                  <label htmlFor="email">Email</label>
 
                   <input
-                    id="email-address"
+                    id="email"
                     name="email"
                     type="email"
-                    autoComplete="email"
                     required
                     className="relative block w-full appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm font"
                     placeholder="Enter your Email"
+                    value={form.email}
+                    onChange={handleChange}
                   />
                 </div>
 
@@ -68,6 +97,8 @@ export default function Home() {
                     required
                     className="relative block w-full appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                     placeholder="Create your Password"
+                    value={form.password}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="flex flex-col space-y-2">
@@ -80,6 +111,8 @@ export default function Home() {
                     required
                     className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                     placeholder="Enter your City"
+                    value={form.city}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="flex flex-col space-y-2">
@@ -92,6 +125,9 @@ export default function Home() {
                     required
                     className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                     placeholder="Enter your Zip Code"
+                    value={form.zip}
+                    onChange={handleChange}
+
                   />
                 </div>
               </div>
@@ -99,10 +135,12 @@ export default function Home() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <input
-                    id="i-agree"
-                    name="i-agree"
+                    id="agreement"
+                    name="agreement"
                     type="checkbox"
                     className="h-4 w-4 rounded border-gray-300 text-lime-600 focus:ring-lime-500"
+                    value={form.agreement}
+                    onChange={handleChange}
                   />
                   <label
                     htmlFor="i-agree"
