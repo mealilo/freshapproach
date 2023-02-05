@@ -1,5 +1,5 @@
 import Head from 'next/head';
-
+import SubscribeForm from "../components/SubscribeForm";
 export default function Home() {
   return (
     <div className="">
@@ -11,6 +11,7 @@ export default function Home() {
         <section className="pt-6">
           <h2 className="text-4xl font-semibold pb-5 text-center text-greenText"> Subscribe Page</h2>
         </section>
+        <SubscribeForm/>
       </main>
     </div>
   );
