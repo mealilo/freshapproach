@@ -22,18 +22,18 @@ function Header() {
         {/* Middle */}
         <div className="flex items-center md:border-2 rounded-full py-2 md:shadow-sm w-64 bg-white">
         <input className="flex-grow pl-5 bg-white outline-none text-sm text-gray-600 placeholder-gray-400" type="text" placeholder="Search for Produce"/>
-        <SearchIcon className="hidden md:inline-flex h-8 bg-Sage text-white rounded-full p-2 cursor-pointer md:mx-2"/>
+        <SearchIcon className="hidden md:inline-flex h-8 bg-Sage text-white rounded-full p-2 cursor-pointer md:mx-2 "/>
         </div>
         {/* Right */}
-        <div className="flex items-center space-x-4 justify-end">
+        <div className="flex items-center space-x-10 justify-end">
             <Link href="/BecomeVendor"> 
-               <p className="text-white font-Poppins">Become a Vendor!</p>
+               <p className="text-white font-Poppins hover:text-Sage whitespace-nowrap">Become a Vendor!</p>
             </Link>
             <Link href="listings">
-               <p className="text-white font-Poppins">Explore Produce</p>
+               <p className="text-white font-Poppins hover:text-Sage whitespace-nowrap">Explore Produce</p>
             </Link>
             <Link href="SignIn">
-               <p className="text-white font-Poppins">Sign In</p>
+               <p className="text-white font-Poppins hover:text-Sage whitespace-nowrap">Sign In</p>
             </Link>
             <Link href="/Subscribe">
         <SubscribeButton/>

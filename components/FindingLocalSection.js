@@ -1,6 +1,5 @@
 import SubscribeButton from "../components/SubscribeButton";
-import {GiStrawberry, GiGrapes} from "react-icons/gi";
-import{FaCarrot} from "react-icons/fa";
+import Link from "next/link"
 import {TbCircle1, TbCircle2, TbCircle3 } from "react-icons/tb";
 function FindingLocalSection(){
     return(
@@ -21,7 +20,10 @@ function FindingLocalSection(){
         </div>
         <div className="bg-anotherGreen py-52"> <p> Every week you get alerted about new available produce, based on your preferences, sent right to your inbox.</p>
         <div> </div>
-        <SubscribeButton className="bg-Sage"/> </div>
+        <Link href="/Subscribe" >
+        <SubscribeButton/>
+        </Link>
+      </div>
       </div>
     );
 }
