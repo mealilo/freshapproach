@@ -8,9 +8,9 @@ function FindingLocalSection(){
         </div>
         <div className="bg-Orange py-52">
         <p>1. Sign Up 2.Select Preferences 3.Enjoy Produce  </p></div>
-        <div className="bg-Sage py-52"> <p> Every week you get alerted about new available produce, based on your preferences, sent right to your inbox.</p>
+        <div className="bg-anotherGreen py-52"> <p> Every week you get alerted about new available produce, based on your preferences, sent right to your inbox.</p>
         <div> </div>
-        <SubscribeButton className="bg-customPurple"/> </div>
+        <SubscribeButton className="bg-Sage"/> </div>
       </div>
     );
 }
