@@ -5,7 +5,7 @@ function MainContent(){
     return(
         <main className="max-w-7xl mx-auto px-8 sm:px-16 font-Poppins">
         <section className="pt-6">
-          <h2 className="text-4xl font-semibold pb-5 text-center text-cyan-800"> Explore Produce </h2>
+          <h2 className="text-4xl font-semibold pb-5 text-center text-nearBlack font-Poppins"> Explore Produce </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       <div className="flex items-center m-2 mt-5 space-x-4 rounded-xl cursor-pointer " >
            <img alt="fruit" src="/images/Fruit.png" className="w-36"/>
