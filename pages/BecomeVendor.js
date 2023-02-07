@@ -4,39 +4,27 @@ import CreatePerson from "../components/Banner";
 
 
 export default function Home() {
-    //const handleSubmit = (event) => {
-    //    event.preventDefault();
-    //    const fname = event.target.elements.fname.value;
-    //    const email = event.target.elements.email.value;
-    //    const lname = event.target.elements.lname.value;
-    //    const password = event.target.elements.password.value;
-    //    const zip = event.target.elements.zip.value;
-
-    //    console.log(email);
-
-    //};
-
-
-    const [form, setForm] = React.useState({
-        fname: '',
-        lname: '',
-        email: '',
-        password: '',
-        city: '',
-        zip: ''
-    });
-
-    const handleChange = (event) => {
-        setForm({
-            ...form,
-            [event.target.id]: event.target.value,
-        });
-    };
-
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        const fromJSON = JSON.stringify(form);
-        const endpoint = '/api/CreatePerson'
+        // Stop the form from submitting and refreshing the page.
+        event.preventDefault()
+
+        // Get data from the form.
+        const data = {
+            fname: event.target.fname.value,
+            lname: event.target.lname.value,
+            email: event.target.email.value,
+            password: event.target.password.value,
+            city: event.target.city.value,
+            zip: event.target.zip.value
+
+        }
+
+        // Send the data to the server in JSON format.
+        const JSONdata = JSON.stringify(data);
+        console.log(JSONdata);
+
+        // API endpoint where we send form data.
+        const endpoint = '/api/CreatePerson';
 
         // Form the request for sending data to the server.
         const options = {
@@ -47,18 +35,17 @@ export default function Home() {
                 'Content-Type': 'application/json',
             },
             // Body of the request is the JSON data we created above.
-            body: fromJSON,
-
-            
-
+            body: JSONdata,
         }
-        // send response
+
+        // Send the form data to our forms API on Vercel and get a response.
         const response = await fetch(endpoint, options)
+
+        // Get the response data from server as JSON.
+        // If server returns the name submitted, that means the form works.
         const result = await response.json()
         alert(`Is this your full name: ${result.data}`)
-        alert(form);
-
-    };
+    }
 
 
   return (
@@ -89,8 +76,6 @@ export default function Home() {
                     required
                     className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                     placeholder="Enter your First Name"
-                    value={form.fname}
-                    onChange={handleChange}
 
                   />
                 </div>
@@ -104,8 +89,7 @@ export default function Home() {
                     required
                     className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                       placeholder="Enter your Last Name"
-                                      value={form.lname}
-                                      onChange={handleChange}
+ 
                   />
                 </div>
                 <div className="flex flex-col space-y-2">
@@ -118,8 +102,7 @@ export default function Home() {
                     required
                     className="relative block w-full appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm font"
                                       placeholder="Enter your Email"
-                                      value={form.email}
-                                      onChange={handleChange}
+                                
                   />
                 </div>
 
@@ -133,8 +116,7 @@ export default function Home() {
                     required
                     className="relative block w-full appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                       placeholder="Create your Password"
-                                      value={form.password}
-                                      onChange={handleChange}
+                                      
                   />
                 </div>
                 <div className="flex flex-col space-y-2">
@@ -147,8 +129,7 @@ export default function Home() {
                     required
                     className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                       placeholder="Enter your City"
-                                      value={form.city}
-                                      onChange={handleChange}
+                            
                   />
                 </div>
                 <div className="flex flex-col space-y-2">
@@ -161,8 +142,7 @@ export default function Home() {
                     required
                     className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                       placeholder="Enter your Zip Code"
-                                      value={form.zip}
-                                      onChange={handleChange}
+                              
 
 
                   />
