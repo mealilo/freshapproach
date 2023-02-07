@@ -7,15 +7,25 @@ export default async function handler(req, res) {
 	let lname = req.body.lname;
 	let email = req.body.email;
     let password = req.body.password;
-    CreatePerson(fname, lname, email, password);
+    try {
+        CreatePerson(fname, lname, email, password);
+        res.status(200).json({ fname: { fname } })
+    }
+    catch {
+        let failure = "Unable to create an Account. Please try again or contact us."
+        res.status(500).json({ error: { failure } })
 
-	res.status(200).json({ fname: 'John Doe' })
+    }
+
 }
 
 
 async function CreatePerson( first_name, last_name, email, password) {
     const date = new Date();
-    console.log(first_name)
+    console.log(first_name);
+    console.log(last_name);
+    console.log(email);
+    console.log(password);
 
     await prisma.person.create({
         data: {

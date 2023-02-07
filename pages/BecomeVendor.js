@@ -44,7 +44,10 @@ export default function Home() {
         // Get the response data from server as JSON.
         // If server returns the name submitted, that means the form works.
         const result = await response.json()
-        alert(`Is this your full name: ${result.data}`)
+        console.log(result.status);
+        console.log(result);
+
+        alert(`Welcome!: ${result.fname.fname}`)
     }
 
 
