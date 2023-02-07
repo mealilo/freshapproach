@@ -3,9 +3,7 @@
     "",
     "\\components",
     "\\pages",
-    "\\prisma\\migrations",
     "\\public"
   ],
-  "SelectedNode": "\\pages\\AllListings.js",
   "PreviewInSolutionExplorer": true
 }

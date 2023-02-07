@@ -1,17 +1,29 @@
 import Head from "next/head";
 import React, { useState } from "react";
+import CreatePerson from "../components/Banner";
+
 
 export default function Home() {
     //const handleSubmit = (event) => {
     //    event.preventDefault();
-    //    console.log(event);
+    //    const fname = event.target.elements.fname.value;
     //    const email = event.target.elements.email.value;
+    //    const lname = event.target.elements.lname.value;
+    //    const password = event.target.elements.password.value;
+    //    const zip = event.target.elements.zip.value;
+
     //    console.log(email);
 
     //};
 
-    const [form, setForm] = React.useState({
 
+    const [form, setForm] = React.useState({
+        fname: '',
+        lname: '',
+        email: '',
+        password: '',
+        city: '',
+        zip: ''
     });
 
     const handleChange = (event) => {
@@ -21,11 +33,34 @@ export default function Home() {
         });
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(form);
-        alert(form.email + ' ' + form.password);
-    }
+        const fromJSON = JSON.stringify(form);
+        const endpoint = '/api/CreatePerson'
+
+        // Form the request for sending data to the server.
+        const options = {
+            // The method is POST because we are sending data.
+            method: 'POST',
+            // Tell the server we're sending JSON.
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            // Body of the request is the JSON data we created above.
+            body: fromJSON,
+
+            
+
+        }
+        // send response
+        const response = await fetch(endpoint, options)
+        const result = await response.json()
+        alert(`Is this your full name: ${result.data}`)
+        alert(form);
+
+    };
+
+
   return (
     <div className="">
       <Head>
@@ -56,6 +91,7 @@ export default function Home() {
                     placeholder="Enter your First Name"
                     value={form.fname}
                     onChange={handleChange}
+
                   />
                 </div>
                 <div className="flex flex-col space-y-2">
@@ -67,9 +103,9 @@ export default function Home() {
                     autoComplete="lname"
                     required
                     className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                    placeholder="Enter your Last Name"
-                    value={form.lname}
-                    onChange={handleChange}
+                                      placeholder="Enter your Last Name"
+                                      value={form.lname}
+                                      onChange={handleChange}
                   />
                 </div>
                 <div className="flex flex-col space-y-2">
@@ -81,9 +117,9 @@ export default function Home() {
                     type="email"
                     required
                     className="relative block w-full appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm font"
-                    placeholder="Enter your Email"
-                    value={form.email}
-                    onChange={handleChange}
+                                      placeholder="Enter your Email"
+                                      value={form.email}
+                                      onChange={handleChange}
                   />
                 </div>
 
@@ -96,9 +132,9 @@ export default function Home() {
                     autoComplete="current-password"
                     required
                     className="relative block w-full appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                    placeholder="Create your Password"
-                    value={form.password}
-                    onChange={handleChange}
+                                      placeholder="Create your Password"
+                                      value={form.password}
+                                      onChange={handleChange}
                   />
                 </div>
                 <div className="flex flex-col space-y-2">
@@ -110,9 +146,9 @@ export default function Home() {
                     autoComplete="city"
                     required
                     className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                    placeholder="Enter your City"
-                    value={form.city}
-                    onChange={handleChange}
+                                      placeholder="Enter your City"
+                                      value={form.city}
+                                      onChange={handleChange}
                   />
                 </div>
                 <div className="flex flex-col space-y-2">
@@ -124,9 +160,10 @@ export default function Home() {
                     autoComplete="zip"
                     required
                     className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                    placeholder="Enter your Zip Code"
-                    value={form.zip}
-                    onChange={handleChange}
+                                      placeholder="Enter your Zip Code"
+                                      value={form.zip}
+                                      onChange={handleChange}
+
 
                   />
                 </div>
@@ -138,9 +175,8 @@ export default function Home() {
                     id="agreement"
                     name="agreement"
                     type="checkbox"
+                    required
                     className="h-4 w-4 rounded border-gray-300 text-lime-600 focus:ring-lime-500"
-                    value={form.agreement}
-                    onChange={handleChange}
                   />
                   <label
                     htmlFor="i-agree"

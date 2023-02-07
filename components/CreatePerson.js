@@ -3,7 +3,7 @@ const prisma = new PrismaClient()
 
 
 
-async function CreatePerson({first_name,last_name,email,password,profile_picture_link }) {
+async function CreatePerson({first_name,last_name,email,password}) {
     const date = new Date();
     console.log(date);
     await prisma.person.create({
@@ -13,7 +13,7 @@ async function CreatePerson({first_name,last_name,email,password,profile_picture
             email: email,
             password: password,
             profile_picture_link: profile_picture_link,
-            created_on: date
+            created_on: date,
         }
 
     })
