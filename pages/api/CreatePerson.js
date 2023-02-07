@@ -7,8 +7,10 @@ export default async function handler(req, res) {
 	let lname = req.body.lname;
 	let email = req.body.email;
     let password = req.body.password;
+    let zip = req.body.zip;
+
     try {
-        CreatePerson(fname, lname, email, password);
+        CreatePerson(fname, lname, email, password, zip);
         res.status(200).json({ fname: { fname } })
     }
     catch {
@@ -20,7 +22,7 @@ export default async function handler(req, res) {
 }
 
 
-async function CreatePerson( first_name, last_name, email, password) {
+async function CreatePerson( first_name, last_name, email, password, zip) {
     const date = new Date();
     console.log(first_name);
     console.log(last_name);
@@ -35,6 +37,11 @@ async function CreatePerson( first_name, last_name, email, password) {
             password: password,
             profile_picture_link: "",
             created_on: date,
+            //producer: {
+            //    create: [
+            //        {address: '1243 Steven Circle', state: 'UT', zip_code: zip, phone_number: '8012005917', address_public: false, phone_number_public: false, email_public: true  }
+            //    ]
+            //}
         }
 
     })
