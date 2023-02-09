@@ -50,6 +50,8 @@ export default function Home() {
         alert(`Welcome!: ${result.fname.fname}`)
     }
 
+    
+
 
   return (
     <div className="">

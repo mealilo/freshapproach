@@ -1,7 +1,23 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
+import { data } from 'autoprefixer';
+import { NextApiRequest, NextApi } from 'next'
 
 
+
+
+
+// export default async (req, res) => {
+//  const Data = JSON.parse(req.body);
+
+//  const newPerson = await prisma.person.create({
+//     data: {
+//         first_name: data.fname
+//     }
+//  })
+
+
+//}
 export default async function handler(req, res) {
 	let fname = req.body.fname;
 	let lname = req.body.lname;
