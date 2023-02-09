@@ -4,51 +4,76 @@ import CreatePerson from "../components/Banner";
 
 
 export default function Home() {
-    const handleSubmit = async (event) => {
-        // Stop the form from submitting and refreshing the page.
-        event.preventDefault()
 
-        // Get data from the form.
-        const data = {
-            fname: event.target.fname.value,
-            lname: event.target.lname.value,
-            email: event.target.email.value,
-            password: event.target.password.value,
-            city: event.target.city.value,
-            zip: event.target.zip.value
+// Your submit handler function in JavaScript
+const submitHandler = (event) => {
+  event.preventDefault();
 
-        }
+  const formData = new FormData(event.target);
+  const data = Object.fromEntries(formData);
 
-        // Send the data to the server in JSON format.
-        const JSONdata = JSON.stringify(data);
-        console.log(JSONdata);
+  fetch("/api/CreatePersonAndProducer", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .then((response) => {
+      console.log("Success:", JSON.stringify(response));
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
 
-        // API endpoint where we send form data.
-        const endpoint = '/api/CreatePerson';
 
-        // Form the request for sending data to the server.
-        const options = {
-            // The method is POST because we are sending data.
-            method: 'POST',
-            // Tell the server we're sending JSON.
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            // Body of the request is the JSON data we created above.
-            body: JSONdata,
-        }
+    // const handleSubmit = async (event) => {
+    //     // Stop the form from submitting and refreshing the page.
+    //     event.preventDefault()
 
-        // Send the form data to our forms API on Vercel and get a response.
-        const response = await fetch(endpoint, options)
+    //     // Get data from the form.
+    //     const data = {
+    //         fname: event.target.fname.value,
+    //         lname: event.target.lname.value,
+    //         email: event.target.email.value,
+    //         password: event.target.password.value,
+    //         city: event.target.city.value,
+    //         zip: event.target.zip.value
 
-        // Get the response data from server as JSON.
-        // If server returns the name submitted, that means the form works.
-        const result = await response.json()
-        console.log(result.status);
-        console.log(result);
+    //     }
 
-        alert(`Welcome!: ${result.fname.fname}`)
-    }
+    //     // Send the data to the server in JSON format.
+    //     const JSONdata = JSON.stringify(data);
+    //     console.log(JSONdata);
+
+    //     // API endpoint where we send form data.
+    //     const endpoint = '/api/CreatePerson';
+
+    //     // Form the request for sending data to the server.
+    //     const options = {
+    //         // The method is POST because we are sending data.
+    //         method: 'POST',
+    //         // Tell the server we're sending JSON.
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         // Body of the request is the JSON data we created above.
+    //         body: JSONdata,
+    //     }
+
+    //     // Send the form data to our forms API on Vercel and get a response.
+    //     const response = await fetch(endpoint, options)
+
+    //     // Get the response data from server as JSON.
+    //     // If server returns the name submitted, that means the form works.
+    //     const result = await response.json()
+    //     console.log(result.status);
+    //     console.log(result);
+
+    //     alert(`Welcome!: ${result.fname.fname}`)
+    // }
 
     
 
@@ -68,7 +93,7 @@ export default function Home() {
                 Vendor Sign Up
               </h2>
             </div>
-            <form onSubmit={handleSubmit} type="POST" className="mt-8 space-y-6">
+            <form onSubmit={submitHandler} type="POST" className="mt-8 space-y-6">
               <input type="hidden" name="remember" defaultValue="true" />
               <div className="space-y-5 rounded-md shadow-xl p-8 columns-2 border-t-8 border-orange-400">
                 <div className="flex flex-col space-y-2">
