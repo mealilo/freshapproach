@@ -21,62 +21,12 @@ const submitHandler = (event) => {
   })
     .then((res) => res.json())
     .then((response) => {
-      console.log("Success:", JSON.stringify(response));
+      alert("Welcome!", JSON.stringify(response));
     })
     .catch((error) => {
       console.error("Error:", error);
     });
 };
-
-
-    // const handleSubmit = async (event) => {
-    //     // Stop the form from submitting and refreshing the page.
-    //     event.preventDefault()
-
-    //     // Get data from the form.
-    //     const data = {
-    //         fname: event.target.fname.value,
-    //         lname: event.target.lname.value,
-    //         email: event.target.email.value,
-    //         password: event.target.password.value,
-    //         city: event.target.city.value,
-    //         zip: event.target.zip.value
-
-    //     }
-
-    //     // Send the data to the server in JSON format.
-    //     const JSONdata = JSON.stringify(data);
-    //     console.log(JSONdata);
-
-    //     // API endpoint where we send form data.
-    //     const endpoint = '/api/CreatePerson';
-
-    //     // Form the request for sending data to the server.
-    //     const options = {
-    //         // The method is POST because we are sending data.
-    //         method: 'POST',
-    //         // Tell the server we're sending JSON.
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         // Body of the request is the JSON data we created above.
-    //         body: JSONdata,
-    //     }
-
-    //     // Send the form data to our forms API on Vercel and get a response.
-    //     const response = await fetch(endpoint, options)
-
-    //     // Get the response data from server as JSON.
-    //     // If server returns the name submitted, that means the form works.
-    //     const result = await response.json()
-    //     console.log(result.status);
-    //     console.log(result);
-
-    //     alert(`Welcome!: ${result.fname.fname}`)
-    // }
-
-    
-
 
   return (
     <div className="">
