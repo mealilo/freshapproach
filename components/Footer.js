@@ -1,7 +1,7 @@
 
 function Footer() {
   return (
-    <div className="bg-closecropgreen">
+    <div className="bg-nearBlack">
     <div className="max-w-2xl mx-auto text-white py-10">
         <div className="text-center">
             <h3 className="text-3xl mb-3 text-white"> FAQ </h3>
