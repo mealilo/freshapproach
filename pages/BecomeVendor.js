@@ -21,7 +21,15 @@ const submitHandler = (event) => {
   })
     .then((res) => res.json())
     .then((response) => {
-      alert("Welcome!", JSON.stringify(response));
+      if(response.message === 'Success'){
+        //redirect to wherever.
+        window.location = "/";
+      }
+      else{
+        alert("Error: Please fill out form again")
+      }
+      
+
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -68,22 +76,37 @@ const submitHandler = (event) => {
                     autoComplete="lname"
                     required
                     className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                      placeholder="Enter your Last Name"
+                    placeholder="Enter your Last Name"
  
                   />
                 </div>
-                <div className="flex flex-col space-y-2">
-                                  <label htmlFor="email">Email</label>
+                <div className="flex flex-col justify-end space-y-2">
+                  <div>
 
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    className="relative block w-full appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm font"
-                                      placeholder="Enter your Email"
-                                
-                  />
+                    
+                    <label htmlFor="email">Email</label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      className="relative block w-full appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm font"
+                      placeholder="Enter your Email"
+                      />
+                     <label
+                      htmlFor="publicEmail"
+                      className="ml-2 block text-sm text-gray-900">
+                      Email Available to Public
+                    </label>
+                    <input
+                      id="publicEmail"
+                      name="publicEmail"
+                      type="checkbox"
+                      
+                      className="h-4 w-4 rounded border-gray-300 text-lime-600 focus:ring-lime-500"
+                    />
+
+                  </div>
                 </div>
 
                 <div className="flex flex-col space-y-2">
@@ -95,7 +118,7 @@ const submitHandler = (event) => {
                     autoComplete="current-password"
                     required
                     className="relative block w-full appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                      placeholder="Create your Password"
+                    placeholder="Create your Password"
                                       
                   />
                 </div>
@@ -108,9 +131,25 @@ const submitHandler = (event) => {
                     autoComplete="city"
                     required
                     className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                      placeholder="Enter your City"
+                    placeholder="Enter your City"
                             
                   />
+                  
+
+                  <label
+                      htmlFor="publicAddress"
+                      className="ml-2 block text-sm text-gray-900">
+                      Make Address Available to Public
+                    </label>
+                    <input
+                      id="publicAddress"
+                      name="publicAddress"
+                      type="checkbox"
+                      
+                      className="h-4 w-4 rounded border-gray-300 text-lime-600 focus:ring-lime-500"
+                    />
+
+                  
                 </div>
                 <div className="flex flex-col space-y-2">
                   <label htmlFor="zip">Zip Code</label>
@@ -121,13 +160,39 @@ const submitHandler = (event) => {
                     autoComplete="zip"
                     required
                     className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                      placeholder="Enter your Zip Code"
-                              
-
-
+                    placeholder="Enter your Zip Code"
                   />
                 </div>
+
+                <div className="flex flex-col space-y-2">
+                  <label htmlFor="zip">Phone Number</label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="phone"
+                    autoComplete="phone"
+                    required
+                    className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    placeholder="Enter your Phone Number"
+                  />
+
+                    <label
+                      htmlFor="publicPhone"
+                      className="ml-2 block text-sm text-gray-900">
+                      Make Phone Available to Public
+                    </label>
+                    <input
+                      id="publicPhone"
+                      name="publicPhone"
+                      type="checkbox"
+                      
+                      className="h-4 w-4 rounded border-gray-300 text-lime-600 focus:ring-lime-500"
+                    />
+                </div>
               </div>
+
+
+              
 
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
@@ -140,16 +205,14 @@ const submitHandler = (event) => {
                   />
                   <label
                     htmlFor="i-agree"
-                    className="ml-2 block text-sm text-gray-900"
-                  >
+                    className="ml-2 block text-sm text-gray-900">
                     I Agree to the Terms and Conditions
                   </label>
                 </div>
                 <div className="text-sm">
                   <a
                     href="#"
-                    className="font-medium text-teal-800 hover:text-teal-600"
-                  >
+                    className="font-medium text-teal-800 hover:text-teal-600">
                     Forgot your password?
                   </a>
                 </div>
