@@ -66,7 +66,6 @@ async function main() {
     })
     console.log(updatedUSER)
     
-    export default user;
 
 
 }
