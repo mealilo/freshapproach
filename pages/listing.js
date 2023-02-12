@@ -1,7 +1,13 @@
 import React from "react";
+import { useRouter } from 'next/router';
 import SVG from "../public/icons/svg";
 
-const Listing = () => {
+const Listing = (data) => {
+  const router = useRouter();
+  // const data = router.query;
+  console.log('HERE', data);
+
+  console.log(data);
 
   return (
     <div className="text-left bg-gray-50 text-gray-800 py-16 px-16">
