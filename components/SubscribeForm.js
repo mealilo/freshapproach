@@ -1,8 +1,21 @@
 function SubscribeForm(){
     return(
-        <>
-  {/* Begin Mailchimp Signup Form */}
-  <link
+      <div className="">
+ 
+      <main className="max-w-7xl mx-auto px-8 sm:px-16">
+        <section className="pt-6"></section>
+        <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+          <div className="w-full max-w-3xl space-y-8">
+            <div className=" grid grid-rows-2 grid-flow-col gap-4 space-y-5 rounded-md shadow-xl p-5 columns-2 border-t-8 border-teal-800">
+              <h2 className=" text-left text-5xl font-normal tracking-tight text-gray-900">
+               Subscribe to our Newsletter
+              </h2>
+              <p>Receive updates and announcements about new vendors and produce listings!</p> 
+            </div>
+            <form className="mt-8 space-y-6" action="#" method="POST">
+              <input type="hidden" name="remember" defaultValue="true" />
+              <div className=" grid grid-rows-1  space-y-5 rounded-md shadow-xl p-8 columns-2 border-t-8 border-orange-400">
+              <link
     href="//cdn-images.mailchimp.com/embedcode/classic-071822.css"
     rel="stylesheet"
     type="text/css"
@@ -25,7 +38,6 @@ function SubscribeForm(){
       noValidate=""
     >
       <div id="mc_embed_signup_scroll">
-        <h2>Subscribe to the Fresh Approach newsletter</h2>
         <div className="indicates-required">
           <span className="asterisk">*</span> indicates required
         </div>
@@ -104,7 +116,17 @@ function SubscribeForm(){
       </div>
     </form>
   </div>
-</>
+        
+              </div>
+
+             
+   
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+ 
 
     )}
     export default SubscribeForm
