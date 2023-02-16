@@ -20,10 +20,6 @@ const Listing = ({ listing }) => {
                     <p className="text-gray-700 text-base">
                        ${price} *still need unit type
                     </p>
-                    <div className="flex flex-row">
-                        <SVG name="star" class="text-Orange w-4" />
-                        <p className="text-gray-700 text-base">*4.5</p>
-                    </div>
                 </div>
             </div>
         </div>
