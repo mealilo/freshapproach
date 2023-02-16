@@ -17,7 +17,7 @@ export default async (req, res) => {
     let { name, type } = req.body;
 
     const fileParams = {
-      Bucket: process.env.BUCKET_NAME,
+      Bucket: "freshapproach",
       Key: name,
       Expires: 600,
       ContentType: type,
@@ -32,6 +32,7 @@ export default async (req, res) => {
   }
 };
 
+// Here we can set the max size for files
 export const config = {
   api: {
     bodyParser: {

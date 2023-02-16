@@ -38,7 +38,8 @@ export default function Home() {
     <div className="container flex items-center p-4 mx-auto min-h-screen justify-center">
       <main>
         <p>Please select a file to upload</p>
-        <input type="file" onChange={(e) => selectFile(e)} />
+        {/* Multipole files here */}
+        <input type="file" multiple="multiple" onChange={(e) => selectFile(e)} />
         {file && (
           <>
             <p>Selected file: {file.name}</p>
