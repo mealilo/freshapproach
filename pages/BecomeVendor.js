@@ -112,9 +112,10 @@ const submitHandler = (event) => {
                   </div>
                 </div>
                 <h4 className="text-xl font-medium">Public Details</h4>
+                <span className="text-xs text-gray-600">Details will be public to all users.</span>
                 <div className="columns-2">
                   <div className="flex flex-col ">
-                    <label htmlFor="zip">Phone Number</label>
+                    <label htmlFor="zip" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">Phone Number</label>
                     <input
                       id="phone"
                       name="phone"
@@ -127,7 +128,9 @@ const submitHandler = (event) => {
                   </div>
                   <div className="columns-2">
                     <div className="flex flex-col ">
-                      <label htmlFor="city">City</label>
+                      <div>
+                        <label htmlFor="city">City</label><label className="text-sm text-gray-300 italic"> (optional)</label>
+                      </div>
                       <input
                         id="city"
                         name="city"
