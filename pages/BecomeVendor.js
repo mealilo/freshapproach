@@ -132,7 +132,7 @@ export default function Home() {
                 <div>
                   <button
                     type="submit"
-                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-lime-600 py-2 px-4 text-sm font-medium text-white hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-600 focus:ring-offset-2"
+                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-Sage py-2 px-4 text-sm font-medium text-white hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-600 focus:ring-offset-2"
                   >
                     Sign Up
                   </button>

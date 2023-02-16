@@ -16,6 +16,7 @@ module.exports = {
       'customPurple': "#792299",
       'anotherGreen': "#5F8543",
       'nearBlack': "#151B29",
+      'greywhite': "#e5e7eb",
     },
     fontFamily: {
       'Sahitya': ["Sahitya","serif"],

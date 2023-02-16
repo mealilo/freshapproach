@@ -6,7 +6,7 @@ function SubscribeForm() {
         <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
           <div className="w-full max-w-3xl space-y-8">
             <div className=" grid grid-rows-2 grid-flow-col gap-4 space-y-5 rounded-md shadow-xl p-5 columns-2 border-t-8 border-teal-800">
-              <h2 className=" text-left text-5xl font-normal tracking-tight text-gray-900">
+              <h2 className=" text-left text-5xl font-normal tracking-tight text-gray-900 py-0">
                 Subscribe to our Newsletter
               </h2>
               <p>
@@ -118,7 +118,7 @@ function SubscribeForm() {
                             defaultValue="Subscribe"
                             name="subscribe"
                             id="mc-embedded-subscribe"
-                            className="button"
+                            className="button bg-Sage"
                           />
                         </div>
                       </div>
