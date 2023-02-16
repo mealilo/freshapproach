@@ -11,67 +11,57 @@ function MainContent() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-7 space-x-10">
           <div className="flex items-center m-2 mt-5 space-x-4 rounded-xl cursor-pointer "></div>
           <div class="flex justify-center">
-          <div class="rounded-lg max-w-sm">
-            <a data-mdb-ripple="true" data-mdb-ripple-color="none">
-              <img class="rounded-t-lg" src="/images/Fruit.png" alt="" />
-            </a>
-            <div class="p-6">
-              <h5 class="text-gray-900 text-xl text-center mb-2">
-                Fruit
-              </h5>
+            <div class="rounded-lg max-w-sm">
+              <a data-mdb-ripple="true" data-mdb-ripple-color="none">
+                <img class="rounded-t-lg" src="/images/Fruit.png" alt="" />
+              </a>
+              <div class="p-6">
+                <h5 class="text-gray-900 text-xl text-center mb-2">Fruit</h5>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <div class="rounded-lg max-w-sm">
+              <a data-mdb-ripple="true" data-mdb-ripple-color="light">
+                <img class="rounded-t-lg" src="/images/Veggies.png" alt="" />
+              </a>
+              <div class="p-6">
+                <h5 class="text-gray-900 text-xl text-center mb-2">Veggies</h5>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <div class="rounded-lg max-w-sm">
+              <a data-mdb-ripple="true" data-mdb-ripple-color="light">
+                <img class="rounded-t-lg" src="/images/Nuts.png" alt="" />
+              </a>
+              <div class="p-6">
+                <h5 class="text-gray-900 text-xl text-center mb-2">Nuts</h5>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <div class="rounded-lg max-w-sm">
+              <a data-mdb-ripple="true" data-mdb-ripple-color="light">
+                <img class="rounded-t-lg" src="/images/Honey.png" alt="" />
+              </a>
+              <div class="p-6">
+                <h5 class="text-gray-900 text-xl text-center mb-2">Honey</h5>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <div class="rounded-lg max-w-sm">
+              <a data-mdb-ripple="true" data-mdb-ripple-color="light">
+                <img class="rounded-t-lg" src="/images/Eggs.png" alt="" />
+              </a>
+              <div class="p-6">
+                <h5 class="text-gray-900 text-xl text-center mb-2">Eggs</h5>
+              </div>
             </div>
           </div>
         </div>
-        <div class="flex justify-center">
-          <div class="rounded-lg max-w-sm">
-            <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-              <img class="rounded-t-lg" src="/images/Veggies.png" alt="" />
-            </a>
-            <div class="p-6">
-              <h5 class="text-gray-900 text-xl text-center mb-2">
-                Veggies
-              </h5>
-            </div>
-          </div>
-        </div>
-        <div class="flex justify-center">
-          <div class="rounded-lg max-w-sm">
-            <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-              <img class="rounded-t-lg" src="/images/Nuts.png" alt="" />
-            </a>
-            <div class="p-6">
-              <h5 class="text-gray-900 text-xl text-center mb-2">
-                Nuts
-              </h5>
-            </div>
-          </div>
-        </div>
-        <div class="flex justify-center">
-          <div class="rounded-lg max-w-sm">
-            <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-              <img class="rounded-t-lg" src="/images/Honey.png" alt="" />
-            </a>
-            <div class="p-6">
-              <h5 class="text-gray-900 text-xl text-center mb-2">
-                Honey
-              </h5>
-            </div>
-          </div>
-        </div>
-        <div class="flex justify-center">
-          <div class="rounded-lg max-w-sm">
-            <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-              <img class="rounded-t-lg" src="/images/Eggs.png" alt="" />
-            </a>
-            <div class="p-6">
-              <h5 class="text-gray-900 text-xl text-center mb-2">
-                Eggs
-              </h5>
-            </div>
-          </div>
-        </div>
-        </div>
-     
+
         <Link href="/listings">
           <div class="flex justify-center items-center py-5 ">
             <button
@@ -82,8 +72,6 @@ function MainContent() {
             </button>
           </div>
         </Link>
-
-    
       </section>
     </main>
   );
