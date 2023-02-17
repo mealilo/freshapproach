@@ -52,31 +52,31 @@ const Header = () => {
             <button
               type="button"
               className="text-white bg-Sage hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg 
-               px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 text-xl float-right"
+               px-5 py-2.5 text-center  dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 text-xl float-right"
             >
               Subscribe
             </button>
           </Link>
+
           <Link
             href="SignIn"
-            className="block mt-4 lg:inline-block lg:mt-0 pl-10 pr-10 text-white font-Poppins hover:text-Sage text-xl whitespace-nowrap float-right"
+            className="block mt-4 lg:inline-block lg:mt-0 py-4 pl-10 pr-10 text-white font-Poppins hover:text-Sage text-xl whitespace-nowrap float-right"
           >
             Sign In
           </Link>
 
           <Link
             href="/listings"
-            className="block mt-4 lg:inline-block lg:mt-0 pl-10 text-white font-Poppins hover:text-Sage text-xl whitespace-nowrap float-right"
+            className="block mt-4 lg:inline-block lg:mt-0 py-4 pl-10 text-white font-Poppins hover:text-Sage text-xl whitespace-nowrap float-right"
           >
             Explore Produce
           </Link>
           <Link
             href="/BecomeVendor"
-            className="block mt-4 lg:inline-block lg:mt-0 pl-40 text-white font-Poppins hover:text-Sage text-xl whitespace-nowrap float-right"
+            className="block mt-4 lg:inline-block lg:mt-0 py-4 pl-40 text-white font-Poppins hover:text-Sage text-xl whitespace-nowrap float-right"
           >
             Become a Vendor!
           </Link>
-
           <div className="flex float-right position-relative md:border-2 rounded-full py-2 md:shadow-sm w-64 bg-white">
             <input
               className="flex-grow-0 pl-7 bg-white  text-sm text-gray-600 placeholder-gray-400 border-transparent focus:border-transparent rounded-full  focus:ring-0"
@@ -85,6 +85,7 @@ const Header = () => {
             />
             <SearchIcon className="hidden md:inline-flex h-8 bg-Sage text-white rounded-full p-2 cursor-pointer md:mx-2" />
           </div>
+      
         </div>
       </div>
     </nav>
