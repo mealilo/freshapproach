@@ -31,6 +31,7 @@ export default function Home() {
     });
 
     setUploadedFile(BUCKET_URL + file.name);
+    setUploadingStatus("");
     setFile(null);
   };
 
