@@ -1,5 +1,8 @@
 import Head from "next/head";
 import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import sellerAccount from "./sellerAccount";
+import Link from "next/link";
 
 export default function Home() {
   // Your submit handler function in JavaScript
@@ -124,6 +127,7 @@ export default function Home() {
               </div>
             </div>
             {/* </form> */}
+            <Link href="/sellerAccount">Seller Account</Link>
           </div>
         </div>
       </main>
