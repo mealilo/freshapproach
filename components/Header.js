@@ -43,7 +43,7 @@ const Header = () => {
       </div>
 
       <div
-        className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto ${
+        className={`w-full block flex-grow sm:hidden md:hidden lg:flex lg:items-center lg:w-auto ${
           isOpen ? "block" : "hidden"
         }`}
       >

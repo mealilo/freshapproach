@@ -1,22 +1,22 @@
 function SubscribeForm() {
   return (
-    <div className="">
-      <main className="max-w-7xl mx-auto px-8 sm:px-16">
+    <div className="w-full">
+      <main className="max-w-screen-xl mx-auto px-8 sm:px-16">
         <section className="pt-6"></section>
         <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
           <div className="w-full max-w-3xl space-y-8">
-            <div className=" grid grid-rows-2 grid-flow-col gap-4 space-y-5 rounded-md shadow-xl p-5 columns-2 border-t-8 border-teal-800">
-              <h2 className=" text-left text-5xl font-normal tracking-tight text-gray-900 py-0">
+            <div className=" gap-4 space-y-5 rounded-md shadow-xl p-5 border-t-8 border-teal-800">
+              <h2 className="text-center  text-2xl md:text-5xl font-normal tracking-tight text-gray-900 py-0">
                 Subscribe to our Newsletter
               </h2>
-              <p>
+              <p className="text-center text-sm md:text-base">
                 Receive updates and announcements about new vendors and produce
                 listings!
               </p>
             </div>
-            <form className="mt-8 space-y-6" action="#" method="POST">
+            <form className="flex items-center justify-center mt-8 space-y-6" action="#" method="POST">
               <input type="hidden" name="remember" defaultValue="true" />
-              <div className=" grid grid-rows-1  space-y-5 rounded-md shadow-xl p-8 columns-2 border-t-8 border-orange-400">
+              <div className=" space-y-5  rounded-md shadow-xl px-40  border-t-8 border-orange-400">
                 <link
                   href="//cdn-images.mailchimp.com/embedcode/classic-071822.css"
                   rel="stylesheet"
@@ -26,7 +26,7 @@ function SubscribeForm() {
                   type="text/css"
                   dangerouslySetInnerHTML={{
                     __html:
-                      "\n\t#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:600px;}\n\t/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.\n\t   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */\n",
+                      "\n\t#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;  width:100%;}\n\t/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.\n\t   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */\n",
                   }}
                 />
                 <div id="mc_embed_signup">
@@ -74,6 +74,7 @@ function SubscribeForm() {
                           className="helper_text"
                         />
                       </div>
+
                       <div className="mc-field-group">
                         <label htmlFor="mce-LNAME">Last Name </label>
                         <input
