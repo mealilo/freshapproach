@@ -40,6 +40,7 @@ model listing {
   quantity_available      String               @db.VarChar(45)
   price                   Float?
   is_available            Int
+  unit_type               String               @db.VarChar(45)
   favorite                favorite[]
   producer                producer             @relation(fields: [producer_ID], references: [producer_ID], onDelete: NoAction, onUpdate: NoAction, map: "listing_ibfk_1")
   product_sub_category    product_sub_category @relation(fields: [product_sub_category_ID], references: [product_sub_category_ID], onDelete: NoAction, onUpdate: NoAction, map: "listing_ibfk_2")
