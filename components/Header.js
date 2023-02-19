@@ -1,8 +1,8 @@
-
-import Link from "next/link"
+import Link from "next/link";
 import Image from "next/image";
 import {MenuIcon, UserCircleIcon, SearchIcon} from '@heroicons/react/solid';
 import SubscribeButton from '../components/SubscribeButton';
+
 function Header() {
   return (
   <header className="sticky top-0 z-50 grid grid-cols-3 bg-nearBlack  p-5 md:px-60">
