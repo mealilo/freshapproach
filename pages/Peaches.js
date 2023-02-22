@@ -18,14 +18,14 @@ export default function Home() {
         <h1 className="text-4xl font-semibold pb-5 text-greenText"> Peaches</h1>
         <p> 4.8 | 48 Reviews - 261 N 200, Brigham City, UT 84302</p>
        </section>
-       <div class="flex flex-row">
-        <div class="basis-1/2"> 
+       <div className="flex flex-row">
+        <div className="basis-1/2"> 
        <img alt="peaches" src="/images/Peaches.png" classname="px-8"/>
        </div>
-       <div class="basis-1/4"> 
+       <div className="basis-1/4"> 
        <img alt="peaches" src="/images/littlePeaches.png" classname="px-8"/>
        </div>
-                  <div class="basis-1/4"> 
+                  <div className="basis-1/4"> 
 
        <img alt="peaches" src="/images/treePeaches.png" classname="px-8"/>
        </div>
