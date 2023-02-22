@@ -5,13 +5,9 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-nearBlack p-6 py-3 flex items-center justify-between w-full flex-wrap font-Sahitya">
+    <nav className="bg-nearBlack px-20 py-1 flex items-center justify-between w-full flex-wrap font-Sahitya">
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Sahitya:&display=swap"
-        rel="stylesheet"
-      ></link>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
       <link
