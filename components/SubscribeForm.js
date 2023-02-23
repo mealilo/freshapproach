@@ -1,7 +1,7 @@
 function SubscribeForm() {
   return (
-    <div className="w-full">
-      <main className="max-w-screen-xl mx-auto px-8 sm:px-16">
+    <div className="w-full font-Poppins">
+      <main className="max-w-screen-xl mx-auto px-8 sm:px-16 font-Poppins">
         <section className="pt-6"></section>
         <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
           <div className="w-full max-w-3xl space-y-8">
@@ -14,9 +14,10 @@ function SubscribeForm() {
                 listings!
               </p>
             </div>
+            <div>
             <form className="flex items-center justify-center mt-8 space-y-6" action="#" method="POST">
               <input type="hidden" name="remember" defaultValue="true" />
-              <div className=" space-y-5  rounded-md shadow-xl px-40  border-t-8 border-orange-400">
+              <div className=" space-y-5  rounded-md shadow-xl sm:px-40 md:px-60 lg:px-72  border-t-8 border-orange-400">
                 <link
                   href="//cdn-images.mailchimp.com/embedcode/classic-071822.css"
                   rel="stylesheet"
@@ -119,7 +120,7 @@ function SubscribeForm() {
                             defaultValue="Subscribe"
                             name="subscribe"
                             id="mc-embedded-subscribe"
-                            className="button bg-Sage"
+                            className="button"
                           />
                         </div>
                       </div>
@@ -128,6 +129,7 @@ function SubscribeForm() {
                 </div>
               </div>
             </form>
+            </div>
           </div>
         </div>
       </main>

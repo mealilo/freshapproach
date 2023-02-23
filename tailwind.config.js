@@ -19,7 +19,8 @@ module.exports = {
     },
     fontFamily: {
       'Sahitya': ["Sahitya","serif"],
-      'Poppins': ["Poppins", "serif"],
+      'Poppins': ["Poppins", "sans-serif"],
+      'Roboto':["Roboto","sans-serif"],
     }
   },
   plugins: [],

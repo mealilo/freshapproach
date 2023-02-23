@@ -4,7 +4,7 @@ function MainContent() {
   return (
     <main className="max-w-7xl mx-auto px-8 sm:px-16 font-Poppins">
       <section className="pt-6">
-        <h2 className="text-4xl font-semibold pb-5 text-center text-nearBlack font-Poppins">
+        <h2 className="text-4xl font-semibold pb-5 text-center text-nearBlack">
           {" "}
           Explore Produce{" "}
         </h2>
