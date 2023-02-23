@@ -20,7 +20,6 @@ export default function Home() {
       type: file.type,
     });
 
-    console.log(data);
 
     const url = data.url;
     let { data: newData } = await axios.put(url, file, {
