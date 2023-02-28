@@ -130,7 +130,17 @@ const submitHandler = (event) => {
                     />
                 </div>
 
+                <div className="flex flex-col space-y-2  drop-shadow-md">
+                    <label htmlFor="product_sub_category_ID">Category</label>
+                    <select required name="product_sub_category_ID" id="product_sub_category_ID" className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                        <option  default disabled value="kg">Choose Category</option>
 
+
+                        {categories.map(item => (
+                            <option key={item.product_sub_category_ID.toString()} value={item.product_sub_category_ID}>{item.sub_category_name}</option>
+                        ))}
+                    </select>
+                </div>
 
 
 
