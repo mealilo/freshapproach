@@ -101,6 +101,105 @@ const submitHandler = (event) => {
               </h2>
 
 
+            <form onSubmit={submitHandler} type="POST" className=" flex flex-row  mt-8 p-10 space-y-6 rounded-md shadow drop-shadow-md  bg-red-50">
+
+                <div className="flex flex-col">
+                 <div className="flex flex-col  drop-shadow-md space-y-2">
+                    <label htmlFor="title">Title</label>
+                    <input
+                        id="title"
+                        name="title"
+                        type="text"
+                        autoComplete="title"
+                        required
+                        className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        placeholder="Enter the listing title"
+                    />
+                </div>
+
+                <div className="flex flex-col space-y-2  drop-shadow-md">
+                    <label htmlFor="description">Description</label>
+                    <input
+                        id="description"
+                        name="description"
+                        type="textarea"
+                        autoComplete="description"
+                        required
+                        className=" h-24 relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        placeholder="Enter the listing description"
+                    />
+                </div>
+
+
+
+
+
+                <div className="flex flex-col space-y-2  drop-shadow-md">
+                    <label htmlFor="price">Price ($)</label>
+                    <input
+                        id="price"
+                        name="price"
+                        type="number"
+                        autoComplete="price"
+                        required
+                        className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        placeholder="Enter the price per quantity"
+                    />
+                </div>
+
+                {/* It makes sense for me to do "preferred contact method" in their user bio */}
+                <div className="flex flex-row space-y-4  drop-shadow-md">
+                    <label className="space-y-4" htmlFor="quantity_available">Quantity Available</label>
+                    <input
+                        id="quantity_available"
+                        name="quantity_available"
+                        type="number"
+                        autoComplete="quantity_available"
+                        required
+                        className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        placeholder="Enter how much is available"
+                    />
+
+<                   label htmlFor="unit_type">Unit</label>
+
+                    <select required name="unit_type" id="unit_type" className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                        <option default disabled value="">Choose Unit Type</option>
+                        <option value="kg">Kilogram</option>
+                        <option value="lb">Pound</option>
+                        <option value="bushel">Bushel</option>
+                    </select>
+                </div> 
+
+                </div>
+
+                <div class="flex items-center justify-center m-6 w-60">
+                        <label required htmlFor="dropzone-file" class="flex flex-col items-center justify-center w-80 h-64 border-2 border-gray-300 shadow drop-shadow-md  rounded-lg cursor-pointer bg-white">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <svg aria-hidden="true" class="w-20 h-20 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                <p class="mb-2 text-sm text-black text-lg">ADD A PHOTO</p>
+                                <p class="mb-2 text-sm text-black"><span class="font-semibold">Click to upload</span> a PNG or JPG</p>
+                            </div>
+                            <input id="dropzone-file" type="file" onChange={(e) => selectFile(e)} multiple class="hidden" />
+                            {file && ( <p>Selected file: {file.name}</p>)}
+
+                        </label>
+
+
+                        <p><img id="output" width="200" /></p>
+
+                        {uploadedFile && <img src={uploadedFile} />}
+                </div> 
+
+                <button
+                        onClick={uploadFile}
+                        type="submit"
+                        class="font-Poppins inline-block px-6 py-2.5 bg-Sage text-white font-medium text-xs leading-tight uppercase rounded
+                         shadow-md hover:bg-cyan-900 hover:shadow-lg focus:bg-cyan-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-800
+                          active:shadow-lg transition duration-150 ease-in-out h6">
+                            Add Listing
+                </button>
+
+            </form>       
           </div>
         </div>
       </main>
