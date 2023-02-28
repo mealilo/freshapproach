@@ -11,6 +11,7 @@ const prisma = new PrismaClient();
 export const getServerSideProps = async ({req}) =>
 {
   const categories = await prisma.product_sub_category.findMany();
+  prisma.$disconnect();
   return {props: {categories}}
 }
 
@@ -23,22 +24,24 @@ export default function Home({categories}) {
   const [uploadingStatus, setUploadingStatus] = useState();
   const [uploadedFile, setUploadedFile] = useState();
 
+
+  //select file for displaying on the page
   const selectFile = (e) => {
     setFile(e.target.files[0]);
-
-
     // add image to html so they can see it
     var image = document.getElementById('output');
     image.src = URL.createObjectURL(event.target.files[0]);
   };
 
+  //upload file to AWS
   const uploadFile = async () => {
+    setUploadingStatus("Uploading images...");
+
     let { data } = await axios.post("/api/s3/uploadFile", {
-      name: file.name + currentTime ,
+      name: file.name ,
       type: file.type,
     });
 
-    console.log(data);
     const url = data.url;
     let { data: newData } = await axios.put(url, file, {
       headers: {
@@ -47,21 +50,64 @@ export default function Home({categories}) {
       },
     });
 
-    setUploadedFile(BUCKET_URL + file.name + currentTime);
+    setUploadedFile(BUCKET_URL + file.name);
     setUploadingStatus("");
     setFile(null);
   };
 
 
 // Your submit handler function in JavaScript
-const submitHandler = (event) => {
+const submitHandler = async (event) => {
   event.preventDefault();
+
+  await uploadFile();
 
   const formData = new FormData(event.target);
   const data = Object.fromEntries(formData);
-  console.log(data);
-
   fetch("/api/AddListing", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .then(async (response) => {
+      if(response.message === 'Success'){
+        alert(response.listing_ID);
+        alert("Sucessfully added to your Listings!")
+        //redirect to wherever need to change to "Your Listings" or something like that
+
+        try{
+          const id = response.id;
+          await createListingPicture(id);
+         
+        }
+        catch{
+          alert("Error Occured, please try again");
+        }
+        window.location = "/";
+      }
+      else{
+        alert("Error: Please fill out form again")
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+
+  }
+
+// creaet listing picrture
+const createListingPicture = async (listingID) => {
+
+  // create needed dat
+  const data = {
+      listing: listingID,
+      listing_picture: BUCKET_URL + file.name
+  }
+
+  fetch("/api/AddListingPicture", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -72,20 +118,15 @@ const submitHandler = (event) => {
     .then((response) => {
       if(response.message === 'Success'){
         alert("Sucessfully added to your Listings!")
-        //redirect to wherever need to change to "Your Listings" or something like that
-        window.location = "/";
       }
       else{
         alert("Error: Please fill out form again")
       }
-
-
     })
     .catch((error) => {
       console.error("Error:", error);
     });
 };
-
   return (
     <div className="">
       <Head>
@@ -150,7 +191,6 @@ const submitHandler = (event) => {
                         id="price"
                         name="price"
                         type="number"
-                        autoComplete="price"
                         required
                         className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                         placeholder="Enter the price per quantity"
@@ -164,7 +204,6 @@ const submitHandler = (event) => {
                         id="quantity_available"
                         name="quantity_available"
                         type="number"
-                        autoComplete="quantity_available"
                         required
                         className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                         placeholder="Enter how much is available"
@@ -182,35 +221,40 @@ const submitHandler = (event) => {
 
                 </div>
 
-                <div class="flex items-center justify-center m-6 w-60">
-                        <label required htmlFor="dropzone-file" class="flex flex-col items-center justify-center w-80 h-64 border-2 border-gray-300 shadow drop-shadow-md  rounded-lg cursor-pointer bg-white">
-                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                <svg aria-hidden="true" class="w-20 h-20 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                                <p class="mb-2 text-sm text-black text-lg">ADD A PHOTO</p>
-                                <p class="mb-2 text-sm text-black"><span class="font-semibold">Click to upload</span> a PNG or JPG</p>
-                            </div>
-                            <input id="dropzone-file" type="file" onChange={(e) => selectFile(e)} multiple class="hidden" />
-                            {file && ( <p>Selected file: {file.name}</p>)}
+                <div class="flex items-center justify-center m-6 w-800">
+                  <div class="flex flex-col items-center">
+                    <label required htmlFor="dropzone-file" class="flex flex-col items-center justify-center w-80 h-64 border-2 border-gray-300 shadow drop-shadow-md  rounded-lg cursor-pointer bg-white">
+                              <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                  <svg class="w-20 h-20 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                  <p class="mb-2 text-sm text-black text-lg">ADD A PHOTO</p>
+                                  <p class="mb-2 text-sm text-black"><span class="font-semibold">Click to upload</span> a PNG or JPG</p>
+                              </div>
+                              <input id="dropzone-file" type="file" onChange={(e) => selectFile(e)} multiple class="hidden" required />
 
-                        </label>
+                          </label>
+                          {file && ( <p>Selected file: {file.name}</p>)}
 
 
-                        <p><img id="output" width="200" /></p>
+                          <p><img id="output" width="250" /></p>
 
-                        {uploadedFile && <img src={uploadedFile} />}
+                        {uploadingStatus && <p>{uploadingStatus}</p>}   
+
+                  </div>
+                        
+                        
                 </div> 
-
                 <button
-                        onClick={uploadFile}
                         type="submit"
-                        class="font-Poppins inline-block px-6 py-2.5 bg-Sage text-white font-medium text-xs leading-tight uppercase rounded
+                        class="font-Poppins inline-block px-2 py-2.5 bg-Sage text-white font-medium text-xs leading-tight uppercase rounded
                          shadow-md hover:bg-cyan-900 hover:shadow-lg focus:bg-cyan-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-800
                           active:shadow-lg transition duration-150 ease-in-out h6">
                             Add Listing
                 </button>
 
-            </form>       
+            </form>   
+
           </div>
+
         </div>
       </main>
     </div>
