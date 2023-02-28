@@ -33,7 +33,7 @@ export default function Home() {
                     name="fname"
                     type="fname"
                     required
-                    className="relative block w-2/5 shadow-md appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm font"
+                    className="relative block w-2/5 shadow-md appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-teal-800 focus:outline-none focus:ring-teal-800 sm:text-sm font"
                     placeholder="Enter your full name"
                   />
                 </div>
@@ -47,7 +47,7 @@ export default function Home() {
                     name="email"
                     type="email"
                     required
-                    className="relative block w-2/5 shadow-md appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm font"
+                    className="relative block w-2/5 shadow-md appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-teal-800 focus:outline-none focus:ring-teal-800 sm:text-sm font"
                     placeholder="Enter your email"
                   />
                 </div>
@@ -60,7 +60,7 @@ export default function Home() {
                   name="phone"
                   type="phone"
                   required
-                  className="relative block w-2/5 shadow-md appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="relative block w-2/5 shadow-md appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-teal-800 focus:outline-none focus:ring-teal-800 sm:text-sm"
                   placeholder="Enter your phone number"
                 />
               </div>
@@ -73,7 +73,7 @@ export default function Home() {
                     name="city"
                     type="city"
                     required
-                    className="relative block w-2/5 shadow-md appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm font"
+                    className="relative block w-2/5 shadow-md appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-teal-800 focus:outline-none focus:ring-teal-800 sm:text-sm font"
                     placeholder="Enter your city"
                   />
                 </div>
@@ -87,7 +87,7 @@ export default function Home() {
                     name="zip"
                     type="zip"
                     required
-                    className="relative block w-2/5 shadow-md appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm font"
+                    className="relative block w-2/5 shadow-md appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-teal-800 focus:outline-none focus:ring-teal-800 sm:text-sm font"
                     placeholder="Enter your zipcode"
                   />
                 </div>
@@ -120,7 +120,7 @@ export default function Home() {
               <div>
                 <button
                   type="submit"
-                  className="group relative flex w-full justify-center rounded-md border border-transparent bg-red-700 py-2 px-4 text-sm font-medium text-white hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                  className="group relative flex w-full justify-center rounded-md border border-transparent bg-red-700 py-2 px-4 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
                 >
                   Delete Account
                 </button>
