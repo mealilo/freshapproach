@@ -243,7 +243,7 @@ const createListingPicture = async (listingID) => {
                 <button
                             onClick={() => {
                               const confirmBox = window.confirm(
-                                "Are you sure you want to cancel? All dat will be lost"
+                                "Are you sure you want to cancel? All data will be lost"
                               )
                               if (confirmBox === true) {
                                 window.location = "/";
@@ -261,7 +261,7 @@ const createListingPicture = async (listingID) => {
                             shadow-md hover:bg-cyan-900 hover:shadow-lg focus:bg-cyan-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-800
                               active:shadow-lg transition duration-150 ease-in-out h6"
                             form="addlisting">
-                                Add Listing
+                                Post Listing
                 </button>
             </div>
 
