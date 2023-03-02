@@ -1,7 +1,30 @@
 import Head from "next/head";
 import React, { useState } from "react";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
-export default function Home() {
+export const getServerSideProps = async ({req}) =>
+{
+  let listings = await prisma.listing.findMany({
+    where: {
+        producer_ID: 1,
+    }
+  ,
+  include: {
+    listing_picture: true,
+  },
+  });
+  prisma.$disconnect();
+  listings = JSON.parse(JSON.stringify(listings));
+  console.log(typeof listings);
+  console.log( listings[0].listing_picture[0].picture_link);
+  return {props: {listings}}
+}
+
+
+export default function Home(listings) {
+
+  <h1>{listings}</h1>
   return (
     <div className="">
       <Head>
@@ -100,7 +123,32 @@ export default function Home() {
                 </h3>
               </div>
               <div className="flex flex-col justify-end">
-                <div></div>
+
+                        {listings.listings.map(item => (
+                <div class="flex  m-5 shadow-md rounded-md "  key={item.listing_ID}>
+
+
+
+                <img
+                  src={item.listing_picture[0].picture_link}
+                  alt=""
+                  width="250"
+                  height="200"
+                  class="rounded-md object-contain"
+                />
+                  <div>
+                    <h1>{item.title}</h1>
+                    <h3>{item.description}</h3>
+                    <h3>${item.price}/{item.unit_type}</h3>
+                  </div>
+
+                  <div>
+                        <h1> buttons go here </h1>
+                  </div>
+               
+                </div>
+              ))}
+
               </div>
 
               <div className="flex flex-col"></div>
@@ -111,7 +159,15 @@ export default function Home() {
             <div className="columns-3">
               <div>
                 <button
-                  type="submit"
+                  onClick={() => {
+                    const confirmBox = window.confirm(
+                      "Are you sure you want to cancel? All data will be lost"
+                    )
+                    if (confirmBox === true) {
+                      window.location = "/";
+                    }
+
+                  }}
                   className="group relative flex w-full justify-center rounded-md border border-grey-700 bg-white-600 py-2 px-4 text-sm font-medium shadow-lg text-grey hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-lime-600 focus:ring-offset-2"
                 >
                   Cancel
