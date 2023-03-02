@@ -13,12 +13,13 @@ export const getServerSideProps = async ({req}) =>
   });
   prisma.$disconnect();
   listings = JSON.parse(JSON.stringify(listings));
-  console.log( listings[1]);
+  console.log(typeof listings);
+  console.log( listings);
   return {props: {listings}}
 }
 
 export default function Home(listings) {
-
+<h1>{listings}</h1>
 
 // Your submit handler function in JavaScript
 const submitHandler = (event) => {
@@ -218,16 +219,16 @@ const submitHandler = (event) => {
             <div>
 
             
-            eturn (
+             
     <div>
-      {listings.map(item => (
+      {listings.listings.map(item => (
         <div key={item.listing_ID}>
           <h1>{item.title}</h1>
           <div>{item.description}</div>
         </div>
       ))}
     </div>
-  );
+  
             </div>
           </div>
         </div>
