@@ -127,15 +127,19 @@ const createListingPicture = async (listingID) => {
       <main className="max-w-7xl mx-auto px-8 sm:px-16">
         <section className="pt-6"></section>
         <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-          <div className="w-full max-w-3xl space-y-8">
-              <h2 className=" text-left text-5xl font-normal tracking-tight text-green-600 space-y-5 rounded-md  p-5 columns-2">
-                Add a Listing
+          <div className= "w-full max-w-3xl space-y-8">
+            <div className="space-y-5 rounded-md shadow-xl p-5 columns-2 border-t-8 border-teal-800">
+              <h2 className="text-left text-5xl font-normal tracking-tight text-gray-900">
+                Add A Listing
               </h2>
+            </div>
+            <form onSubmit={submitHandler} type="POST" id="addlisting" className="mt-8 space-y-6">
+              
+              <div className="rounded-md space-y-2 shadow-xl p-8 border-t-8 border-orange-400 flex flex-row justify-center items-center align-middle">
 
-
-            <form onSubmit={submitHandler} type="POST" id="addlisting" className=" flex flex-row items-center justify-center  mt-8 p-10 space-y-6 rounded-md shadow drop-shadow-md  bg-red-50">
-
+               
                 <div className="flex w-80 px-5 flex-col">
+                <h4 className="text-xl font-medium">Enter Information </h4>
                  <div className="flex flex-col  drop-shadow-md  py-2">
                       <label htmlFor="title">Title</label>
                       <input
@@ -213,8 +217,8 @@ const createListingPicture = async (listingID) => {
                   </div> 
 
                 </div>
-
-                <div class="flex items-center justify-center  ">
+                {/* Image Upload */}
+                <div class="flex items-center justify-center m-6  ">
                   <div class="flex flex-col items-center">
                     <label required htmlFor="dropzone-file" class="flex flex-col items-center justify-center w-80 h-64 border-2 border-gray-300 shadow drop-shadow-md  rounded-lg cursor-pointer bg-white">
                               <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -226,47 +230,43 @@ const createListingPicture = async (listingID) => {
 
                           </label>
                           {file && ( <p>Selected file: {file.name}</p>)}
-
-
                           <p><img id="output" width="250" /></p>
-
                         {uploadingStatus && <p>{uploadingStatus}</p>}   
-
                   </div>
-                        
-                        
+    
                 </div> 
+              </div>
+              <div className="columns-2  ">
+                <div>
+                  <button
 
+                      onClick={() => {
+                        const confirmBox = window.confirm(
+                          "Are you sure you want to cancel? All data will be lost"
+                        )
+                        if (confirmBox === true) {
+                          window.location = "/";
+                        }
 
-            </form>   
-            <div class=" flex flex-row items-center justify-center p-4 items-center">
-                <button
-                            onClick={() => {
-                              const confirmBox = window.confirm(
-                                "Are you sure you want to cancel? All data will be lost"
-                              )
-                              if (confirmBox === true) {
-                                window.location = "/";
-                              }
-
-                            }}
-                            class="font-Poppins  w-40 m-5 inline-block px-2 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded
-                            shadow-md hover:bg-red-900 hover:shadow-lg focus:bg-red-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800
-                              active:shadow-lg transition duration-150 ease-in-out h6">
-                                Cancel
-                </button>
-                <button
-                            type="submit"
-                            class="font-Poppins w-40 m-5 inline-block px-2 py-2.5 bg-Sage text-white font-medium text-xs leading-tight uppercase rounded
-                            shadow-md hover:bg-cyan-900 hover:shadow-lg focus:bg-cyan-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-800
-                              active:shadow-lg transition duration-150 ease-in-out h6"
-                            form="addlisting">
-                                Post Listing
-                </button>
-            </div>
-
+                      }}
+                    type="submit"
+                    className="group relative flex w-full justify-center rounded-md border border-grey-700 bg-white-600 py-2 px-4 text-sm font-medium shadow-lg text-grey hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-lime-600 focus:ring-offset-2"
+                  >
+                    Cancel{" "}
+                  </button>
+                </div>
+                <div>
+                  <button
+                    form="addlisting"
+                    type="submit"
+                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-lime-600 py-2 px-4 text-sm font-medium text-white hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-600 focus:ring-offset-2"
+                  >
+                    Post Listing
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
-
         </div>
       </main>
     </div>
