@@ -2,7 +2,6 @@ import ItemListing from '../components/ItemListing';
 import { makeSerializable } from '../lib/util';
 import prisma from '../lib/prisma';
 import Link from "next/link";
-import ListingContext from '../context/ListingContext';
 import { Component } from 'react';
 
 export const getServerSideProps = async () => {
@@ -21,7 +20,6 @@ export const getServerSideProps = async () => {
 }
 
 class Listings extends Component {
-    static contextType = ListingContext;
 
     render() {
         return (
@@ -32,7 +30,6 @@ class Listings extends Component {
                         <Link 
                             href={`/listing?id=${item.listing_ID}`} 
                             key={item.listing_ID}
-                            onClick={this.context.selectListing(item)}
                         >
                             <ItemListing listing={item} />
                         </Link>
