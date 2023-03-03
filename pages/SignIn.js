@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import sellerAccount from "./sellerAccount";
 import Link from "next/link";
-import {signIn, signOut, useSession} from "next-auth/react"
+import { signIn, signOut, useSession } from "next-auth/react";
 export default function Home() {
-    const {data: session} =useSession();
-    
+  const { data: session } = useSession();
+
   // Your submit handler function in JavaScript
   // const submitHandler = (event) => {
   //   event.preventDefault();
@@ -121,7 +121,7 @@ export default function Home() {
               </div>
               <div>
                 <button
-                onClick={signIn}
+                  onClick={signIn}
                   type="submit"
                   className="group relative flex w-full justify-center rounded-md border border-transparent bg-lime-600 py-2 px-4 text-sm font-medium text-white hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-600 focus:ring-offset-2"
                 >

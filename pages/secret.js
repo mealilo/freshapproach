@@ -1,21 +1,20 @@
 import { useSession } from "next-auth/react";
 
-
 export default function Secret() {
-  const {data: session, status}= useSession();
+  const { data: session, status } = useSession();
 
-  if(status === "loading"){
-    return "Loading or not authenticated"
+  if (status === "loading") {
+    return "Loading or not authenticated";
   }
-  if (status ==="authenticated") {
-  return (
-    <main>
-      <div>
-        <h1> Protected Page</h1>
-       
-      </div>
-    </main>
-  );}
+  if (status === "authenticated") {
+    return (
+      <main>
+        <div>
+          <h1> Protected Page</h1>
+        </div>
+      </main>
+    );
+  }
   return (
     <main>
       <div>
@@ -25,14 +24,13 @@ export default function Secret() {
   );
 }
 
-
 /* this is it's own chunkyyyyyyyyy: export default function Secret() {
   const {data: session, status} = useSession(); 
   if (status === "authenticated"){
     return <p> Signed in as {session.user.email}</p>
   }
   return <a href="/api/auth/signin"> Sign In</a>
-} */ 
+} */
 /*  const [content, setContent] = useState();
 
   useEffect(() => {
@@ -69,4 +67,4 @@ export default function Secret() {
     </main>
   );
 }
-*/ 
+*/

@@ -14,7 +14,11 @@ function SubscribeForm() {
                 listings!
               </p>
             </div>
-            <form className="flex items-center justify-center mt-8 space-y-6" action="#" method="POST">
+            <form
+              className="flex items-center justify-center mt-8 space-y-6"
+              action="#"
+              method="POST"
+            >
               <input type="hidden" name="remember" defaultValue="true" />
               <div className=" space-y-5  rounded-md shadow-xl px-40  border-t-8 border-orange-400">
                 <link
@@ -74,7 +78,6 @@ function SubscribeForm() {
                           className="helper_text"
                         />
                       </div>
-
                       <div className="mc-field-group">
                         <label htmlFor="mce-LNAME">Last Name </label>
                         <input
@@ -135,4 +138,3 @@ function SubscribeForm() {
   );
 }
 export default SubscribeForm;
-

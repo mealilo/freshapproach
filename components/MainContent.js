@@ -12,7 +12,11 @@ function MainContent() {
           <div class="flex justify-center">
             <div class="rounded-lg max-w-sm">
               <a data-mdb-ripple="true" data-mdb-ripple-color="none">
-                <img class="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52" src="/images/Fruit.png" alt="" />
+                <img
+                  class="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52"
+                  src="/images/Fruit.png"
+                  alt=""
+                />
               </a>
               <div class="p-6">
                 <h5 class="text-gray-900 text-xl text-center mb-2">Fruit</h5>
@@ -22,7 +26,11 @@ function MainContent() {
           <div class="flex justify-center">
             <div class="rounded-lg max-w-sm">
               <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-                <img class="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52" src="/images/Veggies.png" alt="" />
+                <img
+                  class="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52"
+                  src="/images/Veggies.png"
+                  alt=""
+                />
               </a>
               <div class="p-6">
                 <h5 class="text-gray-900 text-xl text-center mb-2">Veggies</h5>
@@ -32,7 +40,11 @@ function MainContent() {
           <div class="flex justify-center">
             <div class="rounded-lg max-w-sm">
               <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-                <img class="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52" src="/images/Nuts.png" alt="" />
+                <img
+                  class="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52"
+                  src="/images/Nuts.png"
+                  alt=""
+                />
               </a>
               <div class="p-6">
                 <h5 class="text-gray-900 text-xl text-center mb-2">Nuts</h5>
@@ -42,7 +54,11 @@ function MainContent() {
           <div class="flex justify-center">
             <div class="rounded-lg max-w-sm">
               <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-                <img class="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52" src="/images/Honey.png" alt="" />
+                <img
+                  class="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52"
+                  src="/images/Honey.png"
+                  alt=""
+                />
               </a>
               <div class="p-6">
                 <h5 class="text-gray-900 text-xl text-center mb-2">Honey</h5>
@@ -52,7 +68,11 @@ function MainContent() {
           <div class="flex justify-center">
             <div class="rounded-lg max-w-sm">
               <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-                <img class="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52" src="/images/Eggs.png" alt="" />
+                <img
+                  class="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52"
+                  src="/images/Eggs.png"
+                  alt=""
+                />
               </a>
               <div class="p-6">
                 <h5 class="text-gray-900 text-xl text-center mb-2">Eggs</h5>

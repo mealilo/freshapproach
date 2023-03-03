@@ -7,7 +7,6 @@ function Header() {
 
   return (
     <nav className="font-Sahitya bg-nearBlack px-20 py-1 flex items-center justify-between w-full flex-wrap">
-
       <div className="flex items-center flex-shrink-0 text-white mr-6">
         <a href="/" className="text-4xl tracking-tight">
           Close Crop
@@ -15,7 +14,7 @@ function Header() {
       </div>
       <div className="block lg:hidden">
         <button
-        title="Menu"
+          title="Menu"
           className="flex items-center px-3 py-2 border rounded text-white border-Sage hover:text-white hover:border-white"
           onClick={() => setIsOpen(!isOpen)}
         >
@@ -76,11 +75,10 @@ function Header() {
             />
             <SearchIcon className="hidden md:inline-flex h-8 bg-Sage text-white rounded-full p-2 cursor-pointer md:mx-2" />
           </div>
-      
         </div>
       </div>
     </nav>
   );
-};
+}
 
 export default Header;

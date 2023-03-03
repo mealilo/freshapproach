@@ -1,25 +1,24 @@
-import Head from 'next/head'
-import Banner from "../components/Banner"
-import FindingLocalSection from "../components/FindingLocalSection"
-import MainContent from "../components/MainContent"
-import Link from "next/Link"
-import {signIn, signOut, useSession} from "next-auth/react";
+import Head from "next/head";
+import Banner from "../components/Banner";
+import FindingLocalSection from "../components/FindingLocalSection";
+import MainContent from "../components/MainContent";
+import Link from "next/Link";
+import { signIn, signOut, useSession } from "next-auth/react";
 export default function Home() {
-  const {data: session} = useSession(); 
+  const { data: session } = useSession();
   return (
     <div className="">
       <Head>
         <title> Close Crop</title>
-        <link rel="icon" href="/favicon.ico"/>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
-      
-      <Banner/>
-      <MainContent/>
-      <FindingLocalSection/>
+
+      <Banner />
+      <MainContent />
+      <FindingLocalSection />
     </div>
   );
 }
-
 
 /*Sign in and out stuff if we want it later {!session && (
         <>
