@@ -22,8 +22,8 @@ export default function Home() {
               </div>
               <input type="hidden" name="remember" defaultValue="true" />
               <div className="space-y-5 rounded-md shadow-xl p-8  border-t-8 border-orange-400">
-                <div class="flex flex-wrap">
-                  <h3 class="text-xl font-light leading-6 text-gray-700 tracking-wider">
+                <div className="flex flex-wrap">
+                  <h3 className="text-xl font-light leading-6 text-gray-700 tracking-wider">
                     Signed in as {session.user.email}
                   </h3>
                 </div>
@@ -97,8 +97,8 @@ export default function Home() {
                 </div>
               </div>
               <div className="space-y-5 rounded-md shadow-xl p-8 border-t-8 border-orange-400">
-                <div class="flex flex-wrap">
-                  <h3 class="text-xl font-light leading-6 text-gray-700 tracking-wider">
+                <div className="flex flex-wrap">
+                  <h3 className="text-xl font-light leading-6 text-gray-700 tracking-wider">
                     Your Listings
                   </h3>
                 </div>
