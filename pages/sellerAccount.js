@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React, { useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
-
+import Link from "next/link";
 export default function Home() {
   const { data: session } = useSession();
   if (session) {
@@ -9,7 +9,7 @@ export default function Home() {
       <div className="">
         <Head>
           <title> Close Crop</title>
-          <link rel="icon" href="/favicon.ico" />
+          <Link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="max-w-7xl mx-auto px-8 sm:px-16">
           <section className="pt-6"></section>

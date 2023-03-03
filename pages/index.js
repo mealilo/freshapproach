@@ -2,7 +2,7 @@ import Head from "next/head";
 import Banner from "../components/Banner";
 import FindingLocalSection from "../components/FindingLocalSection";
 import MainContent from "../components/MainContent";
-import Link from "next/Link";
+import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 export default function Home() {
   const { data: session } = useSession();
@@ -10,7 +10,7 @@ export default function Home() {
     <div className="">
       <Head>
         <title> Close Crop</title>
-        <link rel="icon" href="/favicon.ico" />
+        <Link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Banner />

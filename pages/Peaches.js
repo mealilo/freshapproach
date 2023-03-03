@@ -9,7 +9,7 @@ export default function Home() {
     <div className="">
       <Head>
         <title> Close Crop</title>
-        <link rel="icon" href="/favicon.ico" />
+        <Link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="max-w-7xl mx-auto px-8 sm:px-16">
