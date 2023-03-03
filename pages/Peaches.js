@@ -22,17 +22,17 @@ export default function Home() {
         </section>
         <div className="flex flex-row">
           <div className="basis-1/2">
-            <img alt="peaches" src="/images/Peaches.png" classname="px-8" />
+            <Image alt="peaches" src="/images/Peaches.png" classname="px-8" />
           </div>
           <div className="basis-1/4">
-            <img
+            <Image
               alt="peaches"
               src="/images/littlePeaches.png"
               classname="px-8"
             />
           </div>
           <div className="basis-1/4">
-            <img alt="peaches" src="/images/treePeaches.png" classname="px-8" />
+            <Image alt="peaches" src="/images/treePeaches.png" classname="px-8" />
           </div>
           <PricingCard></PricingCard>
         </div>

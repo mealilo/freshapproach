@@ -1,3 +1,4 @@
+import Link from "next/link";
 function SubscribeForm() {
   return (
     <div className="w-full">
@@ -21,7 +22,7 @@ function SubscribeForm() {
             >
               <input type="hidden" name="remember" defaultValue="true" />
               <div className=" space-y-5  rounded-md shadow-xl px-40  border-t-8 border-orange-400">
-                <link
+                <Link
                   href="//cdn-images.mailchimp.com/embedcode/classic-071822.css"
                   rel="stylesheet"
                   type="text/css"

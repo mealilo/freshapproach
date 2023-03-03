@@ -8,9 +8,9 @@ function Header() {
   return (
     <nav className="font-Sahitya bg-nearBlack px-20 py-1 flex items-center justify-between w-full flex-wrap">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <a href="/" className="text-4xl tracking-tight">
+        <Link href="/" className="text-4xl tracking-tight">
           Close Crop
-        </a>
+        </Link>
       </div>
       <div className="block lg:hidden">
         <button

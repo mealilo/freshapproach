@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import SVG from "../public/icons/svg";
-
+import Image from "next/image";
 const Listing = (data) => {
   const router = useRouter();
   // const data = router.query;
@@ -28,7 +28,7 @@ const Listing = (data) => {
           <div className="flex flex-wrap -m-1 md:-m-2">
             <div className="flex flex-wrap w-1/3">
               <div className="w-full p-1 md:p-2">
-                <img
+                <Image
                   alt="gallery"
                   className="block object-cover object-center w-full h-full rounded-lg"
                   src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
@@ -37,7 +37,7 @@ const Listing = (data) => {
             </div>
             <div className="flex flex-wrap w-1/3">
               <div className="w-full p-1 md:p-2">
-                <img
+                <Image
                   alt="gallery"
                   className="block object-cover object-center w-full h-full rounded-lg"
                   src="https://mdbootstrap.com//img/Photos/Square/1.jpg"
@@ -46,7 +46,7 @@ const Listing = (data) => {
             </div>
             <div className="flex flex-wrap w-1/3">
               <div className="w-full p-1 md:p-2">
-                <img
+                <Image
                   alt="gallery"
                   className="block object-cover object-center w-full h-full rounded-lg"
                   src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(75).webp"
@@ -55,7 +55,7 @@ const Listing = (data) => {
             </div>
             <div className="flex flex-wrap w-1/3">
               <div className="w-full p-1 md:p-2">
-                <img
+                <Image
                   alt="gallery"
                   className="block object-cover object-center w-full h-full rounded-lg"
                   src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(70).webp"
@@ -64,7 +64,7 @@ const Listing = (data) => {
             </div>
             <div className="flex flex-wrap w-1/3">
               <div className="w-full p-1 md:p-2">
-                <img
+                <Image
                   alt="gallery"
                   className="block object-cover object-center w-full h-full rounded-lg"
                   src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(76).webp"
@@ -73,7 +73,7 @@ const Listing = (data) => {
             </div>
             <div className="flex flex-wrap w-1/3">
               <div className="w-full p-1 md:p-2">
-                <img
+                <Image
                   alt="gallery"
                   className="block object-cover object-center w-full h-full rounded-lg"
                   src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(72).webp"
@@ -87,7 +87,7 @@ const Listing = (data) => {
         <div className="flex flex-col grow">
           <div className="flex flex-row py-7 mx-7 border-b">
             <div className="pr-5">
-              <img
+              <Image
                 src="https://mdbootstrap.com//img/Photos/Square/1.jpg"
                 className="w-20 rounded-full"
                 alt=""

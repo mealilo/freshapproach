@@ -1,6 +1,6 @@
 import ReactMarkdown from 'react-markdown';
 import SVG from "../public/icons/svg";
-
+import Image from "next/image";
 const Listing = ({ listing }) => {
     const { title, description, price, listing_picture } = listing;
 
@@ -8,7 +8,7 @@ const Listing = ({ listing }) => {
         <div className="flex flex-col mx-5 my-5 rounded-lg shadow-lg bg-white max-w-sm">
             <div className="w-96 h-48 object-cover">
                 {listing_picture.length > 0 &&
-                    <img src={listing_picture[0].picture_link} className="w-96 h-48 object-cover rounded-t-lg" alt="" />
+                    <Image src={listing_picture[0].picture_link} className="w-96 h-48 object-cover rounded-t-lg" alt="" />
                 }
             </div>
             <div className="flex flex-col justify-between text-left p-6">

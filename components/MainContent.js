@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 function MainContent() {
   return (
     <main className="max-w-7xl mx-auto px-8 sm:px-16 font-Poppins">
@@ -12,10 +13,12 @@ function MainContent() {
           <div className="flex justify-center">
             <div className="rounded-lg max-w-sm">
               <a data-mdb-ripple="true" data-mdb-ripple-color="none">
-                <img
+                <Image
                   className="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52"
                   src="/images/Fruit.png"
                   alt=""
+                  width="100"
+                  height="100"
                 />
               </a>
               <div className="p-6">
@@ -26,10 +29,12 @@ function MainContent() {
           <div className="flex justify-center">
             <div className="rounded-lg max-w-sm">
               <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-                <img
+                <Image
                   className="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52"
                   src="/images/Veggies.png"
                   alt=""
+                  width="100"
+                  height="100"
                 />
               </a>
               <div className="p-6">
@@ -40,10 +45,12 @@ function MainContent() {
           <div className="flex justify-center">
             <div className="rounded-lg max-w-sm">
               <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-                <img
+                <Image
                   className="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52"
                   src="/images/Nuts.png"
                   alt=""
+                  width="100"
+                  height="100"
                 />
               </a>
               <div className="p-6">
@@ -54,10 +61,12 @@ function MainContent() {
           <div className="flex justify-center">
             <div className="rounded-lg max-w-sm">
               <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-                <img
+                <Image
                   className="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52"
                   src="/images/Honey.png"
                   alt=""
+                  width="100"
+                  height="100"
                 />
               </a>
               <div className="p-6">
@@ -68,10 +77,12 @@ function MainContent() {
           <div className="flex justify-center">
             <div className="rounded-lg max-w-sm">
               <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-                <img
+                <Image
                   className="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52"
                   src="/images/Eggs.png"
                   alt=""
+                  width="100"
+                  height="100"
                 />
               </a>
               <div className="p-6">

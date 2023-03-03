@@ -18,7 +18,7 @@ export default function Secret() {
   return (
     <main>
       <div>
-        <h1>You aren't signed in, please sign in first</h1>
+        <h1>You are not signed in, please sign in first</h1>
       </div>
     </main>
   );

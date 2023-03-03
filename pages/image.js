@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-
+import Image from "next/image";
 const BUCKET_URL = "https://freshapproach.s3.us-east-2.amazonaws.com/";
 
 export default function Home() {
@@ -55,7 +55,7 @@ export default function Home() {
           </>
         )}
         {uploadingStatus && <p>{uploadingStatus}</p>}
-        {uploadedFile && <img src={uploadedFile} />}
+        {uploadedFile && <Image alt="" src={uploadedFile} />}
       </main>
     </div>
   );
