@@ -9,9 +9,9 @@ export default function Home() {
         <title> Close Crop</title>
         <link rel="icon" href="/favicon.ico"/>
       </Head>
-    <Banner/>
-   <MainContent/>
-   <FindingLocalSection/>
+      <Banner/>
+      <MainContent/>
+      <FindingLocalSection/>
     </div>
   );
 }
