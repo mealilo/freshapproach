@@ -1,61 +1,85 @@
+import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { MenuIcon, UserCircleIcon, SearchIcon } from "@heroicons/react/solid";
-import SubscribeButton from "../components/SubscribeButton";
-function Header() {
-  return (
-    <header className="sticky top-0 z-50 grid grid-cols-3 bg-nearBlack  p-5 md:px-60">
-      {/* Left */}
+import { SearchIcon } from "@heroicons/react/solid";
 
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Sahitya:&display=swap"
-        rel="stylesheet"
-      ></link>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-        rel="stylesheet"
-      ></link>
-      <Link href="/">
-        <div className="relative flex items-center h-10 cursor-pointer">
-          <p className="text-white text-4xl font-Sahitya"> Close Crop </p>
-        </div>
-      </Link>
-      {/* Middle */}
-      <div className="flex items-center md:border-2 rounded-full py-2 md:shadow-sm w-64 bg-white">
-        <input
-          className="flex-grow pl-5 bg-white outline-none text-sm text-gray-600 placeholder-gray-400"
-          type="text"
-          placeholder="Search for Produce"
-        />
-        <SearchIcon className="hidden md:inline-flex h-8 bg-Sage text-white rounded-full p-2 cursor-pointer md:mx-2 " />
+function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <nav className="font-Sahitya bg-nearBlack px-20 py-1 flex items-center justify-between w-full flex-wrap">
+      <div className="flex items-center flex-shrink-0 text-white mr-6">
+        <Link href="/" className="text-4xl tracking-tight">
+          Close Crop
+        </Link>
       </div>
-      {/* Right */}
-      <div className="flex items-center space-x-10 justify-end">
-        <Link href="/BecomeVendor">
-          <p className="text-white font-Poppins hover:text-Sage whitespace-nowrap">
-            Become a Vendor!
-          </p>
-        </Link>
-        <Link href="listings">
-          <p className="text-white font-Poppins hover:text-Sage whitespace-nowrap">
-            Explore Produce
-          </p>
-        </Link>
-        <Link href="SignIn">
-          <p className="text-white font-Poppins hover:text-Sage whitespace-nowrap">
+      <div className="block lg:hidden">
+        <button
+          title="Menu"
+          className="flex items-center px-3 py-2 border rounded text-white border-Sage hover:text-white hover:border-white"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <svg
+            className="fill-current h-3 w-3"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {isOpen ? (
+              <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
+            ) : (
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            )}
+          </svg>
+        </button>
+      </div>
+
+      <div
+        className={` block py-10 justify-center top-0 lg:flex lg:items-center lg:w-auto ${
+          isOpen ? "block" : "hidden"
+        }`}
+      >
+        <div className="text-sm lg:flex-grow font-Poppins">
+          <Link href="/Subscribe">
+            <button
+              type="button"
+              className="text-white bg-Sage hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg 
+             px-5 py-2.5 my-2 text-center  dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 text-xl float-right"
+            >
+              Subscribe
+            </button>
+          </Link>
+
+          <Link
+            href="SignIn"
+            className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5  text-white hover:text-Sage text-xl whitespace-nowrap float-right"
+          >
             Sign In
-          </p>
-        </Link>
-        <Link href="/Subscribe">
-          <SubscribeButton />
-        </Link>
+          </Link>
+
+          <Link
+            href="/listings"
+            className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 text-white hover:text-Sage text-xl whitespace-nowrap float-right"
+          >
+            Explore Produce
+          </Link>
+          <Link
+            href="/BecomeVendor"
+            className="block mt-4 lg:inline-block lg:mt-0 py-4 pl-12 pr-5 text-white hover:text-Sage text-xl whitespace-nowrap float-right"
+          >
+            Become a Vendor!
+          </Link>
+          <div className="flex float-right position-relative md:border-2 rounded-full py-2 md:shadow-sm w-64 bg-white">
+            <input
+              className="flex-grow-0 pl-7 bg-white  text-sm text-gray-600 placeholder-gray-400 border-transparent focus:border-transparent rounded-full  focus:ring-0"
+              type="text"
+              placeholder="Search for Produce"
+            />
+            <SearchIcon className="hidden md:inline-flex h-8 bg-Sage text-white rounded-full p-2 cursor-pointer md:mx-2" />
+          </div>
+        </div>
       </div>
-    </header>
+    </nav>
   );
 }
 
 export default Header;
+/**/

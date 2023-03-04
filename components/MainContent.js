@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 function MainContent() {
   return (
     <main className="max-w-7xl mx-auto px-8 sm:px-16 font-Poppins">
@@ -9,63 +10,93 @@ function MainContent() {
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-7 space-x-10">
           <div className="flex items-center m-2 mt-5 space-x-4 rounded-xl cursor-pointer "></div>
-          <div class="flex justify-center">
-            <div class="rounded-lg max-w-sm">
+          <div className="flex justify-center">
+            <div className="rounded-lg max-w-sm">
               <a data-mdb-ripple="true" data-mdb-ripple-color="none">
-                <img class="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52" src="/images/Fruit.png" alt="" />
+                <Image
+                  className="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52"
+                  src="/images/Fruit.png"
+                  alt=""
+                  width="100"
+                  height="100"
+                />
               </a>
-              <div class="p-6">
-                <h5 class="text-gray-900 text-xl text-center mb-2">Fruit</h5>
+              <div className="p-6">
+                <h5 className="text-gray-900 text-xl text-center mb-2">Fruit</h5>
               </div>
             </div>
           </div>
-          <div class="flex justify-center">
-            <div class="rounded-lg max-w-sm">
+          <div className="flex justify-center">
+            <div className="rounded-lg max-w-sm">
               <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-                <img class="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52" src="/images/Veggies.png" alt="" />
+                <Image
+                  className="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52"
+                  src="/images/Veggies.png"
+                  alt=""
+                  width="100"
+                  height="100"
+                />
               </a>
-              <div class="p-6">
-                <h5 class="text-gray-900 text-xl text-center mb-2">Veggies</h5>
+              <div className="p-6">
+                <h5 className="text-gray-900 text-xl text-center mb-2">Veggies</h5>
               </div>
             </div>
           </div>
-          <div class="flex justify-center">
-            <div class="rounded-lg max-w-sm">
+          <div className="flex justify-center">
+            <div className="rounded-lg max-w-sm">
               <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-                <img class="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52" src="/images/Nuts.png" alt="" />
+                <Image
+                  className="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52"
+                  src="/images/Nuts.png"
+                  alt=""
+                  width="100"
+                  height="100"
+                />
               </a>
-              <div class="p-6">
-                <h5 class="text-gray-900 text-xl text-center mb-2">Nuts</h5>
+              <div className="p-6">
+                <h5 className="text-gray-900 text-xl text-center mb-2">Nuts</h5>
               </div>
             </div>
           </div>
-          <div class="flex justify-center">
-            <div class="rounded-lg max-w-sm">
+          <div className="flex justify-center">
+            <div className="rounded-lg max-w-sm">
               <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-                <img class="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52" src="/images/Honey.png" alt="" />
+                <Image
+                  className="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52"
+                  src="/images/Honey.png"
+                  alt=""
+                  width="100"
+                  height="100"
+                />
               </a>
-              <div class="p-6">
-                <h5 class="text-gray-900 text-xl text-center mb-2">Honey</h5>
+              <div className="p-6">
+                <h5 className="text-gray-900 text-xl text-center mb-2">Honey</h5>
               </div>
             </div>
           </div>
-          <div class="flex justify-center">
-            <div class="rounded-lg max-w-sm">
+          <div className="flex justify-center">
+            <div className="rounded-lg max-w-sm">
               <a data-mdb-ripple="true" data-mdb-ripple-color="light">
-                <img class="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52" src="/images/Eggs.png" alt="" />
+                <Image
+                  className="rounded-t-lg w-18 md:w-32 lg:w-48 xl:w-52"
+                  src="/images/Eggs.png"
+                  alt=""
+                  width="100"
+                  height="100"
+                />
               </a>
-              <div class="p-6">
-                <h5 class="text-gray-900 text-xl text-center mb-2">Eggs</h5>
+              <div className="p-6">
+                <h5 className="text-gray-900 text-xl text-center mb-2">Eggs</h5>
               </div>
             </div>
           </div>
         </div>
 
         <Link href="/listings">
-          <div class="flex justify-center items-center py-5 ">
+          <div className="flex justify-center items-center py-5 ">
             <button
               type="button"
-              class="inline-block px-6 py-2.5 bg-Orange text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-500 hover:shadow-lg focus:bg-orange-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-700 active:shadow-lg transition duration-150 ease-in-out"
+              className="inline-block px-6 py-2.5 bg-Orange text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-500 hover:shadow-lg focus:bg-orange-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-700 active:shadow-lg transition duration-150 ease-in-out"
             >
               Explore Produce
             </button>
@@ -76,3 +107,4 @@ function MainContent() {
   );
 }
 export default MainContent;
+/* */
