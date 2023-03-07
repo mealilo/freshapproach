@@ -1,7 +1,8 @@
-import ItemListing from '../components/ItemListing';
-import { makeSerializable } from '../lib/util';
-import prisma from '../lib/prisma';
+import ItemListing from "../components/ItemListing";
+import { makeSerializable } from "../lib/util";
+import prisma from "../lib/prisma";
 import Link from "next/link";
+import { Component } from 'react';
 
 export const getServerSideProps = async () => {
     const items = await prisma.listing.findMany({
@@ -18,20 +19,41 @@ export const getServerSideProps = async () => {
     }
 }
 
-const Listings = props => {
+class Listings extends Component {
 
-    return (
-        <div className="text-center bg-gray-50 text-gray-800 py-16 px-6">
-            <h1 className="text-5xl font-bold mt-0 mb-6">Discover New Produce</h1>
-            <div className="flex justify-center flex-wrap">
-                {props.items.map(item => (
-                    <Link  href={`/listing?data=${item}`} key={item.listing_ID}>
-                        <ItemListing listing={item} />
-                    </Link>
-                ))}
+    render() {
+        return (
+            <div className="text-center bg-gray-50 text-gray-800 py-16 px-6">
+                <h1 className="text-5xl font-bold mt-0 mb-6">Discover New Produce</h1>
+                <div className="flex justify-center flex-wrap">
+                    {this.props.items.map(item => (
+                        <Link 
+                            href={`/listing?id=${item.listing_ID}`} 
+                            key={item.listing_ID}
+                        >
+                            <ItemListing listing={item} />
+                        </Link>
+                    ))}
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 };
 
+// const Listings = (props) => {
+//   return (
+//     <div className="text-center bg-gray-50 text-gray-800 py-16 px-6">
+//       <h1 className="text-5xl font-bold mt-0 mb-6">Discover New Produce</h1>
+//       <div className="flex justify-center flex-wrap">
+//         {props.items.map((item) => (
+//           <Link href={`/listing?data=${item}`} key={item.listing_ID}>
+//             <ItemListing listing={item} />
+//           </Link>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
 export default Listings;
+/* */
