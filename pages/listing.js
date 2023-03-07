@@ -52,14 +52,14 @@ const Listing = (props) => {
       <div class="flex w-full">
         <div class="flex flex-col flex-wrap w-1/5 mr-8 rounded-lg shadow-lg bg-white overflow-hidden">
           {listing_picture.map(pic => (
-            <Image className="block w-full h-full object-cover rounded-lg" src={pic.picture_link} key={pic.listing_picture_ID} alt="gallery"/>
+            <img className="block w-full h-full object-cover rounded-lg" src={pic.picture_link} key={pic.listing_picture_ID} alt="gallery"/>
           ))}
         </div>
         <div class="flex justify-center items-center w-2/5 mr-8 p-6 rounded-lg shadow-lg bg-white">
           <div class="flex flex-row">
             <div className="flex pr-5 justify-center items-center">
               <div className="rounded-full h-24 w-24 overflow-hidden">
-                <Image src={profile_picture_link} class="block object-cover rounded-full" alt=""/>
+                <img src={profile_picture_link} class="block object-cover rounded-full" alt=""/>
               </div>
             </div>
             <div class="flex flex-col">

@@ -9,8 +9,8 @@ export default function Home() {
   const { data: session } = useSession();
 
   // Your submit handler function in JavaScript
-  // const submitHandler = (event) => {
-  //   event.preventDefault();
+  const submitHandler = (event) => {
+    event.preventDefault();
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
@@ -22,18 +22,19 @@ export default function Home() {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
-      .then((response) => {
-        if (response.message === "Success") {
-          //redirect to wherever.
-          window.location = "/sellerAccount";
-        } else {
-          alert("Error: Please fill out form again");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    .then((res) => res.json())
+    .then((response) => {
+      if (response.message === "Success") {
+        //redirect to wherever.
+        window.location = "/sellerAccount";
+      } else {
+        alert("Error: Please fill out form again");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+  };
 
   return (
     <div className="">
