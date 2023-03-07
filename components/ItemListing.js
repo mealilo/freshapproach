@@ -8,7 +8,7 @@ const Listing = ({ listing }) => {
         <div className="flex flex-col mx-5 my-5 rounded-lg shadow-lg bg-white max-w-sm">
             <div className="w-96 h-48 object-cover">
                 {listing_picture.length > 0 &&
-                    <Image src={listing_picture[0].picture_link} className="w-96 h-48 object-cover rounded-t-lg" alt="" />
+                    <Image src={listing_picture[0].picture_link} height="300" width="300" className="w-96 h-48 object-cover rounded-t-lg" alt="" />
                 }
             </div>
             <div className="flex flex-col justify-between text-left p-6">
