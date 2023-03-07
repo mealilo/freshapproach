@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React, { useState } from "react";
 import CreatePerson from "../components/Banner";
-
+import Link from "next/link";
 
 export default function Home() {
 
@@ -40,7 +40,7 @@ const submitHandler = (event) => {
     <div className="">
       <Head>
         <title> Close Crop</title>
-        <link rel="icon" href="/favicon.ico" />
+        <Link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="max-w-7xl mx-auto px-8 sm:px-16">
         <section className="pt-6"></section>
@@ -63,7 +63,7 @@ const submitHandler = (event) => {
                         id="fname"
                         name="fname"
                         type="text"
-                        autoComplete="fname"
+                    
                         required
                         className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                         placeholder="Enter your First Name"
@@ -89,7 +89,7 @@ const submitHandler = (event) => {
                       id="lname"
                       name="lname"
                       type="text"
-                      autoComplete="lname"
+            
                       required
                       className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       placeholder="Enter your Last Name"
@@ -103,7 +103,6 @@ const submitHandler = (event) => {
                       id="password"
                       name="password"
                       type="password"
-                      autoComplete="current-password"
                       required
                       className="relative block w-full appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       placeholder="Create your Password"
@@ -120,7 +119,7 @@ const submitHandler = (event) => {
                       id="phone"
                       name="phone"
                       type="phone"
-                      autoComplete="phone"
+                     
                       required
                       className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       placeholder="Enter your Phone Number"
@@ -135,7 +134,7 @@ const submitHandler = (event) => {
                         id="city"
                         name="city"
                         type="text"
-                        autoComplete="city"
+                      
                         required
                         className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                         placeholder="Enter your City"
@@ -148,7 +147,7 @@ const submitHandler = (event) => {
                         id="zip"
                         name="zip"
                         type="text"
-                        autoComplete="zip"
+                      
                         required
                         className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                         placeholder="Enter your Zip Code"
@@ -162,6 +161,7 @@ const submitHandler = (event) => {
                 <div className="flex items-center">
                   <input
                     id="agreement"
+                    title="Please agree to the terms and conditions."
                     name="agreement"
                     type="checkbox"
                     required
