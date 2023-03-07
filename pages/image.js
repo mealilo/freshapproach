@@ -11,7 +11,7 @@ export default function Home() {
   const selectFile = (e) => {
     setFile(e.target.files[0]);
   };
-
+ 
   const uploadFile = async () => {
     setUploadingStatus("Uploading the file to AWS S3");
 
