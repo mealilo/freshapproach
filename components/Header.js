@@ -54,18 +54,17 @@ function Header() {
           >
             Sign In
           </Link>
-
-          <Link
-            href="/listings"
-            className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 text-white hover:text-Sage text-xl whitespace-nowrap float-right"
-          >
-            Explore Produce
-          </Link>
           <Link
             href="/BecomeVendor"
+            className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 text-white hover:text-Sage text-xl whitespace-nowrap float-right"
+          >
+            Become a Vendor
+          </Link>
+          <Link
+            href="/listings"
             className="block mt-4 lg:inline-block lg:mt-0 py-4 pl-12 pr-5 text-white hover:text-Sage text-xl whitespace-nowrap float-right"
           >
-            Become a Vendor!
+            Explore Produce
           </Link>
         </div>
       </div>

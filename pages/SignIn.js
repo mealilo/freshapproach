@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import sellerAccount from "./sellerAccount";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
+
 export default function Home() {
   const { data: session } = useSession();
 
@@ -130,7 +131,7 @@ export default function Home() {
               </div>
             </div>
             {/* </form> */}
-            <Link href="/sellerAccount">Seller Account</Link>
+            {/* <Link href="/sellerAccount">Seller Account</Link> */}
           </div>
         </div>
       </main>
