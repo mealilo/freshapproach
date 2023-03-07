@@ -12,7 +12,6 @@ export default function Home() {
         <title> Close Crop</title>
         <Link rel="icon" href="/favicon.ico" />
       </Head>
-
       <Banner />
       <MainContent />
       <FindingLocalSection />

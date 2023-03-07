@@ -67,14 +67,6 @@ function Header() {
           >
             Become a Vendor!
           </Link>
-          <div className="flex float-right position-relative md:border-2 rounded-full py-2 md:shadow-sm w-64 bg-white">
-            <input
-              className="flex-grow-0 pl-7 bg-white  text-sm text-gray-600 placeholder-gray-400 border-transparent focus:border-transparent rounded-full  focus:ring-0"
-              type="text"
-              placeholder="Search for Produce"
-            />
-            <SearchIcon className="hidden md:inline-flex h-8 bg-Sage text-white rounded-full p-2 cursor-pointer md:mx-2" />
-          </div>
         </div>
       </div>
     </nav>
