@@ -48,7 +48,7 @@ export default function Home({listings, profile}) {
           <div className="w-full  space-y-8">
             <div className="space-y-5 rounded-md shadow-xl p-5 columns-2 border-t-8 border-teal-800">
               <h2 className=" text-left text-4xl font-normal tracking-tight text-gray-900">
-                Account Information  {profile.person_ID}
+                Account Information 
               </h2>
             </div>
             <form  type="POST" className="mt-8 space-y-6">
