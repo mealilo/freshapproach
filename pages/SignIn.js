@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import sellerAccount from "./sellerAccount";
 import Link from "next/link";
-
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Home() {
+  const { data: session } = useSession();
 
   // Your submit handler function in JavaScript
   const submitHandler = (event) => {
