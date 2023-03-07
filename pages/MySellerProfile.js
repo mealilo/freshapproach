@@ -1,9 +1,25 @@
 import Head from "next/head";
 import React, { useState } from "react";
-import CreatePerson from "../components/Banner";
-import Link from "next/link";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
-export default function Home() {
+// On load, load these categories
+export const getServerSideProps = async ({req}) =>
+{
+  let listings = await prisma.listing.findMany({
+    where: {
+        producer_ID: 1
+    }
+  });
+  prisma.$disconnect();
+  listings = JSON.parse(JSON.stringify(listings));
+  console.log(typeof listings);
+  console.log( listings);
+  return {props: {listings}}
+}
+
+export default function Home(listings) {
+<h1>{listings}</h1>
 
 // Your submit handler function in JavaScript
 const submitHandler = (event) => {
@@ -40,7 +56,7 @@ const submitHandler = (event) => {
     <div className="">
       <Head>
         <title> Close Crop</title>
-        <Link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="max-w-7xl mx-auto px-8 sm:px-16">
         <section className="pt-6"></section>
@@ -48,7 +64,7 @@ const submitHandler = (event) => {
           <div className= "w-full max-w-3xl space-y-8">
             <div className="space-y-5 rounded-md shadow-xl p-5 columns-2 border-t-8 border-teal-800">
               <h2 className="text-left text-5xl font-normal tracking-tight text-gray-900">
-                Vendor Sign Up
+                My Profile
               </h2>
             </div>
             <form onSubmit={submitHandler} type="POST" className="mt-8 space-y-6">
@@ -63,7 +79,7 @@ const submitHandler = (event) => {
                         id="fname"
                         name="fname"
                         type="text"
-                    
+                        autoComplete="fname"
                         required
                         className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                         placeholder="Enter your First Name"
@@ -89,7 +105,7 @@ const submitHandler = (event) => {
                       id="lname"
                       name="lname"
                       type="text"
-            
+                      autoComplete="lname"
                       required
                       className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       placeholder="Enter your Last Name"
@@ -103,6 +119,7 @@ const submitHandler = (event) => {
                       id="password"
                       name="password"
                       type="password"
+                      autoComplete="current-password"
                       required
                       className="relative block w-full appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       placeholder="Create your Password"
@@ -119,7 +136,7 @@ const submitHandler = (event) => {
                       id="phone"
                       name="phone"
                       type="phone"
-                     
+                      autoComplete="phone"
                       required
                       className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       placeholder="Enter your Phone Number"
@@ -134,7 +151,7 @@ const submitHandler = (event) => {
                         id="city"
                         name="city"
                         type="text"
-                      
+                        autoComplete="city"
                         required
                         className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                         placeholder="Enter your City"
@@ -147,7 +164,7 @@ const submitHandler = (event) => {
                         id="zip"
                         name="zip"
                         type="text"
-                      
+                        autoComplete="zip"
                         required
                         className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                         placeholder="Enter your Zip Code"
@@ -161,7 +178,6 @@ const submitHandler = (event) => {
                 <div className="flex items-center">
                   <input
                     id="agreement"
-                    title="Please agree to the terms and conditions."
                     name="agreement"
                     type="checkbox"
                     required
@@ -200,6 +216,20 @@ const submitHandler = (event) => {
                 </div>
               </div>
             </form>
+            <div>
+
+            
+             
+    <div>
+      {listings.listings.map(item => (
+        <div key={item.listing_ID}>
+          <h1>{item.title}</h1>
+          <div>{item.description}</div>
+        </div>
+      ))}
+    </div>
+  
+            </div>
           </div>
         </div>
       </main>

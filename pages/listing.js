@@ -1,6 +1,9 @@
 import React from "react";
 import prisma from '../lib/prisma';
 import { makeSerializable } from '../lib/util';
+import { useRouter } from "next/router";
+import SVG from "../public/icons/svg";
+import Image from "next/image";
 
 
 export const getServerSideProps = async (context) => {
@@ -88,7 +91,7 @@ const Listing = (props) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default Listing;
