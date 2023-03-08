@@ -4,6 +4,7 @@ import { makeSerializable } from '../lib/util';
 import { useRouter } from "next/router";
 import SVG from "../public/icons/svg";
 import Image from "next/image";
+import SubscribeButton from "../components/SubscribeButton";
 
 
 export const getServerSideProps = async (context) => {
@@ -84,8 +85,8 @@ const Listing = (props) => {
               PHONE NUMBER: {phone_number}
             </p>
           </div>
-          <button type="button" onClick={handleClick} className={`${buttonVisible ? '': 'hidden'} w-full px-6 py-2.5 bg-Sage text-white font-medium text-xs leading-tight 
-            uppercase rounded shadow-md hover:bg-sageAnimate hover:shadow-lg active:shadow-lg transition duration-150 ease-in-out`}>
+          <button type="button" onClick={handleClick} className={`${buttonVisible ? '': 'hidden'} w-full px-6 py-2.5 text-white font-medium text-sm leading-tight uppercase 
+          rounded shadow-md bg-Sage hover:bg-sageAnimate focus:bg-sageAnimate active:bg-sageAnimate hover:shadow-lg active:shadow-lg transition duration-150 ease-in-out`}>
             Contact Seller
           </button>
         </div>

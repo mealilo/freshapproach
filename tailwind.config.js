@@ -11,6 +11,7 @@ module.exports = {
         'Sage': '#7FA966',
         'sageAnimate': '#71965B',
         'Orange': '#F99A01',
+        'orangeAnimate': '#EF9505',
         'greenText': '#0E8044',
         'blueGreenCustom': '#04676A',
         'customPurple': "#792299",

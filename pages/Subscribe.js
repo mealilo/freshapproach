@@ -8,12 +8,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="max-w-7xl mx-auto px-8 sm:px-16">
-        <section className="pt-16">
-          <h2 className="text-4xl font-semibold text-center text-nearBlack font-Poppins">
-            {" "}
-            Subscribe
-          </h2>
-        </section>
         <SubscribeForm />
       </main>
     </div>

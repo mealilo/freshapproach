@@ -1,3 +1,5 @@
+import SubscribeButton from "./SubscribeButton";
+
 function SubscribeForm() {
   return (
     <div className="w-full">
@@ -16,7 +18,7 @@ function SubscribeForm() {
             </div>
             <form className="flex items-center justify-center mt-8 space-y-6" action="#" method="POST">
               <input type="hidden" name="remember" defaultValue="true" />
-              <div className=" space-y-5  rounded-md shadow-xl px-40  border-t-8 border-orange-400">
+              <div className="w-full space-y-5  rounded-md shadow-xl px-40  border-t-8 border-orange-400">
                 <link
                   href="//cdn-images.mailchimp.com/embedcode/classic-071822.css"
                   rel="stylesheet"
@@ -118,7 +120,7 @@ function SubscribeForm() {
                             type="submit"
                             defaultValue="Subscribe"
                             name="subscribe"
-                            id="mc-embedded-subscribe"
+                            
                             className="button bg-Sage"
                           />
                         </div>

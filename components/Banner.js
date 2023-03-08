@@ -9,7 +9,8 @@ function Banner() {
         fill
         style={{ objectFit: "cover", objectPosition: "center" }}
       />
-      <h1 className="flex flex-wrap absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl sm:text-4xl lg:text-6xl xl:text-7xl font-medium whitespace-nowrap">
+      <h1 className="flex flex-wrap absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl 
+      sm:text-4xl lg:text-6xl xl:text-7xl font-medium whitespace-nowrap">
         Eat fresh. Sell local. Prevent waste.
       </h1>
     </div>

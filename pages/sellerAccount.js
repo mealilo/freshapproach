@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { PrismaClient } from "@prisma/client";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import SubscribeButton from "../components/SubscribeButton";
 const prisma = new PrismaClient();
 
 export const getServerSideProps = async ({req}) =>
@@ -173,10 +174,9 @@ export default function Home({listings, profile}) {
                   </div>
                 </div>
               </div>
-              <div className="columns-3 p-8">
+              <div className="columns-3 py-8">
               <div>
-                <button
-                  onClick={() => {
+                <SubscribeButton white text="Cancel" style="group relative flex w-full justify-center !text-black" onClick={() => {
                     const confirmBox = window.confirm(
                       "Are you sure you want to cancel? All data will be lost"
                     )
@@ -184,14 +184,10 @@ export default function Home({listings, profile}) {
                       window.location = "/";
                     }
                   }}
-                  className="group relative flex w-full justify-center rounded-md border border-grey-700 bg-white-600 py-2 px-4 text-sm font-medium shadow-lg text-grey hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-lime-600 focus:ring-offset-2"
-                >
-                  Cancel
-                </button>
+                />
               </div>
               <div>
-                <button
-                  onClick={() => {
+                <SubscribeButton red text="Delete Account" type="submit" style="group relative flex w-full justify-center " onClick={() => {
                     const confirmBox = window.confirm(
                       "Are you sure you want to delete your profile? This action is unrecoverable!"
                     )
@@ -199,26 +195,16 @@ export default function Home({listings, profile}) {
                       window.location = "/";
                     }
                   }}
-                  type="submit"
-                  className="group relative flex w-full justify-center rounded-md border border-transparent bg-red-700 py-2 px-4 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
-                >
-                  Delete Account
-                </button>
+                />
               </div>
               <div>
-                <button
-                  onClick={() => {
+                <SubscribeButton orange text="Save Changes" type="submit" style="group relative flex w-full justify-center" onClick={() => {
                     alert(
                       "Account Saved. Please add logic to me, Brennan."
                     )
                     window.location = "/";
                   }}
-                
-                  
-                  className="group relative flex w-full justify-center rounded-md border border-transparent bg-orange-400 py-2 px-4 text-sm font-medium text-white hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
-                >
-                  Save Changes
-                </button>
+                />
               </div>
             </div>
             </form>
