@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React, { useState } from "react";
 import { PrismaClient } from "@prisma/client";
+import SubscribeButton from "../components/SubscribeButton";
 const prisma = new PrismaClient();
 
 // On load, load these categories
@@ -192,43 +193,21 @@ const submitHandler = (event) => {
                 <div className="text-sm">
                   <a
                     href="#"
-                    className="font-medium text-teal-800 hover:text-teal-600">
+                    className="font-medium text-teal-800 hover:text-sageAnimate">
                     Forgot your password?
                   </a>
                 </div>
               </div>
               <div className="columns-2  ">
                 <div>
-                  <button
-                    type="submit"
-                    className="group relative flex w-full justify-center rounded-md border border-grey-700 bg-white-600 py-2 px-4 text-sm font-medium shadow-lg text-grey hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-lime-600 focus:ring-offset-2"
-                  >
-                    Cancel{" "}
-                  </button>
+                  <SubscribeButton white text="Cancel" type="submit" style="group relative flex w-full justify-center !text-black" />
                 </div>
                 <div>
-                  <button
-                    type="submit"
-                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-lime-600 py-2 px-4 text-sm font-medium text-white hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-600 focus:ring-offset-2"
-                  >
-                    Sign Up
-                  </button>
+                  <SubscribeButton green text="Sign Up" type="submit" style="group relative flex w-full justify-center" />
                 </div>
               </div>
             </form>
-            <div>
-
-            
-             
-    <div>
-      {listings.listings.map(item => (
-        <div key={item.listing_ID}>
-          <h1>{item.title}</h1>
-          <div>{item.description}</div>
-        </div>
-      ))}
-    </div>
-  
+          <div>
             </div>
           </div>
         </div>

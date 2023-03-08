@@ -34,7 +34,7 @@ function FindingLocalSection() {
           preferences, sent right to your inbox.
         </p>
         <Link href="/Subscribe">
-          <SubscribeButton />
+          <SubscribeButton green text="Subscribe" />
         </Link>
       </div>
     </div>

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 const BUCKET_URL = "https://freshapproach.s3.us-east-2.amazonaws.com/";
 import { PrismaClient } from "@prisma/client";
+import SubscribeButton from "../components/SubscribeButton";
 const prisma = new PrismaClient();
 
 // On load, load these categories
@@ -236,33 +237,20 @@ const createListingPicture = async (listingID) => {
     
                 </div> 
               </div>
-              <div className="columns-2  ">
+              <div className="columns-2">
                 <div>
-                  <button
-
-                      onClick={() => {
+                  <SubscribeButton white text="Cancel" type="submit" style="group relative flex w-full justify-center !text-black" onClick={() => {
                         const confirmBox = window.confirm(
                           "Are you sure you want to cancel? All data will be lost"
                         )
                         if (confirmBox === true) {
                           window.location = "/";
                         }
-
                       }}
-                    type="submit"
-                    className="group relative flex w-full justify-center rounded-md border border-grey-700 bg-white-600 py-2 px-4 text-sm font-medium shadow-lg text-grey hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-lime-600 focus:ring-offset-2"
-                  >
-                    Cancel{" "}
-                  </button>
+                  />
                 </div>
                 <div>
-                  <button
-                    form="addlisting"
-                    type="submit"
-                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-lime-600 py-2 px-4 text-sm font-medium text-white hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-600 focus:ring-offset-2"
-                  >
-                    Post Listing
-                  </button>
+                  <SubscribeButton green text="Post Listing" type="submit" style="group relative flex w-full justify-center" /> 
                 </div>
               </div>
             </form>
