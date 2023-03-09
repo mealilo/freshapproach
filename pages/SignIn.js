@@ -3,11 +3,9 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import sellerAccount from "./sellerAccount";
 import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
 import SubscribeButton from "../components/SubscribeButton";
 
 export default function Home() {
-  const { data: session } = useSession();
 
   // Your submit handler function in JavaScript
   const submitHandler = (event) => {
@@ -118,7 +116,7 @@ export default function Home() {
                 </div>
                 <div>
                 <Link href="/sellerAccount">
-                  <SubscribeButton green text="Sign In" type="submit" onClick={signIn} style="group relative flex w-full justify-center" />
+                  <SubscribeButton green text="Sign In" type="submit" onClick={console.log('sign in')} style="group relative flex w-full justify-center" />
                   </Link>
                 </div>
               </div>
