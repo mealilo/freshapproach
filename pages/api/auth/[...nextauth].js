@@ -7,7 +7,7 @@ export const authOptions = {
       GoogleProvider({
         clientId: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      }), /*
+      }), 
       CredentialsProvider({
         name: "Credentials",
         credentials:{
@@ -24,7 +24,7 @@ export const authOptions = {
                 return null
             }
         }
-      }) */
+      }) 
     ],
     secret: process.env.NEXTAUTH_SECRET,
     callbacks:{
