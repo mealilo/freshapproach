@@ -26,7 +26,9 @@ export const authOptions = {
         }
       }) 
     ],
-  
+    pages:{
+      signIn: "/SignIn",
+    },
     secret: process.env.NEXTAUTH_SECRET,
     callbacks:{
       async redirect(url, baseUrl){
