@@ -37,6 +37,7 @@ export const getServerSideProps = async ({req}) =>
 
 export default function Home({listings, profile}) {
   const { data: session } = useSession();
+ 
   return (
     <div className="">
       <Head>

@@ -138,7 +138,6 @@ export default function Home() {
               </div>
             </div>
             {/* </form> */}
-            <Link href="/sellerAccount">Seller Account</Link>
           </div>
         </div>
       </main>
