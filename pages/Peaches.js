@@ -7,10 +7,10 @@ import PricingCard from "../components/PricingCard";
 export default function Home() {
   return (
     <div className="">
-      <Head>
+      {/* <Head>
         <title> Close Crop</title>
         <Link rel="icon" href="/favicon.ico" />
-      </Head>
+      </Head> */}
 
       <main className="max-w-7xl mx-auto px-8 sm:px-16">
         <section className="pt-6">
