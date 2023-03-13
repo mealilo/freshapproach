@@ -37,12 +37,13 @@ export const getServerSideProps = async ({req}) =>
 
 export default function Home({listings, profile}) {
   const { data: session } = useSession();
+ 
   return (
     <div className="">
-      <Head>
+      {/* <Head>
         <title> Close Crop</title>
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+      </Head> */}
       <main className="max-w-7xl mx-auto px-8 sm:px-16">
         <section className="pt-6"></section>
         <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-2">

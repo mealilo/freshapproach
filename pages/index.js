@@ -3,13 +3,15 @@ import Banner from "../components/Banner";
 import FindingLocalSection from "../components/FindingLocalSection";
 import MainContent from "../components/MainContent";
 import Link from "next/link";
+
+
 export default function Home() {
   return (
     <div className="">
-      <Head>
+      {/* <Head>
         <title> Close Crop</title>
         <Link rel="icon" href="/favicon.ico" />
-      </Head>
+      </Head> */}
       <Banner />
       <MainContent />
       <FindingLocalSection />
@@ -17,13 +19,4 @@ export default function Home() {
   );
 }
 
-/*Sign in and out stuff if we want it later {!session && (
-        <>
-        Not signed in
-        <button onClick={signIn}> Sign In </button> 
-        </>
-      )}
-      {session && (<> Signed in as {session.user.email} <br/> 
-      <div> You can now access our super secret pages</div>
-      <button> <Link href="/secret"> To the secret </Link></button>
-      <button onClick={signOut}> Sign out</button></>)}*/
+
