@@ -54,7 +54,7 @@ model listing_picture {
   listing_picture_ID Int     @id @default(autoincrement())
   listing_ID         Int
   picture_link       String  @db.VarChar(250)
-  listing            listing @relation(fields: [listing_ID], references: [listing_ID], onDelete: NoAction, onUpdate: NoAction, map: "listing_picture_ibfk_1")
+  listing            listing @relation(fields: [listing_ID], references: [listing_ID], onDelete: Cascade, onUpdate: NoAction, map: "listing_picture_ibfk_1")
 
   @@index([listing_ID], map: "listing_ID")
 }

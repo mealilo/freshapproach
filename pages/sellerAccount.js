@@ -6,7 +6,7 @@ import Link from "next/link";
 import SubscribeButton from "../components/SubscribeButton";
 const prisma = new PrismaClient();
 
-export const getServerSideProps = async ({req}) =>
+export const getStaticProps = async ({req}) =>
 {
   let listings = await prisma.listing.findMany({
     where: {
@@ -31,7 +31,8 @@ export const getServerSideProps = async ({req}) =>
   profile.created_on = profile.created_on.toISOString();
   listings = JSON.parse(JSON.stringify(listings));
   profile = JSON.parse(JSON.stringify(profile));
-  return {props: {listings, profile}}
+  //revalidate 60 reupdates the build when something changes
+  return {props: {listings, profile}, revalidate: 1,}
 }
 
 const handleDeleteProfile = async (event) => {
@@ -64,10 +65,10 @@ const handleDeleteProfile = async (event) => {
 //delete listing
 const handleDeleteListing = async (listing_ID) => {
 
-
+  //collect correct listing to send to delete
   let formData = {};
   formData["listing_ID"] = listing_ID;
-  alert(formData.listing_ID);
+
   fetch('/api/SellerProfileCRUD?functionName=deleteListing', {
     method: 'POST',
     headers: {
@@ -77,9 +78,9 @@ const handleDeleteListing = async (listing_ID) => {
   })
   .then(response => {
     if (response.ok) {
-      console.log('Profile deleted');
+      console.log('Listing deleted');
     } else {
-      console.error('Failed to delete profile');
+      console.error('Failed to delete listing. Please try again');
     }
   })
   .catch(error => {
