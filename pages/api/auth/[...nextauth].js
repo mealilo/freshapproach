@@ -40,7 +40,7 @@ export const authOptions = {
     async redirect(url, baseUrl){
       return '/sellerAccount';
     },
-  }, 
+  },
 
 }
 export default NextAuth(authOptions)
