@@ -36,6 +36,12 @@ export const authOptions = {
     })
     // ...add more providers here
   ],
+  callbacks:{
+    async redirect(url, baseUrl){
+      return '/sellerAccount';
+    },
+  }, 
+
 }
 export default NextAuth(authOptions)
 
