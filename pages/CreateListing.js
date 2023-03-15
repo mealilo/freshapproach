@@ -96,7 +96,7 @@ const submitHandler = async (event) => {
 
   }
 
-// creaet listing picrture
+// create listing picrture
 const createListingPicture = async (listingID) => {
   // create needed data
   const data = {

@@ -42,7 +42,7 @@ model listing {
   is_available            Int
   unit_type               String               @db.VarChar(45)
   favorite                favorite[]
-  producer                producer             @relation(fields: [producer_ID], references: [producer_ID], onDelete: NoAction, onUpdate: NoAction, map: "listing_ibfk_1")
+  producer                producer             @relation(fields: [producer_ID], references: [producer_ID], onDelete: Cascade, onUpdate: NoAction, map: "listing_ibfk_1")
   product_sub_category    product_sub_category @relation(fields: [product_sub_category_ID], references: [product_sub_category_ID], onDelete: NoAction, onUpdate: NoAction, map: "listing_ibfk_2")
   listing_picture         listing_picture[]
 
@@ -82,7 +82,7 @@ model producer {
   phone_number_public Boolean?
   email_public        Boolean?
   listing             listing[]
-  person              person?   @relation(fields: [person_ID], references: [person_ID], onDelete: NoAction, onUpdate: NoAction, map: "producer_ibfk_1")
+  person              person?   @relation(fields: [person_ID], references: [person_ID], onDelete: Cascade, onUpdate: NoAction, map: "producer_ibfk_1")
 }
 
 model product_category {

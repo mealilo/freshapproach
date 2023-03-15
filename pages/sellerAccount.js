@@ -4,13 +4,14 @@ import { PrismaClient } from "@prisma/client";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import SubscribeButton from "../components/SubscribeButton";
+import { Input } from "postcss";
 const prisma = new PrismaClient();
 
-export const getStaticProps = async ({req}) =>
+export const getServerSideProps = async ({req}) =>
 {
   let listings = await prisma.listing.findMany({
     where: {
-        producer_ID: 1,
+        producer_ID: 2,
     }
   ,
   include: {
@@ -20,7 +21,7 @@ export const getStaticProps = async ({req}) =>
   // return profile based on producerID
   let profile = await prisma.person.findUnique({
     where: {
-      person_ID: 1,
+      person_ID: 2,
     },
     // include producer info
     include: {
@@ -31,8 +32,7 @@ export const getStaticProps = async ({req}) =>
   profile.created_on = profile.created_on.toISOString();
   listings = JSON.parse(JSON.stringify(listings));
   profile = JSON.parse(JSON.stringify(profile));
-  //revalidate 60 reupdates the build when something changes
-  return {props: {listings, profile}, revalidate: 1,}
+  return {props: {listings, profile}}
 }
 
 const handleDeleteProfile = async (event) => {
@@ -42,7 +42,7 @@ const handleDeleteProfile = async (event) => {
   formData["personID"] = document.getElementById('personID').value;
   
 
-  fetch('/api/SellerProfileCRUD?functionName=deleteProfile', {
+  await fetch('/api/SellerProfileCRUD?functionName=deleteProfile', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -64,12 +64,11 @@ const handleDeleteProfile = async (event) => {
 
 //delete listing
 const handleDeleteListing = async (listing_ID) => {
-
   //collect correct listing to send to delete
   let formData = {};
   formData["listing_ID"] = listing_ID;
 
-  fetch('/api/SellerProfileCRUD?functionName=deleteListing', {
+  await fetch('/api/SellerProfileCRUD?functionName=deleteListing', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -78,7 +77,8 @@ const handleDeleteListing = async (listing_ID) => {
   })
   .then(response => {
     if (response.ok) {
-      console.log('Listing deleted');
+      alert("Listing Deleted Sucessfully")
+      window.location = "/sellerAccount";
     } else {
       console.error('Failed to delete listing. Please try again');
     }
@@ -88,6 +88,34 @@ const handleDeleteListing = async (listing_ID) => {
   });
 }
 
+
+//Update Profile
+const handleUpdateProfile = async (event) => {
+  //collect correct listing to send to delete
+  alert('HJI')
+  const formData = new FormData(event.target);
+  const data = Object.fromEntries(formData);
+
+
+  await fetch('/api/SellerProfileCRUD?functionName=updateProfile', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log('Listing deleted');
+      window.reload(true);
+    } else {
+      console.error('Failed to delete listing. Please try again');
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
 
 
 
@@ -109,7 +137,7 @@ export default function Home({listings, profile}) {
                 Account Information 
               </h2>
             </div>
-            <form  type="POST" className="mt-8 space-y-6">
+            <form  type="POST"   className="mt-8 space-y-6">
 
                       <input
                         hidden
@@ -123,12 +151,11 @@ export default function Home({listings, profile}) {
                 <div className="columns-2">
                   <div>
                     <div>
-                      <label htmlFor="fname">First Name</label>
+                      <label>First Name</label>
                       <input
                         id="fname"
                         name="fname"
                         type="text"
-                        autoComplete="fname"
                         required
                         className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                         defaultValue={profile.first_name}
@@ -241,10 +268,12 @@ export default function Home({listings, profile}) {
               <div className="columns-3 py-8">
               <div>
                 <SubscribeButton white text="Cancel" style="group relative flex w-full justify-center !text-black" onClick={() => {
+                   window.location.href = '../';
                     const confirmBox = window.confirm(
-                      "Are you sure you want to cancel? All data will be lost"
+                      "Are you sure you want to cancel? All current data will be lost"
                     )
                     if (confirmBox === true) {
+                      alert('home')
                       window.location = "/";
                     }
                   }}
@@ -261,10 +290,10 @@ export default function Home({listings, profile}) {
                       try {
                         await handleDeleteProfile();
                         alert("Successfully deleted");
-                        window.location = "/";
+                        window.location = "/sellerAccount";
                       }
                       catch{
-                        alert("Unable to delete listing. Please try again later");
+                        alert("Unable to delete profile. Please try again later");
                       }
                   
                     }
@@ -272,11 +301,14 @@ export default function Home({listings, profile}) {
                 />
               </div>
               <div>
-                <SubscribeButton orange text="Save Changes" type="submit" style="group relative flex w-full justify-center" onClick={() => {
-                    alert(
-                      "Account Saved. Please add logic to me, Brennan."
-                    )
-                    window.location = "/";
+                <SubscribeButton orange text="Save Changes" type="submit" style="group relative flex w-full justify-center" onClick={ async () => {
+                     // try and catch for updating profile
+                      await handleUpdateProfile();
+                      alert("Successfully Updated");
+                      window.location = "/sellerAccount";
+
+                      alert("Unable to update listing. Please try again later");
+                    
                   }}
                 />
               </div>
