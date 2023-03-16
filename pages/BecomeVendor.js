@@ -3,8 +3,11 @@ import React, { useState } from "react";
 import CreatePerson from "../components/Banner";
 import Link from "next/link";
 import SubscribeButton from "../components/SubscribeButton";
-
+import {useSession, signIn, signOut} from "next-auth/react";
 export default function Home() {
+ 
+  const {data: session} = useSession();
+  console.log(session);
 
 // Your submit handler function in JavaScript
 const submitHandler = (event) => {

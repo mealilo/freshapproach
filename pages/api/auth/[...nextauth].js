@@ -20,28 +20,106 @@ export const authOptions = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
-        // Add logic here to look up the user from the credentials supplied
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
-  
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user
-        } else {
-          // If you return null then an error will be displayed advising the user to check their details.
-          return null
-  
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
+        console.log("lilia")
+        const creds = await loginSchema.parseAsync(credentials);
+        console.log(creds)
+        const user = await prisma.person.findFirst({
+          where: { email: creds.email },
+        });
+
+        if (!user) {
+          return null;
         }
+
+        const isValidPassword = await verify(user.password, creds.password);
+
+        if (!isValidPassword) {
+          return null;
+        }
+
+        return {
+          id: user.id,
+          email: user.email,
+          username: user.username,
+        };
       }
     })
     // ...add more providers here
   ],
-  callbacks:{
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      const isAllowedToSignIn = true
+      if (isAllowedToSignIn) {
+        return true
+      } else {
+        // Return false to display a default error message
+        return false
+        // Or you can return a URL to redirect to:
+        // return '/unauthorized'
+      }},
+      async redirect({ url, baseUrl }) {
+        // Allows relative callback URLs
+        if (url.startsWith("/")) return `${baseUrl}${url}`
+        // Allows callback URLs on the same origin
+        else if (new URL(url).origin === baseUrl) return url
+        return baseUrl
+      },
+      async jwt({ token, account, profile }) {
+        // Persist the OAuth access_token and or the user id to the token right after signin
+        if (account) {
+          token.accessToken = account.access_token
+          token.id = profile.id
+        }
+        return token
+      },
+      async session({ session, token, user }) {
+        // Send properties to the client, like an access_token and user id from a provider.
+        session.accessToken = token.accessToken
+        session.user.id = token.id
+        
+        return session
+      },
+  },
+}
+    /*session: async ({ session, token }) => {
+      if (session?.user) {
+        session.user.id = token.uid;
+      }
+      return session;
+    },
+    jwt: async ({ user, token }) => {
+      if (user) {
+        token.uid = user.id;
+      }
+      return token;
+    },
+  },
+  session: {
+    strategy: 'jwt', */ 
+  
+ /* callbacks:{
     async redirect(url, baseUrl){
       return '/sellerAccount';
     },
-  },
+    jwt: async ({ token, user }) => {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+      }
 
-}
+      return token;
+    },
+    session: async ({ session, token }) => {
+      if (token) {
+        session.id = token.id;
+      }
+
+      return session;
+    }, 
+  }  */ 
+
+
+
+
 export default NextAuth(authOptions)
 
