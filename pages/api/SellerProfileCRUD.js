@@ -30,8 +30,9 @@ export default async function handler(req, res) {
   else if (functionName === 'updateProfile') {
     const { personID } = req.body;
     try {
+      const { fname, lname, city, zip, phone, password, email } = req.body;
 
-      const person = await prisma.person.delete({
+      const person = await prisma.person.update({
         where: {
           person_ID: parseInt(personID)
         },
@@ -43,8 +44,24 @@ export default async function handler(req, res) {
           password: password
         }
        })
+       console.log(person)
+
+       const producer = await prisma.producer.update({
+        where: {
+          person_ID: parseInt(personID)
+        },
+
+        data: {
+          phone_number: phone,
+          address: city,
+          zip_code: zip
+        }
+       })
+       console.log(producer)
+
+
        res.status(200).json({ message: 'Profile Updated' });
-        console.log(`account with id ${person_ID} deleted`);
+        console.log(`account with id ${personID} updated`);
       } 
       catch (error) {
         console.error(error);
@@ -66,7 +83,7 @@ export default async function handler(req, res) {
         },
        })
 
-        console.log(`account with id ${person_ID} deleted`);
+        console.log(`account with id ${personID} deleted`);
       } 
       catch (error) {
         console.error(error);
