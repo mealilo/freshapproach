@@ -24,8 +24,6 @@ export default function Home({categories}) {
   const [uploadingStatus, setUploadingStatus] = useState();
   const [uploadedFile, setUploadedFile] = useState();
 
-  console.log('lilia', file);
-
   //select file for displaying on the page
   const selectFile = (e) => {
     setFile(e.target.files[0]);

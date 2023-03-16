@@ -93,7 +93,7 @@ function MainContent() {
             </div>
           </div>
         </div>
-
+        
         <Link href="/listings">
           <div className="flex justify-center items-center py-5 ">
             <SubscribeButton white text="Explore Produce" style="!text-black" />
