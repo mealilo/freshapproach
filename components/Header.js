@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import Link from "next/link";
 import SubscribeButton from "./SubscribeButton";
 import { SearchIcon } from "@heroicons/react/solid";
+import { useSession, signIn, signOut } from "next-auth/react";
+import AuthBtn from "./AuthBtn";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession();
+  console.log(session);
 
   return (
     <nav className="bg-nearBlack px-20 py-1 flex items-center justify-between w-full flex-wrap">
@@ -51,15 +55,19 @@ function Header() {
           >
             Become a Vendor
           </Link>
-          <Link
+          {/* <Link
             href="SignIn"
             className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 pr-12 text-white hover:text-Sage transition duration-150 ease-in-out text-xl whitespace-nowrap"
           >
             Sign In
-          </Link>
+          </Link> */}
+          <div className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 pr-12 text-white hover:text-Sage transition duration-150 ease-in-out text-xl whitespace-nowrap">
+            <AuthBtn />
+          </div>
           <Link href="/Subscribe">
             <SubscribeButton green text="Subscribe" />
           </Link>
+          
         </div>
       </div>
     </nav>
