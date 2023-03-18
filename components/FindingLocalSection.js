@@ -11,19 +11,19 @@ function FindingLocalSection() {
         <div className="flex items-center my-4">
           {/* <TbCircle1 className="float-left" /> */}
           <div className="flex justify-center items-center bg-white w-20 h-20 rounded-full text-black mr-6">
-            <p className="text-4xl">1.</p>
+            <p className="text-4xl">1</p>
           </div>
           <p className="text-3xl"> Sign Up </p>
         </div>
         <div className="flex items-center my-4">
           <div className="flex justify-center items-center bg-white w-20 h-20 rounded-full text-black mr-6">
-            <p className="text-4xl">2.</p>
+            <p className="text-4xl">2</p>
           </div>
           <p className="text-3xl"> Select Preferences</p>
         </div>
         <div className="flex items-center my-4">
           <div className="flex justify-center items-center bg-white w-20 h-20 rounded-full text-black mr-6">
-            <p className="text-4xl">3.</p>
+            <p className="text-4xl">3</p>
           </div>
           <p className="text-3xl"> Enjoy Produce</p>
         </div>

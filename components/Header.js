@@ -45,19 +45,19 @@ function Header() {
         <div className="text-sm lg:flex-grow">
           <Link
             href="/listings"
-            className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 text-white hover:text-Sage transition duration-150 ease-in-out text-xl whitespace-nowrap"
+            className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 text-white hover:text-Sage transition duration-200 ease-in-out text-xl whitespace-nowrap"
           >
             Explore Produce
           </Link>
           <Link
             href="/BecomeVendor"
-            className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 text-white hover:text-Sage transition duration-150 ease-in-out text-xl whitespace-nowrap"
+            className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 text-white hover:text-Sage transition duration-200 ease-in-out text-xl whitespace-nowrap"
           >
             Become a Vendor
           </Link>
           {/* <Link
             href="SignIn"
-            className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 pr-12 text-white hover:text-Sage transition duration-150 ease-in-out text-xl whitespace-nowrap"
+            className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 pr-12 text-white hover:text-Sage transition duration-200 ease-in-out text-xl whitespace-nowrap"
           >
             Sign In
           </Link> */}
