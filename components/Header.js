@@ -8,7 +8,6 @@ import AuthBtn from "./AuthBtn";
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
-  console.log(session);
 
   return (
     <nav className="bg-nearBlack px-20 py-1 flex items-center justify-between w-full flex-wrap">
@@ -49,18 +48,24 @@ function Header() {
           >
             Explore Produce
           </Link>
-          <Link
+          {!session && <Link
             href="/BecomeVendor"
             className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 text-white hover:text-Sage transition duration-200 ease-in-out text-xl whitespace-nowrap"
           >
             Become a Vendor
-          </Link>
-          {/* <Link
-            href="SignIn"
-            className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 pr-12 text-white hover:text-Sage transition duration-200 ease-in-out text-xl whitespace-nowrap"
+          </Link>}
+          {session && <Link
+            href="CreateListing"
+            className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 text-white hover:text-Sage transition duration-200 ease-in-out text-xl whitespace-nowrap"
           >
-            Sign In
-          </Link> */}
+            Create Listing
+          </Link>}
+          {session && <Link
+            href="MySellerProfile"
+            className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 text-white hover:text-Sage transition duration-200 ease-in-out text-xl whitespace-nowrap"
+          >
+            My Account
+          </Link>}
           <div className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 pr-12 text-white hover:text-Sage transition duration-150 ease-in-out text-xl whitespace-nowrap">
             <AuthBtn />
           </div>
