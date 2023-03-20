@@ -247,7 +247,7 @@ const createListingPicture = async (listingID) => {
               </div>
               <div className="columns-2">
                 <div>
-                  <SubscribeButton white text="Cancel" type="submit" style="group relative flex w-full justify-center !text-black" onClick={() => {
+                  <SubscribeButton white text="Cancel" style="group relative flex w-full justify-center !text-black" onClick={() => {
                         const confirmBox = window.confirm(
                           "Are you sure you want to cancel? All data will be lost"
                         )
