@@ -14,13 +14,14 @@ export default async (req, res) => {
   }
 
   try {
-    let { name, type } = req.body;
+    console.log(req.body);
+    let { title, unit_type } = req.body;
 
     const fileParams = {
       Bucket: "freshapproach",
-      Key: name,
+      Key: title,
       Expires: 600,
-      ContentType: type,
+      ContentType: unit_type,
     };
 
     const url = await s3.getSignedUrlPromise("putObject", fileParams);
