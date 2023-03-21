@@ -9,6 +9,13 @@ const prisma = new PrismaClient();
 
 export const getServerSideProps = async (context) =>
 {
+  console.log(context);
+  const { query } = context;
+  console.log(query);
+  //const person_ID= query.id;
+
+
+
   let listings = await prisma.listing.findMany({
     where: {
         producer_ID: 81 ,
@@ -91,9 +98,11 @@ const handleDeleteListing = async (listing_ID) => {
 
 //Update Profile
 const handleUpdateProfile = async (event) => {
+
+
+  alert('hi');
   //collect correct listing to send to delete
 
-  document.getElementById('profile').submit();
   const formData = new FormData(event.target);
   const data = Object.fromEntries(formData);
 
@@ -107,10 +116,10 @@ const handleUpdateProfile = async (event) => {
   })
   .then(response => {
     if (response.ok) {
-      console.log('Listing deleted');
+      console.log('Profile Updated');
       window.reload(true);
     } else {
-      console.error('Failed to delete listing. Please try again');
+      console.error('Failed to update Profile Please try again');
     }
   })
   .catch(error => {
@@ -162,14 +171,14 @@ export default function Home({listings, profile}) {
               </div>
                 <div className="rounded-md space-y-2 shadow-xl p-8 border-t-8 border-orange-400">
                           <h4 className="text-xl font-medium">Account Information</h4>
-                  <form  type="POST" id="profile"   className="mt-8 space-y-6">
+                  <form  type="POST" id="profile"  onsubmit={handleUpdateProfile} className="mt-8 space-y-6">
                   
                   <div className="columns-2">
                   <input
                           hidden
                           id="personID"
                           name="personID"
-                          defaultValue={profile.person_ID}
+                          defaultValue={session.user.person_ID}
                         />
                     <div>
                       <div>
@@ -267,7 +276,7 @@ export default function Home({listings, profile}) {
                           autoComplete="city"
                           required
                           className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                          defaultValue={profile.producer.address}
+                          defaultValue={'hii'}
                                   
                         />
                       </div>
@@ -286,6 +295,7 @@ export default function Home({listings, profile}) {
                       </div>
                     </div>
                   </div>
+                  <SubscribeButton orange text="Save Changes"  type="submit" style="group relative flex w-full justify-center w-60 "/>
                   </form>
                 </div>
             
@@ -303,13 +313,7 @@ export default function Home({listings, profile}) {
                     <p className=" cursor-pointer text-center px-6 w-60 py-2.5 text-black font-medium text-sm leading-tight uppercase rounded-md shadow-md bg-white text-black border border-grey-700 hover:bg-slate-50 focus:bg-slate-100">cancel</p>
                 </div>
                 <div>
-                  <SubscribeButton orange text="Save Changes" type="submit" style="group relative flex w-full justify-center w-60 " onClick={ async () => {
-                       // try and catch for updating profile
-                        await handleUpdateProfile();
-                        alert("Successfully Updated");
-                        window.location = "/sellerAccount";
-                    }}
-                  />
+                 
                 </div>
               </div>
   
