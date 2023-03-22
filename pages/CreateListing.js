@@ -39,7 +39,7 @@ export default function Home({categories}) {
 
     //send data to s3 upload
     let { data } = await axios.post("/api/s3/uploadFile", {
-      name: file.name ,
+      title: file.name ,
       type: file.type,
     });
 
