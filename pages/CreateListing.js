@@ -34,6 +34,7 @@ export default function Home({categories}) {
 
   //upload file to AWS
   const uploadFile = async () => {
+    console.log('here2', file);
     setUploadingStatus("Uploading images...");
 
     //send data to s3 upload
@@ -58,12 +59,14 @@ export default function Home({categories}) {
 
 // Your submit handler function in JavaScript
 const submitHandler = async (event) => {
+  console.log('here');
   event.preventDefault();
 
   await uploadFile();
 
   const formData = new FormData(event.target);
   const data = Object.fromEntries(formData);
+  console.log(data);
   fetch("/api/AddListing", {
     method: "POST",
     headers: {
@@ -219,35 +222,51 @@ const createListingPicture = async (listingID) => {
 
                 </div>
                 {/* Image Upload */}
-                  <div class="flex items-center justify-center m-6">
+                  {/* <div class="flex items-center justify-center m-6">
                     <div class="flex flex-col items-center">
                       <p><img id="output" width="250" /></p>
                       {file && ( <p className="text-xs pt-1">Selected file: {file.name}</p>)}
                       {uploadingStatus && <p>{uploadingStatus}</p>} 
                       {file === undefined ? (
-                        <label required htmlFor="dropzone-file" class="flex flex-col items-center justify-center w-80 h-64 border-2 border-gray-300 shadow drop-shadow-md  rounded-lg cursor-pointer bg-white">
+                        <label required name="photo" htmlFor="dropzone-file" class="flex flex-col items-center justify-center w-80 h-64 border-2 border-gray-300 shadow drop-shadow-md  rounded-lg cursor-pointer bg-white">
                           <div class="flex flex-col items-center justify-center pt-5 pb-6">
                             <svg class="w-20 h-20 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                             <p class="mb-2 text-sm text-black text-lg">Add A Photo</p>
                             <p class="mb-2 text-sm text-black"><span class="font-semibold">Click to upload</span> a PNG or JPG</p>
                           </div>
-                          <input id="dropzone-file" type="file" onChange={(e) => selectFile(e)} multiple class="hidden" required />
+                          <input name="photo" id="dropzone-file" type="file" onChange={(e) => selectFile(e)} multiple class="hidden" required />
                         </label>
                       ) : null} 
                       {file !== undefined ? (
-                        <label required htmlFor="dropzone-file" class="flex flex-col items-center justify-center py-1 px-4 mt-2 border-2 border-gray-300 shadow drop-shadow-md rounded-lg cursor-pointer bg-white hover:bg-slate-50 transition duration-200 ease-in-out">
+                        <label required name="photo" htmlFor="dropzone-file" class="flex flex-col items-center justify-center py-1 px-4 mt-2 border-2 border-gray-300 shadow drop-shadow-md rounded-lg cursor-pointer bg-white hover:bg-slate-50 transition duration-200 ease-in-out">
                           <div class="flex flex-col items-center justify-center">
                             <p class="text-sm text-black"><span class="font-semibold">Change photo</span> (.png or .jpg)</p>
                           </div>
-                          <input id="dropzone-file" type="file" onChange={(e) => selectFile(e)} multiple class="hidden" required />
+                          <input name="lilia" id="dropzone-file" type="file" onChange={(e) => selectFile(e)} multiple class="hidden" required />
                         </label>
                       ) : null}
-                    </div>
+                    </div> */}
+
+                <div class="flex items-center justify-center m-6  ">
+                  <div class="flex flex-col items-center">
+                    <label required htmlFor="dropzone-file" class="flex flex-col items-center justify-center w-80 h-64 border-2 border-gray-300 shadow drop-shadow-md  rounded-lg cursor-pointer bg-white">
+                              <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                  <svg class="w-20 h-20 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                  <p class="mb-2 text-sm text-black text-lg">ADD A PHOTO</p>
+                                  <p class="mb-2 text-sm text-black"><span class="font-semibold">Click to upload</span> a PNG or JPG</p>
+                              </div>
+                              <input id="dropzone-file" type="file" onChange={(e) => selectFile(e)} multiple class="hidden" required />
+
+                          </label>
+                          {file && ( <p>Selected file: {file.name}</p>)}
+                          <p><img id="output" width="250" /></p>
+                        {uploadingStatus && <p>{uploadingStatus}</p>}   
                   </div>
+              </div>
               </div>
               <div className="columns-2">
                 <div>
-                  <SubscribeButton white text="Cancel" style="group relative flex w-full justify-center !text-black" onClick={() => {
+                  <SubscribeButton white type="button" text="Cancel" style="group relative flex w-full justify-center !text-black" onClick={() => {
                         const confirmBox = window.confirm(
                           "Are you sure you want to cancel? All data will be lost"
                         )
