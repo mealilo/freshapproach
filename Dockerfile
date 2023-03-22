@@ -1,11 +1,11 @@
 # To build the Docker image
-# docker build -t freshapproach
+# docker build -t freshapproach .
 
 # To run the Docker image with nextjs user
 # docker run -p 3000:3000 --user=root freshapproach
 
 # To run the Docker image in the background
-# docker run -d -p 3000:3000 freshapproach
+# docker run -d -p 3000:3000 --user=root freshapproach
 
 # To stop the Docker image
 # docker stop <container id>
