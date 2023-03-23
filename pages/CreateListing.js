@@ -1,22 +1,29 @@
 import Head from "next/head";
 import React, { useState } from "react";
+import { useSession } from "next-auth/react";
 import axios from "axios";
-const BUCKET_URL = "https://freshapproach.s3.us-east-2.amazonaws.com/";
 import { PrismaClient } from "@prisma/client";
 import SubscribeButton from "../components/SubscribeButton";
+
+const BUCKET_URL = "https://freshapproach.s3.us-east-2.amazonaws.com/";
 const prisma = new PrismaClient();
 
 // On load, load these categories
-export const getServerSideProps = async ({req}) =>
-{
+export const getServerSideProps = async (context) => {
+  const { query } = context;
+  const person_ID = parseInt(query.id);
   const categories = await prisma.product_sub_category.findMany();
+
+  const producerData = await prisma.producer.findUnique({
+    where: {
+      person_ID: person_ID,
+    }
+  });
   prisma.$disconnect();
-  return {props: {categories}}
+  return {props: { categories, producer: producerData }}
 }
 
-export default function Home({categories}) {
-
-
+export default function Home({categories, producer}) {
   // need to append date to make name unique
   const currentTime = new Date().toLocaleTimeString();
 
@@ -34,7 +41,6 @@ export default function Home({categories}) {
 
   //upload file to AWS
   const uploadFile = async () => {
-    console.log('here2', file);
     setUploadingStatus("Uploading images...");
 
     //send data to s3 upload
@@ -56,24 +62,24 @@ export default function Home({categories}) {
     setFile(null);
   };
 
+  // Your submit handler function in JavaScript
+  const submitHandler = async (event) => {
+    event.preventDefault();
 
-// Your submit handler function in JavaScript
-const submitHandler = async (event) => {
-  console.log('here');
-  event.preventDefault();
+    await uploadFile();
 
-  await uploadFile();
+    const formData = new FormData(event.target);
+    let data = Object.fromEntries(formData);
 
-  const formData = new FormData(event.target);
-  const data = Object.fromEntries(formData);
-  console.log(data);
-  fetch("/api/AddListing", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
+    data.producer_ID = producer.producer_ID;
+
+    fetch("/api/AddListing", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
     .then((res) => res.json())
     .then(async (response) => {
       if(response.message === 'Success'){
@@ -96,11 +102,10 @@ const submitHandler = async (event) => {
     .catch((error) => {
       console.error("Error:", error);
     });
-
   }
 
-// creaet listing picrture
-const createListingPicture = async (listingID) => {
+  // creaet listing picrture
+  const createListingPicture = async (listingID) => {
   // create needed data
   const data = {
       listing: listingID,
@@ -118,9 +123,7 @@ const createListingPicture = async (listingID) => {
     .catch((error) => {
       console.error("Error:", error);
     });
-};
-
-
+  };
 
   return (
     <div className="">
