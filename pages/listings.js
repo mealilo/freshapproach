@@ -34,6 +34,7 @@ class Listings extends Component {
                             <ItemListing listing={item} />
                         </Link>
                     ))}
+                    
                 </div>
             </div>
         )
