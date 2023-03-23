@@ -2,44 +2,27 @@ import Head from "next/head";
 import React, { useState } from "react";
 import { PrismaClient } from "@prisma/client";
 import { signIn, signOut, useSession, getSession } from "next-auth/react";
-import Link from "next/link";
 import SubscribeButton from "../components/SubscribeButton";
-import { Input } from "postcss";
 const prisma = new PrismaClient();
 
-export const getServerSideProps = async (context) =>
-{
-  console.log(context);
+export const getServerSideProps = async (context) => {
   const { query } = context;
-  console.log(query);
-  //const person_ID= query.id;
+  const producer_ID = parseInt(query.id);
 
-
-
+  // get listings based on 
   let listings = await prisma.listing.findMany({
     where: {
-        producer_ID: 81 ,
+        producer_ID: producer_ID ,
     }
   ,
   include: {
     listing_picture: true,
   },
   });
-  // return profile based on producerID
-  let profile = await prisma.person.findUnique({
-    where: {
-      person_ID: 81,
-    },
-    // include producer info
-    include: {
-      producer: true,
-    }
-  });
+
   prisma.$disconnect();
-  profile.created_on = profile.created_on.toISOString();
   listings = JSON.parse(JSON.stringify(listings));
-  profile = JSON.parse(JSON.stringify(profile));
-  return {props: {listings, profile}}
+  return {props: {listings}}
 }
 
 const handleDeleteProfile = async (event) => {
@@ -98,9 +81,6 @@ const handleDeleteListing = async (listing_ID) => {
 
 //Update Profile
 const handleUpdateProfile = async (event) => {
-
-
-  alert('hi');
   //collect correct listing to send to delete
 
   const formData = new FormData(event.target);
@@ -130,9 +110,8 @@ const handleUpdateProfile = async (event) => {
 
 
 
-export default function Home({listings, profile}) {
+export default function Home({listings}) {
   const { data: session } = useSession();
-
   if(session){
     return (
       <div className="">
@@ -261,7 +240,7 @@ export default function Home({listings, profile}) {
                         autoComplete="phone"
                         required
                         className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                        defaultValue={session.user.phone_number}
+                        defaultValue={session.user.producer.phone_number}
                       />
                     </div>
                     <div className="columns-2">
@@ -276,7 +255,7 @@ export default function Home({listings, profile}) {
                           autoComplete="city"
                           required
                           className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                          defaultValue={'hii'}
+                          defaultValue={session.user.producer.city}
                                   
                         />
                       </div>
@@ -289,7 +268,7 @@ export default function Home({listings, profile}) {
                           autoComplete="zip"
                           required
                           className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                          defaultValue={profile.producer.zip_code}
+                          defaultValue={session.user.producer.zip_code}
                         />
                         <div className="pt-5"></div>
                       </div>
@@ -329,11 +308,14 @@ export default function Home({listings, profile}) {
                           {listings.map(item => (
                   <div className="flex  m-5 shadow-md rounded-md  justify-between "  key={item.listing_ID}>
                     <div className="flex ">
-                            <img
-                            src={item.listing_picture[0].picture_link}
-                            alt=""
-                            className="rounded-md object-cover  h-40 w-60"
-                            />
+                            
+                              {item.listing_picture && item.listing_picture[0] && item.listing_picture[0].picture_link ?
+                              <img className="rounded-md object-cover  h-40 w-60" src={item.listing_picture[0].picture_link} alt="Listing picture" />
+                              :
+                              <img className="rounded-md   h-40 w-60" src="https://freshapproach.s3.us-east-2.amazonaws.com/img-placeholder.png" alt="Broken image" />
+                            }
+       
+                            
                             <div className=" ml-6 mt-4">
                                 <h1 className=" text-2xl font-normal text-black">{item.title}</h1>
                                 <h3 className="my-1">{item.description}</h3>
