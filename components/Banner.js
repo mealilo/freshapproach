@@ -18,7 +18,7 @@ function Banner() {
       <Image alt="BannerPhoto" src="/images/HeaderImage.png" priority
         fill
         style={{ objectFit: "cover", objectPosition: "center" }}/>
-        <h1 class="absolute text-7xl font-medium w-1/2 text-white  p-10 top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2">
+        <h1 class="absolute text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-7xl font-medium w-1/2 text-white  p-10 top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2">
             Eat fresh. Sell local. Save money.</h1>
     </div>
   );

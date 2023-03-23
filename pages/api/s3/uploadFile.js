@@ -15,13 +15,13 @@ export default async (req, res) => {
 
   try {
     console.log(req.body);
-    let { title, unit_type } = req.body;
+    let { title, type } = req.body;
 
     const fileParams = {
       Bucket: "freshapproach",
       Key: title,
       Expires: 600,
-      ContentType: unit_type,
+      ContentType: type,
     };
 
     const url = await s3.getSignedUrlPromise("putObject", fileParams);
