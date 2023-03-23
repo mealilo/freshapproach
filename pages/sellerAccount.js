@@ -106,6 +106,7 @@ const handleUpdateProfile = async (event) => {
     console.error(error);
   });
 }
+
 export default function Home({listings}) {
   const { data: session } = useSession();
   if(session){
@@ -167,6 +168,8 @@ export default function Home({listings}) {
                                 <h3 className="text-gray-500 my-1">${item.price}/{item.unit_type}</h3>
                             </div>
                     </div>
+                    
+                    
                     <div className="flex p-4">
                             <div className="cursor-pointer mx-2"> 
                               <svg 
