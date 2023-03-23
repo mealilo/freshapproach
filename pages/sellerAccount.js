@@ -12,7 +12,7 @@ export const getServerSideProps = async (context) => {
   // get listings based on 
   let listings = await prisma.listing.findMany({
     where: {
-        producer_ID: producer_ID ,
+        producer_ID: parseInt(producer_ID) ,
     }
   ,
   include: {
@@ -106,10 +106,6 @@ const handleUpdateProfile = async (event) => {
     console.error(error);
   });
 }
-
-
-
-
 export default function Home({listings}) {
   const { data: session } = useSession();
   if(session){
@@ -148,6 +144,60 @@ export default function Home({listings}) {
      
                           </div>
               </div>
+
+                            {/* Listing Stuffs */}
+                            <div className="space-y-5 rounded-md shadow-xl p-8 border-t-8 border-orange-400">
+                <div className="flex flex-wrap">
+                  <h3 className="text-xl font-light leading-6 text-gray-700 tracking-wider">
+                    Your Listings
+                  </h3>
+                </div>
+                <div className="flex flex-col">
+                          {listings.map(item => (
+                  <div className="flex  m-5 shadow-md rounded-md  justify-between "  key={item.listing_ID}>
+                    <div className="flex ">
+                              {item.listing_picture && item.listing_picture[0] && item.listing_picture[0].picture_link ?
+                              <img className="rounded-md object-cover  h-40 w-60" src={item.listing_picture[0].picture_link} alt="Listing picture" />
+                              :
+                              <img className="rounded-md   h-40 w-60" src="https://freshapproach.s3.us-east-2.amazonaws.com/img-placeholder.png" alt="Broken image" />
+                            }
+                            <div className=" ml-6 mt-4">
+                                <h1 className=" text-2xl font-normal text-black">{item.title}</h1>
+                                <h3 className="my-1">{item.description}</h3>
+                                <h3 className="text-gray-500 my-1">${item.price}/{item.unit_type}</h3>
+                            </div>
+                    </div>
+                    <div className="flex p-4">
+                            <div className="cursor-pointer mx-2"> 
+                              <svg 
+                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                                    <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
+                              </svg>
+                            </div>
+                          <div className="cursor-pointer mx-2"
+                              onClick={ async () => {
+                                const confirmBox = window.confirm("Are you sure you want to delete? All data will be lost");
+                                if (confirmBox === true) {
+                                  await handleDeleteListing(item.listing_ID);
+                                  alert("successfully Deleted");
+                                }
+                                else {
+                                  alert("Delete Cancelled.");
+                                }
+                              }}> 
+                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" className="w-6 h-6">
+                                    <path fillRule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z" clipRule="evenodd" />
+                              </svg>
+                          </div>
+                    </div>
+                 
+                  </div>
+                ))}
+                </div>
+              </div>
+
+
+              {/* Personal Information */}
                 <div className="rounded-md space-y-2 shadow-xl p-8 border-t-8 border-orange-400">
                           <h4 className="text-xl font-medium">Account Information</h4>
                   <form  type="POST" id="profile"  onsubmit={handleUpdateProfile} className="mt-8 space-y-6">
@@ -253,9 +303,8 @@ export default function Home({listings}) {
                           name="city"
                           type="text"
                           autoComplete="city"
-                          required
                           className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                          defaultValue={session.user.producer.city}
+                          defaultValue={session.user.producer.address}
                                   
                         />
                       </div>
@@ -297,59 +346,7 @@ export default function Home({listings}) {
               </div>
   
   
-              {/* Listing Stuffs */}
-              <div className="space-y-5 rounded-md shadow-xl p-8 border-t-8 border-orange-400">
-                <div className="flex flex-wrap">
-                  <h3 className="text-xl font-light leading-6 text-gray-700 tracking-wider">
-                    Your Listings
-                  </h3>
-                </div>
-                <div className="flex flex-col">
-                          {listings.map(item => (
-                  <div className="flex  m-5 shadow-md rounded-md  justify-between "  key={item.listing_ID}>
-                    <div className="flex ">
-                            
-                              {item.listing_picture && item.listing_picture[0] && item.listing_picture[0].picture_link ?
-                              <img className="rounded-md object-cover  h-40 w-60" src={item.listing_picture[0].picture_link} alt="Listing picture" />
-                              :
-                              <img className="rounded-md   h-40 w-60" src="https://freshapproach.s3.us-east-2.amazonaws.com/img-placeholder.png" alt="Broken image" />
-                            }
-       
-                            
-                            <div className=" ml-6 mt-4">
-                                <h1 className=" text-2xl font-normal text-black">{item.title}</h1>
-                                <h3 className="my-1">{item.description}</h3>
-                                <h3 className="text-gray-500 my-1">${item.price}/{item.unit_type}</h3>
-                            </div>
-                    </div>
-                    <div className="flex p-4">
-                            <div className="cursor-pointer mx-2"> 
-                              <svg 
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                                    <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
-                              </svg>
-                            </div>
-                          <div className="cursor-pointer mx-2"
-                              onClick={ async () => {
-                                const confirmBox = window.confirm("Are you sure you want to delete? All data will be lost");
-                                if (confirmBox === true) {
-                                  await handleDeleteListing(item.listing_ID);
-                                  alert("successfully Deleted");
-                                }
-                                else {
-                                  alert("Delete Cancelled.");
-                                }
-                              }}> 
-                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" className="w-6 h-6">
-                                    <path fillRule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z" clipRule="evenodd" />
-                              </svg>
-                          </div>
-                    </div>
-                 
-                  </div>
-                ))}
-                </div>
-              </div>
+
           
               {/* </form> */}
             </div>
