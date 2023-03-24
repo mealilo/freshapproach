@@ -156,7 +156,7 @@ export default function Home({categories, producer}) {
                           autoComplete="title"
                           required
                           className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                          placeholder="Enter the listing title"
+                          placeholder="What is your product? (e.g. Apples)"
                       />
                   </div>
 
@@ -216,10 +216,19 @@ export default function Home({categories, producer}) {
                   <div className="flex flex-col py-  drop-shadow-md">
                       <label htmlFor="unit_type">Unit</label>
                       <select required name="unit_type" id="unit_type" className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-                          <option default value="lb">Choose Unit Type</option>
-                          <option value="kg">Kilogram</option>
+                      <option value="kg">Kilogram</option>
                           <option value="lb">Pound</option>
                           <option value="bushel">Bushel</option>
+                          <option value="each"> Each</option>
+                          <option value="each"> Crate</option>
+                          <option value="each"> Basket</option>
+                          <option value="each"> Box </option>
+                          <option value="each"> Bag </option>
+                          <option value="each"> Tray </option>
+                          <option value="each"> Dozen </option>
+                          <option value="each"> Piece </option>
+                          <option value="each"> Bundle</option>
+                          <option value="each"> Bunch</option>
                       </select>
                   </div> 
 
