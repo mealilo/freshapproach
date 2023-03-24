@@ -35,7 +35,7 @@ export const getServerSideProps = async (context) => {
 }
 
 const Listing = (props) => {
-  const { description, is_available, listing_picture, price, quantity_available, title } = props.listing;
+  const { description, is_available, listing_picture, price, quantity_available, title, unit_type, city, zipcode } = props.listing;
   const { first_name, last_name, profile_picture_link } = props.seller.person;
   const { phone_number } = props.seller;
   const [buttonVisible, setButtonVisible] = React.useState(true);
@@ -71,7 +71,7 @@ const Listing = (props) => {
         </div>
         <div class="flex flex-col flex-wrap w-2/5 justify-between p-6 rounded-lg shadow-lg bg-white">
           <div>
-            <h5 class="text-Orange text-4xl leading-tight font-medium mb-2">${price}</h5>
+            <h5 class="text-Orange text-4xl leading-tight font-medium mb-2">${price} per {unit_type}</h5>
             <p class="pb-2 border-b-2">
               {description}
             </p>
@@ -84,6 +84,12 @@ const Listing = (props) => {
             <p className={`${buttonVisible ? 'hidden': ''}`}>
               PHONE NUMBER: {phone_number}
             </p>
+            <p class="text-gray-700 text-base mb-2 pt-4">
+              City: {city}
+            </p>
+            <p class="text-gray-700 text-base mb-2 pt-4">
+              Zipcode: {zipcode}
+            </p>  
           </div>
           <button type="button" onClick={handleClick} className={`${buttonVisible ? '': 'hidden'} w-full px-6 py-2.5 text-white font-medium text-sm leading-tight uppercase 
           rounded shadow-md bg-Sage hover:bg-sageAnimate focus:bg-sageAnimate active:bg-sageAnimate hover:shadow-lg active:shadow-lg transition duration-150 ease-in-out`}>
