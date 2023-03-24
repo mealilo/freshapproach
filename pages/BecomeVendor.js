@@ -47,11 +47,14 @@ const submitHandler = (event) => {
         <section className="pt-6"></section>
         <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
           <div className= "w-full max-w-3xl space-y-8">
-            <div className="space-y-5 rounded-md shadow-xl p-5 columns-2 border-t-8 border-teal-800">
-              <h2 className="text-left text-5xl font-normal tracking-tight text-gray-900">
-                Vendor Sign Up
-              </h2>
-            </div>
+          <div class="flex flex-col items-center space-y-5 rounded-md shadow-xl p-5 border-t-8 border-teal-800">
+  <h2 class="text-5xl font-normal tracking-tight text-gray-900">Vendor Sign Up</h2>
+  <p class="text-center text-sm md:text-base">
+    Do you have excess produce you want to sell? Do you want to make some extra money selling fruits and vegetables? You should sign up to become a Fresh Approach vendor! As a vendor on Fresh Approach, you will be able to connect with customers who value locally sourced, fresh, and healthy produce.
+  </p>
+</div>
+
+          
             <form onSubmit={submitHandler} type="POST" className="mt-8 space-y-6">
               <input type="hidden" name="remember" defaultValue="true" />
               <div className="rounded-md space-y-2 shadow-xl p-8 border-t-8 border-orange-400">
