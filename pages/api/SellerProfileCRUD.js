@@ -17,11 +17,11 @@ export default async function handler(req, res) {
           listing_ID: parseInt(listing_ID)
         },
        })
-      res.status(500).json({ message: 'Listing and Images updated' });
+      res.status(200).json({ message: 'Listing and Images updated' });
     }
 
     catch {
-      res.status(200).json({ message: 'Error: not able to delete' });
+      res.status(500).json({ message: 'Error: not able to delete' });
 
     }
   } 
@@ -82,6 +82,7 @@ export default async function handler(req, res) {
           person_ID: parseInt(personID)
         },
        })
+       res.status(200).json({ message: 'Profile Deleted' });
 
         console.log(`account with id ${personID} deleted`);
       } 

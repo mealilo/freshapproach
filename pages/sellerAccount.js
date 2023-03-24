@@ -8,6 +8,7 @@ const prisma = new PrismaClient();
 export const getServerSideProps = async (context) => {
   const { query } = context;
   const producer_ID = parseInt(query.id);
+  
 
   // get listings based on 
   let listings = await prisma.listing.findMany({
@@ -42,6 +43,9 @@ const handleDeleteProfile = async (event) => {
   .then(response => {
     if (response.ok) {
       console.log('Profile deleted');
+      signOut();
+      window.location("index.js")
+      
     } else {
       console.error('Failed to delete profile');
     }
@@ -68,7 +72,7 @@ const handleDeleteListing = async (listing_ID) => {
   .then(response => {
     if (response.ok) {
       alert("Listing Deleted Sucessfully")
-      window.location = "/sellerAccount";
+      window.location = `/sellerAccount?id=${session.user.id}`;
     } else {
       console.error('Failed to delete listing. Please try again');
     }
@@ -83,9 +87,12 @@ const handleDeleteListing = async (listing_ID) => {
 const handleUpdateProfile = async (event) => {
   //collect correct listing to send to delete
 
+  console.log('hit');
+
   const formData = new FormData(event.target);
   const data = Object.fromEntries(formData);
 
+  console.log(data);
 
   await fetch('/api/SellerProfileCRUD?functionName=updateProfile', {
     method: 'POST',
@@ -171,18 +178,18 @@ export default function Home({listings}) {
                     
                     
                     <div className="flex p-4">
-                            <div className="cursor-pointer mx-2"> 
+                            {/* <div className="cursor-pointer mx-2"> 
                               <svg 
                               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                                     <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
                               </svg>
-                            </div>
+                            </div> */}
                           <div className="cursor-pointer mx-2"
                               onClick={ async () => {
                                 const confirmBox = window.confirm("Are you sure you want to delete? All data will be lost");
                                 if (confirmBox === true) {
                                   await handleDeleteListing(item.listing_ID);
-                                  alert("successfully Deleted");
+                                  window.location.reload(true);
                                 }
                                 else {
                                   alert("Delete Cancelled.");
@@ -203,7 +210,7 @@ export default function Home({listings}) {
               {/* Personal Information */}
                 <div className="rounded-md space-y-2 shadow-xl p-8 border-t-8 border-orange-400">
                           <h4 className="text-xl font-medium">Account Information</h4>
-                  <form  type="POST" id="profile"  onsubmit={handleUpdateProfile} className="mt-8 space-y-6">
+                  <form  id="profile"  onSubmit={(e) => handleUpdateProfile(e)} className="mt-8 space-y-6">
                   
                   <div className="columns-2">
                   <input
@@ -211,6 +218,14 @@ export default function Home({listings}) {
                           id="personID"
                           name="personID"
                           defaultValue={session.user.person_ID}
+                        />
+
+
+                        <input
+                          hidden
+                          id="id"
+                          name="id"
+                          defaultValue={session.user.producer.producer_ID}
                         />
                     <div>
                       <div>
@@ -326,27 +341,30 @@ export default function Home({listings}) {
                       </div>
                     </div>
                   </div>
-                  <SubscribeButton orange text="Save Changes"  type="submit" style="group relative flex w-full justify-center w-60 "/>
+
+                        <div className="flex items-center justify-center   py-8">
+                      <div className="flex items-center justify-center px-6 " onClick={() => {
+                            const confirmBox = window.confirm(
+                              "Are you sure you want to cancel? All current data will be lost"
+                            )
+                            if (confirmBox) {
+                              window.location = "/";
+                            }
+                          }}>
+        
+                          <p className=" cursor-pointer text-center px-6 w-60 py-2.5 text-black font-medium text-sm leading-tight uppercase rounded-md shadow-md bg-white text-black border border-grey-700 hover:bg-slate-50 focus:bg-slate-100">cancel</p>
+                      </div>
+                      <SubscribeButton orange text="Save Changes"  type="submit" style="group relative flex w-full justify-center w-60 "/>
+                      <div>
+                      
+                      </div>
+                    </div>
+                  
                   </form>
                 </div>
             
               
-              <div className="flex items-center justify-center   py-8">
-                <div className="flex items-center justify-center px-6 " onClick={() => {
-                      const confirmBox = window.confirm(
-                        "Are you sure you want to cancel? All current data will be lost"
-                      )
-                      if (confirmBox) {
-                        window.location = "/";
-                      }
-                    }}>
-  
-                    <p className=" cursor-pointer text-center px-6 w-60 py-2.5 text-black font-medium text-sm leading-tight uppercase rounded-md shadow-md bg-white text-black border border-grey-700 hover:bg-slate-50 focus:bg-slate-100">cancel</p>
-                </div>
-                <div>
-                 
-                </div>
-              </div>
+            
   
   
 
