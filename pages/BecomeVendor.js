@@ -2,6 +2,7 @@ import Head from "next/head";
 import React, { useState } from "react";
 import CreatePerson from "../components/Banner";
 import Link from "next/link";
+import { signIn, signOut, useSession, getSession } from "next-auth/react";
 import SubscribeButton from "../components/SubscribeButton";
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
       .then((response) => {
         if (response.message === "Success") {
           //redirect to wherever.
+          signIn();
           window.location = "/";
         } else {
           alert("Error: Please fill out form again");

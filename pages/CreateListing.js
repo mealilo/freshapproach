@@ -104,8 +104,8 @@ export default function Home({categories, producer}) {
     });
   }
 
-  // creaet listing picrture
-  const createListingPicture = async (listingID) => {
+// create listing picrture
+const createListingPicture = async (listingID) => {
   // create needed data
   const data = {
       listing: listingID,
