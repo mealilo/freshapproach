@@ -1,4 +1,6 @@
 import ItemListing from "../components/ItemListing";
+
+import searchBar from "../components/searchBar";
 import { makeSerializable } from "../lib/util";
 import prisma from "../lib/prisma";
 import Link from "next/link";
@@ -32,9 +34,15 @@ class Listings extends Component {
                             key={item.listing_ID}
                         >
                             <ItemListing listing={item} />
-                        </Link>
+                            <searchBar listing={item}></searchBar>
+                        </Link>,
+
+                       
                     ))}
                 </div>
+
+
+                
             </div>
         )
     }
