@@ -55,13 +55,13 @@ function Header() {
             Become a Vendor
           </Link>}
           {session && <Link
-            href={`/CreateListing?id=${session.user.person_ID}`} 
+            href={`/CreateListing?id=${session?.user?.person_ID}`} 
             className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 text-white hover:text-Sage transition duration-200 ease-in-out text-xl whitespace-nowrap"
           >
             Create Listing
           </Link>}
           {session && <Link
-            href="MySellerProfile"
+            href={`/sellerAccount?id=${session?.user?.producer?.producer_ID}`} 
             className="block mt-4 lg:inline-block lg:mt-0 py-4 px-5 text-white hover:text-Sage transition duration-200 ease-in-out text-xl whitespace-nowrap"
           >
             My Account

@@ -45,6 +45,9 @@ export const authOptions = {
     async session({session, token, userInfo}) {
       const user = await prisma.person.findFirst({
         where: { email: session.user.email },
+        include: {
+          producer: true,
+        },
       });
       session.user = user;
       return session;
