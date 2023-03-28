@@ -9,29 +9,65 @@ export default function Home() {
 
     let [inputValue, setInputValue] = useState('Enter a Zip Code!');
 
+    //let [listings, setListings] = useState([]);
 
+// call the prisma api 
+    const handleSearchZip = async (codes) => {
 
-    let [listings, setListings] = useState([]);
+        //gather up data
+        //alert(codes)
 
-    useEffect(() => {
-      async function fetchData() {
-        try {
-          let response = await axios.get('/api/my-endpoint'); // replace with your API endpoint
-          let codes = response.data.codes; // assuming your response data has a "codes" field containing an array of zip codes
-          let listings = await prisma.listing.findMany({
-            where: {
-              OR: codes.map((code) => ({ zipCode: code })),
-            },
-          });
-          setListings(listings);
-        } catch (error) {
+         await fetch('/api/ListingSearch?functionName=searchZip', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(codes),
+        })
+        .then(response => {
+          if (response.ok) {
+            console.log('i am here')
+            //console.log(response.json());
+
+                /// BRENNAN YOU ARE HERE FOR DEBUGGING
+            let stuff = response.producers;
+
+            console.log(stuff);
+ 
+
+          } else {
+            console.error('Failed to delete profile');
+          }
+        })
+        .catch(error => {
           console.error(error);
-        }
+        })
+
+
       }
-      fetchData();
-    }, []);
 
 
+      // figure out how to use this
+    // useEffect(() => {
+    //   async function fetchData() {
+    //     try {
+    //       let response = await axios.get('/api/my-endpoint'); // replace with your API endpoint
+    //       let codes = response.data.codes; // assuming your response data has a "codes" field containing an array of zip codes
+    //       let listings = await prisma.listing.findMany({
+    //         where: {
+    //           OR: codes.map((code) => ({ zipCode: code })),
+    //         },
+    //       });
+    //       setListings(listings);
+    //     } catch (error) {
+    //       console.error(error);
+    //     }
+    //   }
+    //   fetchData();
+    // }, []);
+
+
+    // call api with zip code
     let fetchData = async (zip) => {
 
         //call api with passed in paramaters
@@ -46,19 +82,29 @@ export default function Home() {
         });
         
         let obj = response.data.results;
-
-
         //map over the array and return the code property to add to an array
         let codes = obj.map(item => item.code);
 
 
-        console.log(codes);
+        // call handleSearchZip with the array of zip codes to query prisma
+        await handleSearchZip(codes);
+    }
 
 
+    // call api with zip code for testing
+    let fetchDataTest = async () => {
 
+        let codes = ['84601', '84606', '84604', '84603', '84058', '84097', '84057', '84663', '84042', '84059', '84605', '84664', '84660', '84602', '84062', '84003', '84651', '84082', '84045', '84043'];;
+
+        // call handleSearchZip with the array of zip codes to query prisma
+        let items = await handleSearchZip(codes);
+
+
+        alert(items);
 
     }
 
+    //this function is called until a length of 5 is reached
     let handleChange = (event) => {
         let value = event.target.value;
         setInputValue(value);
@@ -68,11 +114,11 @@ export default function Home() {
         //rename variable
 
         let zip = value;
-        fetchData(zip);
-
+        
+        //comment out to save requests
+        //fetchData(zip);
+        fetchDataTest();
         }
-
-
     }
   
     return (
