@@ -17,28 +17,23 @@ export default function Home() {
         //gather up data
         //alert(codes)
 
-         await fetch('/api/ListingSearch?functionName=searchZip', {
+          await  fetch('/api/ListingSearch?functionName=searchZip', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(codes),
         })
-        .then(response => {
-          if (response.ok) {
-            console.log('i am here')
-            //console.log(response.json());
+        .then(result => {
+          let producerData = result.producers;
 
-                /// BRENNAN YOU ARE HERE FOR DEBUGGING
-            let stuff = response.producers;
 
-            console.log(stuff);
- 
+          console.log(producerData);
+          // access producer data properties here, for example:
 
-          } else {
-            console.error('Failed to delete profile');
-          }
+          // ...
         })
+        
         .catch(error => {
           console.error(error);
         })
@@ -85,6 +80,8 @@ export default function Home() {
         //map over the array and return the code property to add to an array
         let codes = obj.map(item => item.code);
 
+
+        alert(codes);
 
         // call handleSearchZip with the array of zip codes to query prisma
         await handleSearchZip(codes);
