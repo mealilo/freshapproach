@@ -72,7 +72,7 @@ const handleDeleteListing = async (listing_ID) => {
   .then(response => {
     if (response.ok) {
       alert("Listing Deleted Sucessfully")
-      window.location = `/sellerAccount?id=${session.user.id}`;
+      window.location = `/sellerAccount?id=${session?.user.id}`;
     } else {
       console.error('Failed to delete listing. Please try again');
     }
@@ -116,7 +116,7 @@ const handleUpdateProfile = async (event) => {
 
 export default function Home({listings}) {
   const { data: session } = useSession();
-  if(session){
+  // if(session){
     return (
       <div className="">
         <Head>
@@ -217,7 +217,7 @@ export default function Home({listings}) {
                           hidden
                           id="personID"
                           name="personID"
-                          defaultValue={session.user.person_ID}
+                          defaultValue={session?.user.person_ID}
                         />
 
 
@@ -225,7 +225,7 @@ export default function Home({listings}) {
                           hidden
                           id="id"
                           name="id"
-                          defaultValue={session.user.producer.producer_ID}
+                          defaultValue={session?.user.producer.producer_ID}
                         />
                     <div>
                       <div>
@@ -236,7 +236,7 @@ export default function Home({listings}) {
                           type="text"
                           required
                           className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                          defaultValue={session.user.first_name}
+                          defaultValue={session?.user.first_name}
                         />
                         <div className="pt-5"></div>
                       </div>
@@ -248,7 +248,7 @@ export default function Home({listings}) {
                           type="email"
                           required
                           className="relative block w-full appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm font"
-                          defaultValue={session.user.email}
+                          defaultValue={session?.user.email}
                         />
                       </div>
                     </div>
@@ -262,7 +262,7 @@ export default function Home({listings}) {
                         autoComplete="lname"
                         required
                         className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                        defaultValue={session.user.last_name}
+                        defaultValue={session?.user.last_name}
     
                       />
                       <div className="pt-5" />
@@ -277,7 +277,7 @@ export default function Home({listings}) {
                               autoComplete="current-password"
                               required
                               className="relative block w-full appearance-none rounded-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                              defaultValue={session.user.password}
+                              defaultValue={session?.user.password}
                             />
                             <span className="cursor-pointer ml-2 align-middle">    
                               <svg
@@ -308,7 +308,7 @@ export default function Home({listings}) {
                         autoComplete="phone"
                         required
                         className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                        defaultValue={session.user.producer.phone_number}
+                        defaultValue={session?.user.producer.phone_number}
                       />
                     </div>
                     <div className="columns-2">
@@ -322,7 +322,7 @@ export default function Home({listings}) {
                           type="text"
                           autoComplete="city"
                           className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                          defaultValue={session.user.producer.address}
+                          defaultValue={session?.user.producer.address}
                                   
                         />
                       </div>
@@ -335,7 +335,7 @@ export default function Home({listings}) {
                           autoComplete="zip"
                           required
                           className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                          defaultValue={session.user.producer.zip_code}
+                          defaultValue={session?.user.producer.zip_code}
                         />
                         <div className="pt-5"></div>
                       </div>
@@ -375,12 +375,12 @@ export default function Home({listings}) {
         </main>
       </div>
     );
-  };
+  // };
 
-  return (
-    <>
-   You are not signed in! So you cannot see this page!
-  </>
-  )
+  // return (
+  //   <>
+  //  You are not signed in! So you cannot see this page!
+  // </>
+  // )
   
 }
