@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-let [inputValue, setInputValue] = useState('Enter a Zip Code!');
+
 
 //let [listings, setListings] = useState([]);
 
@@ -9,6 +9,8 @@ let [inputValue, setInputValue] = useState('Enter a Zip Code!');
 
 const searchBar = () => {
 // call the prisma api 
+
+let [inputValue, setInputValue] = useState('Enter a Zip Code!');
 const handleSearchZip = async (codes) => {
 
     //gather up data
