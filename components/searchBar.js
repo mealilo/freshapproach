@@ -1,23 +1,9 @@
 
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-
-
-
-//let [listings, setListings] = useState([]);
-
-
-
 const SearchBar = () => {
-// call the prisma api 
-
-
 let [inputValue, setInputValue] = useState('Enter a Zip Code!');
 const handleSearchZip = async (codes) => {
-
-    //gather up data
-    //alert(codes)
-
       await  fetch('/api/ListingSearch?functionName=searchZip', {
       method: 'POST',
       headers: {
@@ -27,43 +13,17 @@ const handleSearchZip = async (codes) => {
     })
     .then(result => {
       let producerData = result.producers;
-
-
       console.log(producerData);
-      // access producer data properties here, for example:
-
-      // ...
     })
-    
     .catch(error => {
       console.error(error);
     })
 
 
   }
-  // figure out how to use this
-// useEffect(() => {
-//   async function fetchData() {
-//     try {
-//       let response = await axios.get('/api/my-endpoint'); // replace with your API endpoint
-//       let codes = response.data.codes; // assuming your response data has a "codes" field containing an array of zip codes
-//       let listings = await prisma.listing.findMany({
-//         where: {
-//           OR: codes.map((code) => ({ zipCode: code })),
-//         },
-//       });
-//       setListings(listings);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   }
-//   fetchData();
-// }, []);
-
 
 // call api with zip code
 let fetchData = async (zip) => {
-
     //call api with passed in paramaters
     let response = await axios.get('https://app.zipcodebase.com/api/v1/radius', {
       params: {
@@ -74,14 +34,10 @@ let fetchData = async (zip) => {
         unit: 'miles',
       }
     });
-    
     let obj = response.data.results;
     //map over the array and return the code property to add to an array
     let codes = obj.map(item => item.code);
-
-
     alert(codes);
-
     // call handleSearchZip with the array of zip codes to query prisma
     await handleSearchZip(codes);
 }
@@ -89,11 +45,8 @@ let fetchData = async (zip) => {
 let fetchDataTest = async () => {
 
     let codes = ['84601', '84606', '84604', '84603', '84058', '84097', '84057', '84663', '84042', '84059', '84605', '84664', '84660', '84602', '84062', '84003', '84651', '84082', '84045', '84043'];;
-
     // call handleSearchZip with the array of zip codes to query prisma
     let items = await handleSearchZip(codes);
-
-
     alert(items);
 
 }
@@ -105,7 +58,6 @@ let handleChange = (event) => {
     alert(`You are searching for ${value}`);
 
     //rename variable
-
     let zip = value;
     
     //comment out to save requests
@@ -115,10 +67,6 @@ let handleChange = (event) => {
 }
 return (
         <div className="flex items-center">
-
-            <p>{inputValue}</p>
-
-
         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
         <div class="relative w-80">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -133,4 +81,3 @@ return (
 }
 export default SearchBar
 
-/* */

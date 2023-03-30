@@ -29,7 +29,7 @@ export default async function handler(req, res) {
        // filter out producers with more than one listing
         let producers = all_producers.filter((producer) => producer.listing.length >= 1);
         //console.log(producers)
-       res.json({producers});
+       res.json({producers: makeSerializable(producers)});
 
     }
 

@@ -1,5 +1,6 @@
 import { withRouter } from 'next/router';
 import ItemListing from "../components/ItemListing";
+import SearchBar from "../components/SearchBar";
 import { makeSerializable } from "../lib/util";
 import prisma from "../lib/prisma";
 import Link from "next/link";
@@ -55,6 +56,8 @@ class Listings extends Component {
           <option value="Honey">Honey</option>
           <option value="Eggs">Eggs</option>
         </select>
+
+        <SearchBar/>
         <div className="flex justify-center flex-wrap">
           {items.map((item) => (
             <Link href={`/listing?id=${item.listing_ID}`} key={item.listing_ID}>
