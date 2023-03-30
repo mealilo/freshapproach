@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import SVG from "../public/icons/svg";
 import Image from "next/image";
 import SubscribeButton from "../components/SubscribeButton";
-import searchBar from "../components/SearchBar";
+
 
 
 export const getServerSideProps = async (context) => {
