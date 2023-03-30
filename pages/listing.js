@@ -35,9 +35,9 @@ export const getServerSideProps = async (context) => {
 }
 
 const Listing = (props) => {
-  const { description, is_available, listing_picture, price, quantity_available, title, unit_type, city, zipcode } = props.listing;
+  const { description, is_available, listing_picture, price, quantity_available, title, unit_type } = props.listing;
   const { first_name, last_name, profile_picture_link } = props.seller.person;
-  const { phone_number } = props.seller;
+  const { phone_number, zip_code } = props.seller;
   const [buttonVisible, setButtonVisible] = React.useState(true);
   console.log(props);
 
@@ -58,14 +58,17 @@ const Listing = (props) => {
         </div>
         <div class="flex justify-center items-center w-2/5 mr-8 p-6 rounded-lg shadow-lg bg-white">
           <div class="flex flex-row">
-            <div className="flex pr-5 justify-center items-center">
-              <div className="rounded-full h-24 w-24 overflow-hidden">
-                <img src={profile_picture_link} class="block object-cover rounded-full" alt=""/>
+            {/* {profile_picture_link &&
+              <div className="flex pr-5 justify-center items-center">
+                <div className="rounded-full h-24 w-24 overflow-hidden">
+                  
+                    <img src={profile_picture_link} class="block object-cover rounded-full" alt=""/>
+                </div>
               </div>
-            </div>
+            } */}
             <div class="flex flex-col">
-              <p class="text-base font-medium">{first_name} {last_name}</p>
-              <p class="text-base">I’m a new gardener, and got a lot of veggies this season. Just wanting to get rid of my extra produce!</p>
+              <p class="text-base font-medium pb-2">{first_name} {last_name}</p>
+              <p class="text-base">{description}</p>
             </div>
           </div>
         </div>
@@ -73,7 +76,7 @@ const Listing = (props) => {
           <div>
             <h5 class="text-Orange text-4xl leading-tight font-medium mb-2">${price} per {unit_type}</h5>
             <p class="pb-2 border-b-2">
-              {description}
+              {/* {description} */}
             </p>
             <p class="text-gray-700 text-base mb-2 pt-4">
               OPEN HOURS: Saturdays, 10 - 2 PM
@@ -81,14 +84,14 @@ const Listing = (props) => {
             <p class="text-gray-700 text-base mb-2">
               AVAILABILITY: {quantity_available}
             </p>
+            {/* <p class="text-gray-700 text-base mb-2">
+              CITY: {city}
+            </p> */}
+            <p class="text-gray-700 text-base mb-2">
+              ZIPCODE: {zip_code}
+            </p>
             <p className={`${buttonVisible ? 'hidden': ''}`}>
               PHONE NUMBER: {phone_number}
-            </p>
-            <p class="text-gray-700 text-base mb-2 pt-4">
-              City: {city}
-            </p>
-            <p class="text-gray-700 text-base mb-2 pt-4">
-              Zipcode: {zipcode}
             </p>  
           </div>
           <button type="button" onClick={handleClick} className={`${buttonVisible ? '': 'hidden'} w-full px-6 py-2.5 text-white font-medium text-sm leading-tight uppercase 

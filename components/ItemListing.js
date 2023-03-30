@@ -12,9 +12,9 @@ const Listing = ({ listing }) => {
                 }
             </div>
             <div className="flex flex-col justify-between text-left p-6">
-                <div className="flex flex-col flex-1 grow">
+                <div className="flex flex-col max-h-64">
                     <h4 className="text-gray-900 text-2xl leading-tight font-medium mb-2">{title}</h4>
-                    <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">{description}</h5>
+                    <p className="text-gray-900 text-m leading-tight font-medium mb-2 truncate">{description}</p>
                 </div>
                 <div className="flex flex-row flex-1 justify-between grow">
                     <p className="text-gray-700 text-base">
