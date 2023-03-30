@@ -39,7 +39,6 @@ const Listing = (props) => {
   const { first_name, last_name, profile_picture_link } = props.seller.person;
   const { phone_number, zip_code } = props.seller;
   const [buttonVisible, setButtonVisible] = React.useState(true);
-  console.log(props);
 
   const handleClick = () => {
     setButtonVisible(!buttonVisible);

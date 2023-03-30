@@ -12,18 +12,26 @@ const prisma = new PrismaClient();
 export const getServerSideProps = async (context) => {
   const { query } = context;
   const person_ID = parseInt(query.id);
-  const categories = await prisma.product_sub_category.findMany();
-
+  const subcategories = await prisma.product_sub_category.findMany({
+    orderBy: {
+      sub_category_name: 'asc',
+    },
+  });
+  const categories = await prisma.product_category.findMany({
+    orderBy: {
+      category_name: 'asc',
+    },
+  });
   const producerData = await prisma.producer.findUnique({
     where: {
       person_ID: person_ID,
     }
   });
   prisma.$disconnect();
-  return {props: { categories, producer: producerData }}
+  return {props: { categories, subcategories, producer: producerData }}
 }
 
-export default function Home({categories, producer}) {
+export default function Home({categories, subcategories, producer}) {
   // need to append date to make name unique
   const currentTime = new Date().toLocaleTimeString();
 
@@ -174,18 +182,28 @@ const createListingPicture = async (listingID) => {
                   </div>
 
                   <div className="flex flex-col  py-2  drop-shadow-md">
-                      <label htmlFor="product_sub_category_ID">Category</label>
-                      <select required name="product_sub_category_ID" id="product_sub_category_ID" className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                      <label htmlFor="product_category_ID">Category</label>
+                      <select required name="product_category_ID" id="product_category_ID" className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
                           <option  default disabled value="kg">Choose Category</option>
 
 
                           {categories.map(item => (
-                              <option key={item.product_sub_category_ID.toString()} value={item.product_sub_category_ID}>{item.sub_category_name}</option>
+                              <option key={item.product_category_ID.toString()} value={item.product_category_ID}>{item.category_name}</option>
                           ))}
                       </select>
                   </div>
 
+                  <div className="flex flex-col  py-2  drop-shadow-md">
+                      <label htmlFor="product_sub_category_ID">Subcategory</label>
+                      <select required name="product_sub_category_ID" id="product_sub_category_ID" className="relative block w-full appearance-none rounded-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                          <option  default disabled value="kg">Choose a Subcategory</option>
 
+
+                          {subcategories.map(item => (
+                              <option key={item.product_sub_category_ID.toString()} value={item.product_sub_category_ID}>{item.sub_category_name}</option>
+                          ))}
+                      </select>
+                  </div>
 
                   <div className="flex flex-col  py-2  drop-shadow-md">
                       <label htmlFor="price">Price ($)</label>
