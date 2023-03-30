@@ -34,7 +34,6 @@ model favorite {
 model listing {
   listing_ID              Int                  @id @default(autoincrement())
   producer_ID             Int
-  product_category_ID     Int
   product_sub_category_ID Int
   title                   String               @db.VarChar(45)
   description             String?              @db.VarChar(400)
@@ -42,14 +41,16 @@ model listing {
   price                   Float?
   is_available            Int
   unit_type               String               @db.VarChar(45)
+  product_category_ID     Int
   favorite                favorite[]
   producer                producer             @relation(fields: [producer_ID], references: [producer_ID], onDelete: Cascade, onUpdate: NoAction, map: "listing_ibfk_1")
-  product_category        product_category     @relation(fields: [product_category_ID], references: [product_category_ID], onDelete: NoAction, onUpdate: NoAction, map: "listing_ibfk_2")
   product_sub_category    product_sub_category @relation(fields: [product_sub_category_ID], references: [product_sub_category_ID], onDelete: NoAction, onUpdate: NoAction, map: "listing_ibfk_3")
+  product_category        product_category     @relation(fields: [product_category_ID], references: [product_category_ID], map: "listing_ibfk_2")
   listing_picture         listing_picture[]
 
-  @@index([producer_ID], map: "producer_ID")
   @@index([product_sub_category_ID], map: "product_sub_category_ID")
+  @@index([producer_ID], map: "listing_ibfk_1")
+  @@index([product_category_ID], map: "listing_ibfk_3_idx")
 }
 
 model listing_picture {
@@ -90,8 +91,8 @@ model producer {
 model product_category {
   product_category_ID  Int                    @id @default(autoincrement())
   category_name        String                 @db.VarChar(45)
-  product_sub_category product_sub_category[]
   listing              listing[]
+  product_sub_category product_sub_category[]
 }
 
 model product_sub_category {
@@ -104,3 +105,49 @@ model product_sub_category {
   @@index([product_category_ID], map: "product_category_ID")
 }
 
+model Account {
+  id                String  @id
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  User              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId], map: "Account_userId_fkey")
+}
+
+model Session {
+  id           String   @id
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  User         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "Session_userId_fkey")
+}
+
+model User {
+  id            String    @id
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  Account       Account[]
+  Session       Session[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
