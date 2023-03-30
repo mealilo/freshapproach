@@ -4,7 +4,6 @@ import { makeSerializable } from "../lib/util";
 import prisma from "../lib/prisma";
 import Link from "next/link";
 import { Component } from "react";
-
 class Listings extends Component {
   constructor(props) {
     super(props);
@@ -14,13 +13,19 @@ class Listings extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
   }
-
   async handleChange(event) {
     const selectedOption = event.target.value;
     this.setState({ selectedOption });
     // Update the URL query parameter with the selected option
     const urlParams = new URLSearchParams(this.props.router.query);
-    urlParams.set("sub_category_name", selectedOption);
+
+    if(selectedOption === 'Fruit' || selectedOption === 'Vegetables' || selectedOption === 'Nuts' || selectedOption === 'Eggs' || selectedOption === 'Honey'){
+      urlParams.set("category_name", selectedOption);
+      urlParams.delete("sub_category_name");
+    } else {
+      urlParams.set("sub_category_name", selectedOption);
+      urlParams.delete("category_name");
+    }
     const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
     window.history.pushState({}, "", newUrl);
     // Reload the page with the updated query parameter
@@ -32,13 +37,15 @@ class Listings extends Component {
   }
 
   componentDidMount() {
-    // Set the selectedOption state value to the value of the sub_category_name query parameter
-    const { sub_category_name } = this.props.router.query;
+    // Set the selectedOption state value to the value of the sub_category_name or category_name query parameter
+    const { sub_category_name, category_name } = this.props.router.query;
     if (sub_category_name) {
       this.setState({ selectedOption: sub_category_name });
     }
+    else if (category_name) {
+      this.setState({ selectedOption: category_name });
+    }
   }
-  
   render() {
     const { selectedOption, items } = this.state;
     return (
@@ -47,6 +54,11 @@ class Listings extends Component {
         <select value={selectedOption} onChange={this.handleChange}>
         <option value="Explore Produce" disabled>Filter by Category</option>
         <option value="All Produce">View All</option>
+          <option value="Fruit">Fruit</option>
+          <option value="Vegetables">Vegetables</option>
+          <option value="Nuts">Nuts</option>
+          <option value="Eggs">Eggs</option>
+          <option value="Honey">Honey</option>
           <option value="Apples">Apples</option>
           <option value="Asparagus">Asparagus</option>
           <option value="Avocados">Avocados</option>
@@ -106,23 +118,43 @@ class Listings extends Component {
     );
   }
 }
-
 export const getServerSideProps = async ({ query }) => {
-  const { sub_category_name } = query;
-  console.log(sub_category_name);
-  const items = await prisma.listing.findMany({
-    where: {
-      product_sub_category: {
-        sub_category_name: sub_category_name,
+    const { sub_category_name, category_name } = query;
+    console.log(sub_category_name, category_name);
+  
+    let whereClause = {};
+    if (sub_category_name) {
+      whereClause = {
+        product_sub_category: {
+          sub_category_name: sub_category_name,
+        },
+      };
+    } else if (category_name) {
+      whereClause = {
+        product_category: {
+          category_name: category_name,
+        },
+      };
+    }
+  
+    const items = await prisma.listing.findMany({
+      where: whereClause,
+      include: {
+        listing_picture: true,
       },
-    },
-    include: {
-      listing_picture: true,
-    },
-  });
-  return {
-    props: { items: makeSerializable(items) },
+    });
+  
+    return {
+      props: { items: makeSerializable(items) },
+    };
   };
-};
-
+  
+  
 export default withRouter(Listings);
+
+
+
+
+
+
+

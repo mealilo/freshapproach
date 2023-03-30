@@ -32,7 +32,7 @@ function MainContent() {
      
           <div className="flex justify-center">
             <div className="rounded-lg max-w-sm">
-             <Link href="/listings?category_name=Veggies">
+             <Link href="/listings?category_name=Vegetables">
                 <Image
                   className="rounded-t-lg w-12 sm:w-15 md:w-32 lg:w-48 xl:w-52 2xl:w-56"
                   src="/images/Veggies.png"
