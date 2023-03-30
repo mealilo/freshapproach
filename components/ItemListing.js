@@ -2,7 +2,7 @@ import ReactMarkdown from 'react-markdown';
 import SVG from "../public/icons/svg";
 import Image from "next/image";
 const Listing = ({ listing }) => {
-    const { title, description, price, listing_picture } = listing;
+    const { title, description, price, listing_picture, unit_type } = listing;
 
     return (
         <div className="flex flex-col mx-5 my-5 rounded-lg shadow-lg bg-white max-w-sm">
@@ -18,7 +18,7 @@ const Listing = ({ listing }) => {
                 </div>
                 <div className="flex flex-row flex-1 justify-between grow">
                     <p className="text-gray-700 text-base">
-                       ${price} *still need unit type
+                       ${price} / {unit_type}
                     </p>
                 </div>
             </div>
