@@ -69,7 +69,6 @@ class Listings extends Component {
 
 export const getServerSideProps = async ({ query }) => {
   const { sub_category_name } = query;
-  console.log(sub_category_name);
   const items = await prisma.listing.findMany({
     where: {
       product_sub_category: {
