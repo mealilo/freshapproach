@@ -14,7 +14,7 @@ export default async (req, res) => {
     const listing = await prisma.listing.create({
       data: {
         producer_ID: producer_ID,
-        product_category: Number(product_category),
+        product_category_ID: Number(product_category),
         product_sub_category_ID: Number(product_sub_category_ID),
         title: title,
         description: description,
