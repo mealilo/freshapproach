@@ -7,9 +7,11 @@ import {SessionProvider} from "next-auth/react"
 export default function App({ Component, pageProps:{session, ...pageProps},}) {
   return (
       <SessionProvider session={session}> 
-      <div>
+      <div className="flex flex-col h-screen justify-between">
         <Header />
-        <Component {...pageProps} />   
+        <div className="mb-auto">
+          <Component {...pageProps} />   
+        </div>
         <Footer />
       </div>
       </SessionProvider>

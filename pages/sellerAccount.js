@@ -87,12 +87,8 @@ const handleDeleteListing = async (listing_ID) => {
 const handleUpdateProfile = async (event) => {
   //collect correct listing to send to delete
 
-  console.log('hit');
-
   const formData = new FormData(event.target);
   const data = Object.fromEntries(formData);
-
-  console.log(data);
 
   await fetch('/api/SellerProfileCRUD?functionName=updateProfile', {
     method: 'POST',
