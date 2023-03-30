@@ -93,7 +93,7 @@ export default function Home({categories, producer}) {
           alert("Error Occured, please try again");
         }
         //redirect to home
-        window.location = "/";
+        window.location = "/sellerAccount";
       }
       else{
         alert("Error: Please fill out form again")
