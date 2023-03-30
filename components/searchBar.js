@@ -3,12 +3,14 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
 
+
 //let [listings, setListings] = useState([]);
 
 
 
-const searchBar = () => {
+const SearchBar = () => {
 // call the prisma api 
+
 
 let [inputValue, setInputValue] = useState('Enter a Zip Code!');
 const handleSearchZip = async (codes) => {
@@ -129,6 +131,6 @@ return (
   </div>
 );
 }
-export default searchBar
+export default SearchBar
 
 /* */

@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import SVG from "../public/icons/svg";
 import Image from "next/image";
 import SubscribeButton from "../components/SubscribeButton";
-import searchBar from "../components/searchBar";
+import searchBar from "../components/SearchBar";
 
 
 export const getServerSideProps = async (context) => {
@@ -49,8 +49,6 @@ const Listing = (props) => {
     <div className="text-left bg-gray-50 text-gray-800 py-16 px-16">
       <div class="pb-12">
         <h1 className="text-7xl font-bold mt-0 mb-6 text-Orange">{title}</h1>
-        
-    <searchBar/>
 
       </div>
       <div class="flex w-full">
