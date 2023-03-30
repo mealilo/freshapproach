@@ -34,6 +34,7 @@ model favorite {
 model listing {
   listing_ID              Int                  @id @default(autoincrement())
   producer_ID             Int
+  product_category_ID     Int
   product_sub_category_ID Int
   title                   String               @db.VarChar(45)
   description             String?              @db.VarChar(400)
@@ -43,7 +44,8 @@ model listing {
   unit_type               String               @db.VarChar(45)
   favorite                favorite[]
   producer                producer             @relation(fields: [producer_ID], references: [producer_ID], onDelete: Cascade, onUpdate: NoAction, map: "listing_ibfk_1")
-  product_sub_category    product_sub_category @relation(fields: [product_sub_category_ID], references: [product_sub_category_ID], onDelete: NoAction, onUpdate: NoAction, map: "listing_ibfk_2")
+  product_category        product_category     @relation(fields: [product_category_ID], references: [product_category_ID], onDelete: NoAction, onUpdate: NoAction, map: "listing_ibfk_2")
+  product_sub_category    product_sub_category @relation(fields: [product_sub_category_ID], references: [product_sub_category_ID], onDelete: NoAction, onUpdate: NoAction, map: "listing_ibfk_3")
   listing_picture         listing_picture[]
 
   @@index([producer_ID], map: "producer_ID")
@@ -89,6 +91,7 @@ model product_category {
   product_category_ID  Int                    @id @default(autoincrement())
   category_name        String                 @db.VarChar(45)
   product_sub_category product_sub_category[]
+  listing              listing[]
 }
 
 model product_sub_category {

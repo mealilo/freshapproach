@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default async (req, res) => {
-  const {producer_ID, product_sub_category_ID , title,description, quantity_available, price, unit_type } = req.body;
+  const {producer_ID, product_category, product_sub_category_ID , title,description, quantity_available, price, unit_type } = req.body;
 
 // prisma get category object based on input
 
@@ -14,6 +14,7 @@ export default async (req, res) => {
     const listing = await prisma.listing.create({
       data: {
         producer_ID: producer_ID,
+        product_category: Number(product_category),
         product_sub_category_ID: Number(product_sub_category_ID),
         title: title,
         description: description,
