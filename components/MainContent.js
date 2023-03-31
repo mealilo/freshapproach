@@ -15,7 +15,7 @@ function MainContent() {
        
           <div className="flex justify-center">
             <div className="rounded-lg max-w-sm">
-              <Link href="/listings?sub_category_name=Fruit">
+              <Link href="/listings?category_name=Fruit">
                 <Image
                   className="rounded-t-lg w-12 sm:w-15 md:w-32 lg:w-48 xl:w-52 2xl:w-56"
                   src="/images/Fruit.png"
@@ -32,7 +32,7 @@ function MainContent() {
      
           <div className="flex justify-center">
             <div className="rounded-lg max-w-sm">
-             <Link href="/listings?sub_category_name=Veggies">
+             <Link href="/listings?category_name=Vegetables">
                 <Image
                   className="rounded-t-lg w-12 sm:w-15 md:w-32 lg:w-48 xl:w-52 2xl:w-56"
                   src="/images/Veggies.png"
@@ -50,7 +50,7 @@ function MainContent() {
          
           <div className="flex justify-center">
             <div className="rounded-lg max-w-sm">
-            <Link href="/listings?sub_category_name=Nuts">
+            <Link href="/listings?category_name=Nuts">
                 <Image
                   className="rounded-t-lg w-12 sm:w-15 md:w-32 lg:w-48 xl:w-52 2xl:w-56"
                   src="/images/Nuts.png"
@@ -68,7 +68,7 @@ function MainContent() {
     
           <div className="flex justify-center">
             <div className="rounded-lg max-w-sm">
-              <Link href="/listings?sub_category_name=Honey">
+              <Link href="/listings?category_name=Honey">
                 <Image
                   className="rounded-t-lg w-12 sm:w-15 md:w-32 lg:w-48 xl:w-52 2xl:w-56"
                   src="/images/Honey.png"
@@ -86,7 +86,7 @@ function MainContent() {
     
           <div className="flex justify-center">
             <div className="rounded-lg max-w-sm">
-              <Link href="/listings?sub_category_name=Eggs">
+              <Link href="/listings?category_name=Eggs">
                 <Image
                   className="rounded-t-lg w-12 sm:w-20 md:w-32 lg:w-48 xl:w-52 2xl:w-56"
                   src="/images/Eggs.png"
