@@ -100,8 +100,8 @@ export default function Home({categories, subcategories, producer}) {
         catch{
           alert("Error Occured, please try again");
         }
-        //redirect to home
-        window.location = "/";
+        //redirect to seller account page
+        window.location = `/sellerAccount?id=${producer.producer_ID}`;
       }
       else{
         alert("Error: Please fill out form again")
@@ -238,15 +238,16 @@ const createListingPicture = async (listingID) => {
                           <option value="lb">Pound</option>
                           <option value="bushel">Bushel</option>
                           <option value="each"> Each</option>
-                          <option value="each"> Crate</option>
-                          <option value="each"> Basket</option>
-                          <option value="each"> Box </option>
-                          <option value="each"> Bag </option>
-                          <option value="each"> Tray </option>
-                          <option value="each"> Dozen </option>
-                          <option value="each"> Piece </option>
-                          <option value="each"> Bundle</option>
-                          <option value="each"> Bunch</option>
+                          <option value="crate"> Crate</option>
+                          <option value="carton"> Carton</option>
+                          <option value="basket"> Basket</option>
+                          <option value="box"> Box </option>
+                          <option value="bag"> Bag </option>
+                          <option value="tray"> Tray </option>
+                          <option value="dozen"> Dozen </option>
+                          <option value="piece"> Piece </option>
+                          <option value="bundle"> Bundle</option>
+                          <option value="bunch"> Bunch</option>
                       </select>
                   </div> 
 
