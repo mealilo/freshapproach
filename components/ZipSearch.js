@@ -19,7 +19,7 @@ const handleSearchZip = async (codes) => {
       console.error(error);
     })
 
-
+ 
   }
 
 // call api with zip code

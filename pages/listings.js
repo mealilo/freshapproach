@@ -1,6 +1,6 @@
 import { withRouter } from 'next/router';
 import ItemListing from "../components/ItemListing";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/ZipSearch";
 import { makeSerializable } from "../lib/util";
 import prisma from "../lib/prisma";
 import Link from "next/link";
