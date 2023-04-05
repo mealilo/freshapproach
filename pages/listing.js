@@ -7,6 +7,7 @@ import Image from "next/image";
 import SubscribeButton from "../components/SubscribeButton";
 
 
+
 export const getServerSideProps = async (context) => {
   const { query } = context;
   const listing_id = parseInt(query.id);
@@ -48,6 +49,7 @@ const Listing = (props) => {
     <div className="text-left bg-gray-50 text-gray-800 py-16 px-16">
       <div class="pb-12">
         <h1 className="text-7xl font-bold mt-0 mb-6 text-Orange">{title}</h1>
+
       </div>
       <div class="flex w-full">
         <div class="flex flex-col flex-wrap w-1/5 mr-8 rounded-lg shadow-lg bg-white overflow-hidden">
