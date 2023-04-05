@@ -89,7 +89,7 @@ class Listings extends Component {
         <h1 className="text-5xl font-bold mt-0 mb-6">{selectedOption}</h1>
 
         <div className=" flex justify-center items-center">
-          <select className=' w-40 text-center h-15 bg-green-200 text-black text-sm rounded-lg shadow-lg p-2.5' value={selectedOption} onChange={this.handleChange}>
+          <select className=' w-40 text-center h-15 bg-green-100 text-black text-sm rounded-lg shadow-lg p-2.5' value={selectedOption} onChange={this.handleChange}>
               <option value="Explore Produce" disabled>Filter by Category</option>
               <option value="All Produce">View All</option>
               {categories.map((category, index) => (
@@ -107,7 +107,7 @@ class Listings extends Component {
 <p className='m-10'>OR</p>
   
           {/* Search Bar  */}
-                      <input title="If no results are found, you will, all listings will be shown."onChange={this.handleSearchZip} maxLength="5"  type="number" id="zip-search" placeholder='Enter a Zip Code Near You' className="w-60 text-black text-center h-15 bg-green-200 text-black text-sm rounded-lg shadow-lg p-2.5"  required>
+                      <input title="If no results are found, you will, all listings will be shown."onChange={this.handleSearchZip} maxLength="5"  type="number" id="zip-search" placeholder='Enter a Zip Code Near You' className="w-60 text-black text-center h-15 bg-green-100 text-black text-sm rounded-lg shadow-lg p-2.5"  required>
                       </input>
                       {/* <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Zip</button> */}
 
