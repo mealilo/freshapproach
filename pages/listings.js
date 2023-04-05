@@ -55,12 +55,18 @@ class Listings extends Component {
 
   componentDidMount() {
     // Set the selectedOption state value to the value of the sub_category_name or category_name query parameter
-    const { sub_category_name, category_name } = this.props.router.query;
+    const { sub_category_name, category_name, zip } = this.props.router.query;
     if (sub_category_name) {
       this.setState({ selectedOption: sub_category_name });
     }
     else if (category_name) {
       this.setState({ selectedOption: category_name });
+    }
+    if (sub_category_name) {
+      this.setState({ selectedOption: sub_category_name });
+    }
+    else if (zip) {
+      this.setState({ selectedOption: 'Items Near: ' + zip });
     }
   }
 
@@ -69,90 +75,43 @@ class Listings extends Component {
  handleSearchZip = (event) => {
   let value = event.target.value;
   if (value.length === 5) {
-    alert(`You are searching for ${value}`);
     this.handleChange(event);
   }
 }
 
   render() {
     const { selectedOption, items } = this.state;
+    let categories = ['Fruit', 'Vegetables', 'Nuts', 'Eggs', 'Honey'];
+    let sub_categories = ["Apples", "Asparagus", "Avocados", "Bananas", "Beets", "Blueberries", "Broccoli", "Brussel Sprouts", "Cantaloupes", "Carrots", "Cauliflower", "Celery", "Cherries", "Corn", "Cucumbers", "Eggplant", "Garlic", "Grapefruits", "Grapes", "Green Beans", "Honeydews", "Kale", "Kiwis", "Lemons", "Lettuce", "Mangoes", "Onions", "Oranges", "Other", "Other Fruit", "Other Vegetable", "Papayas", "Peaches", "Pears", "Peas", "Peppers", "Pineapples", "Plums", "Potatoes", "Radishes", "Raspberries", "Spinach", "Squash", "Strawberries", "Tomatoes", "Watermelons", "Zucchini"];  
     return (
       <div className="text-center bg-gray-50 text-gray-800 py-16 px-6">
         
         <h1 className="text-5xl font-bold mt-0 mb-6">{selectedOption}</h1>
 
-        <div className="content-center">
+        <div className=" flex justify-center items-center">
 
-        
-        <select value={selectedOption} onChange={this.handleChange}>
+
+                  <select value={selectedOption} onChange={this.handleChange}>
           <option value="Explore Produce" disabled>Filter by Category</option>
           <option value="All Produce">View All</option>
-            <option value="Fruit">Fruit</option>
-            <option value="Vegetables">Vegetables</option>
-            <option value="Nuts">Nuts</option>
-            <option value="Eggs">Eggs</option>
-            <option value="Honey">Honey</option>
-            <option value="Apples">Apples</option>
-            <option value="Asparagus">Asparagus</option>
-            <option value="Avocados">Avocados</option>
-            <option value="Bananas">Bananas</option>
-            <option value="Beets">Beets</option>
-            <option value="Blueberries">Blueberries</option>
-            <option value="Broccoli">Broccoli</option>
-            <option value="Brussel Sprouts">Brussel Sprouts</option>
-            <option value="Cantaloupes">Cantaloupes</option>
-            <option value="Carrots">Carrots</option>
-            <option value="Cauliflower">Cauliflower</option>
-            <option value="Celery">Celery</option>
-            <option value="Cherries">Cherries</option>
-            <option value="Corn">Corn</option>
-            <option value="Cucumbers">Cucumbers</option>
-            <option value="Eggplant">Eggplant</option>
-            <option value="Garlic">Garlic</option>
-            <option value="Grapefruits">Grapefruits</option>
-            <option value="Grapes">Grapes</option>
-            <option value="Green Beans">Green Beans</option>
-            <option value="Honeydews">Honeydews</option>
-            <option value="Kale">Kale</option>
-            <option value="Kiwis">Kiwis</option>
-            <option value="Lemons">Lemons</option>
-            <option value="Lettuce">Lettuce</option>
-            <option value="Mangoes">Mangoes</option>
-            <option value="Onions">Onions</option>
-            <option value="Oranges">Oranges</option>
-            <option value="Other">Other</option>
-            <option value="Other Fruit">Other Fruit</option>
-            <option value="Other Vegetable">Other Vegetable</option>
-            <option value="Papayas">Papayas</option>
-            <option value="Peaches">Peaches</option>
-            <option value="Pears">Pears</option>
-            <option value="Peas">Peas</option>
-            <option value="Peppers">Peppers</option>
-            <option value="Pineapples">Pineapples</option>
-            <option value="Plums">Plums</option>
-            <option value="Potatoes">Potatoes</option>
-            <option value="Radishes">Radishes</option>
-            <option value="Raspberries">Raspberries</option>
-            <option value="Spinach">Spinach</option>
-            <option value="Squash">Squash</option>
-            <option value="Strawberries">Strawberries</option>
-            <option value="Tomatoes">Tomatoes</option>
-            <option value="Watermelons">Watermelons</option>
-            <option value="Zucchini">Zucchini</option>
+          {categories.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
+            ))}
+            {sub_categories.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
+            ))}
         </select>
 
-        {/* Search Bar  */}
-        <div className="flex items-center">
-          <label htmlFor="default-search" className="mb-2 text-sm font-medium text-black-900 sr-only dark:text-white">Search</label>
-          <div className="relative w-80">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" strokeLinejoin="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-              </div>
-              <input onChange={this.handleSearchZip} maxLength="5"  type="number" id="zip-search" placeholder='ZipCode Near Me (5 Numbers)' className="block w-full p-4 pl-10 text-sm text-black border border-gray-300 rounded-lg bg-orange-100 focus:ring-blue-500 focus:border-blue-500  dark:border-gray-600  dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"  required>
-              </input>
-              {/* <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Zip</button> */}
-          </div>     
-        </div>
+<p className='m-10'>OR</p>
+  
+          {/* Search Bar  */}
+                      <input title="If no results are found, you will, all listings will be shown."onChange={this.handleSearchZip} maxLength="5"  type="number" id="zip-search" placeholder='Enter a Zip Code Near You' className=" w-60 p-4 pl-10 text-sm text-black border border-gray-300 rounded-lg bg-orange-50 focus:ring-blue-500 focus:border-blue-500  dark:border-gray-600  dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"  required>
+                      </input>
+                      {/* <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Zip</button> */}
 
 
 
@@ -188,7 +147,6 @@ export const getServerSideProps = async ({ query }) => {
       };
     }
   
-   // define zip for testin here
  if(!zip){
       // if just a filter on  cateogry/sub category
     items = await prisma.listing.findMany({
@@ -206,45 +164,60 @@ export const getServerSideProps = async ({ query }) => {
         params: {
           apikey: '8e627b60-cd03-11ed-9cbc-a586dd8a1425',
           code: zip,
-          radius: '25',
+          radius: '10',
           country: 'us',
           unit: 'miles',
         }
       });
       let obj = response.data.results;
       //map over the array and return the code property to add to an array
-      let codes = obj.map(item => item.code);
+
+
+      // convert the received object
+      try {
+        let codes = obj.map(item => item.code);
+        let all_producers = await prisma.producer.findMany({
+          where: {
+              OR: codes.map((code) => ({ zip_code: code })),
+          },
+          include: {
+            listing: {
+              include: {
+                listing_picture: true,
+              },
+            },
+          },
+        })
+  
+        // filter out producers with more than one listing
+          let producers = all_producers.filter((producer) => producer.listing.length >= 1);
+  
+        // extract producer ID from producers who are in the zip area we want
+          const producerIDs = producers.map(producer => producer.producer_ID);
+              // get producers who have a zip code in the search area
+        // if just a filter on  cateogry/sub category
+         items = await prisma.listing.findMany({
+          where: {
+            OR: producerIDs.map((producer) => ({ producer_ID: producer })),
+        },
+          include: {
+            listing_picture: true,
+          },
+        });
+      }
+      // if any problem with listing above, send back all listings with their picture
+      catch{
+        items = await prisma.listing.findMany({
+          include: {
+            listing_picture: true,
+          },
+        });
+      }
+
 
 
       // get producers who have a zip code in the search area
-      let all_producers = await prisma.producer.findMany({
-        where: {
-            OR: codes.map((code) => ({ zip_code: code })),
-        },
-        include: {
-          listing: {
-            include: {
-              listing_picture: true,
-            },
-          },
-        },
-      })
 
-      // filter out producers with more than one listing
-        let producers = all_producers.filter((producer) => producer.listing.length >= 1);
-
-      // extract producer ID from producers who are in the zip area we want
-        const producerIDs = producers.map(producer => producer.producer_ID);
-            // get producers who have a zip code in the search area
-      // if just a filter on  cateogry/sub category
-       items = await prisma.listing.findMany({
-        where: {
-          OR: producerIDs.map((producer) => ({ producer_ID: producer })),
-      },
-        include: {
-          listing_picture: true,
-        },
-      });
   }
     
 
