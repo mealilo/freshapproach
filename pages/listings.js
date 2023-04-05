@@ -21,13 +21,23 @@ class Listings extends Component {
     const urlParams = new URLSearchParams(this.props.router.query);
 
     const categories = ['Fruit', 'Vegetables', 'Nuts', 'Eggs', 'Honey'];
+    const sub_categories = ["Apples", "Asparagus", "Avocados", "Bananas", "Beets", "Blueberries", "Broccoli", "Brussel Sprouts", "Cantaloupes", "Carrots", "Cauliflower", "Celery", "Cherries", "Corn", "Cucumbers", "Eggplant", "Garlic", "Grapefruits", "Grapes", "Green Beans", "Honeydews", "Kale", "Kiwis", "Lemons", "Lettuce", "Mangoes", "Onions", "Oranges", "Other", "Other Fruit", "Other Vegetable", "Papayas", "Peaches", "Pears", "Peas", "Peppers", "Pineapples", "Plums", "Potatoes", "Radishes", "Raspberries", "Spinach", "Squash", "Strawberries", "Tomatoes", "Watermelons", "Zucchini"];
 
-    if(categories.includes(selectedOption)){
+    // if a category is selected
+    if (categories.includes(selectedOption)) {
       urlParams.set("category_name", selectedOption);
       urlParams.delete("sub_category_name");
-    } else {
+      urlParams.delete("zip");
+    }
+    // if only zip is selected 
+     else if (/^\d{5}$/.test(selectedOption)) {
+      urlParams.set("zip", selectedOption);
+      urlParams.delete("category_name");
+      urlParams.delete("sub_category_name");
+    } else if (sub_categories.includes(selectedOption))  {
       urlParams.set("sub_category_name", selectedOption);
       urlParams.delete("category_name");
+      urlParams.delete("zip");
     }
 
 
@@ -159,8 +169,8 @@ class Listings extends Component {
   }
 }
 export const getServerSideProps = async ({ query }) => {
-    const { sub_category_name, category_name } = query;
-    console.log(sub_category_name, category_name);
+    const { sub_category_name, category_name, zip } = query;
+    console.log(sub_category_name, category_name, zip);
   
     let whereClause = {};
     let items = {};
@@ -179,8 +189,7 @@ export const getServerSideProps = async ({ query }) => {
     }
   
    // define zip for testin here
- let zip = 84025;
- if(zip === 84025){
+ if(!zip){
       // if just a filter on  cateogry/sub category
     items = await prisma.listing.findMany({
       where: whereClause,
@@ -191,7 +200,7 @@ export const getServerSideProps = async ({ query }) => {
  }
 
 
-  else if (zip !== 84025){
+  else if (zip){
           //call api with passed in paramaters
       let response = await axios.get('https://app.zipcodebase.com/api/v1/radius', {
         params: {
