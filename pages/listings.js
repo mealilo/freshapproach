@@ -20,13 +20,19 @@ class Listings extends Component {
     // Update the URL query parameter with the selected option
     const urlParams = new URLSearchParams(this.props.router.query);
 
-    if(selectedOption === 'Fruit' || selectedOption === 'Vegetables' || selectedOption === 'Nuts' || selectedOption === 'Eggs' || selectedOption === 'Honey'){
+    const categories = ['Fruit', 'Vegetables', 'Nuts', 'Eggs', 'Honey'];
+
+    if(categories.includes(selectedOption)){
       urlParams.set("category_name", selectedOption);
       urlParams.delete("sub_category_name");
     } else {
       urlParams.set("sub_category_name", selectedOption);
       urlParams.delete("category_name");
     }
+
+
+
+    
     const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
     window.history.pushState({}, "", newUrl);
     // Reload the page with the updated query parameter
@@ -49,51 +55,13 @@ class Listings extends Component {
   }
 
 
-
-  // call api with zip code
- fetchData = async (zip) => {
-  //call api with passed in paramaters
-  let response = await axios.get('https://app.zipcodebase.com/api/v1/radius', {
-    params: {
-      apikey: '8e627b60-cd03-11ed-9cbc-a586dd8a1425',
-      code: zip,
-      radius: '25',
-      country: 'us',
-      unit: 'miles',
-    }
-  });
-  let obj = response.data.results;
-  //map over the array and return the code property to add to an array
-  let codes = obj.map(item => item.code);
-  alert(codes);
-  // call handleSearchZip with the array of zip codes to query prisma
-  await handleSearchZip(codes);
-}
- fetchDataTest = async () => {
-// // call api with zip code for testing
-//  fetchDataTest = async () => {
-
-//   let codes = ['84601', '84606', '84604', '84603', '84058', '84097', '84057', '84663', '84042', '84059', '84605', '84664', '84660', '84602', '84062', '84003', '84651', '84082', '84045', '84043'];;
-//   // call handleSearchZip with the array of zip codes to query prisma
-//   let items = await handleSearchZip(codes);
-//   alert(items);
-
-// }
-
 //this function is called until a length of 5 is reached
  handleSearchZip = (event) => {
   let value = event.target.value;
   if (value.length === 5) {
-  alert(`You are searching for ${value}`);
-
-  //rename variable
-  let zip = value;
-  //comment out to save requests
-  //this.fetchData(zip);
-  this.fetchDataTest();
-
+    alert(`You are searching for ${value}`);
+    this.handleChange(event);
   }
-
 }
 
   render() {
@@ -170,7 +138,7 @@ class Listings extends Component {
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" strokeLinejoin="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
               </div>
-              <input onChange={this.handleSearchZip} maxLength="5"  type="number" id="default-search" placeholder='ZipCode Near Me (5 Numbers)' className="block w-full p-4 pl-10 text-sm text-black border border-gray-300 rounded-lg bg-orange-100 focus:ring-blue-500 focus:border-blue-500  dark:border-gray-600  dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"  required>
+              <input onChange={this.handleSearchZip} maxLength="5"  type="number" id="zip-search" placeholder='ZipCode Near Me (5 Numbers)' className="block w-full p-4 pl-10 text-sm text-black border border-gray-300 rounded-lg bg-orange-100 focus:ring-blue-500 focus:border-blue-500  dark:border-gray-600  dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"  required>
               </input>
               {/* <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Zip</button> */}
           </div>     
@@ -211,8 +179,8 @@ export const getServerSideProps = async ({ query }) => {
     }
   
    // define zip for testin here
- let zip = 84064;
- if(!zip){
+ let zip = 84025;
+ if(zip === 84025){
       // if just a filter on  cateogry/sub category
     items = await prisma.listing.findMany({
       where: whereClause,
@@ -223,7 +191,7 @@ export const getServerSideProps = async ({ query }) => {
  }
 
 
-  else if (zip){
+  else if (zip !== 84025){
           //call api with passed in paramaters
       let response = await axios.get('https://app.zipcodebase.com/api/v1/radius', {
         params: {
