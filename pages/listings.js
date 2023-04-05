@@ -1,6 +1,6 @@
 import { withRouter } from 'next/router';
 import ItemListing from "../components/ItemListing";
-import SearchBar from "../components/ZipSearch";
+import axios from 'axios';
 import { makeSerializable } from "../lib/util";
 import prisma from "../lib/prisma";
 import Link from "next/link";
@@ -47,6 +47,55 @@ class Listings extends Component {
       this.setState({ selectedOption: category_name });
     }
   }
+
+
+
+  // call api with zip code
+ fetchData = async (zip) => {
+  //call api with passed in paramaters
+  let response = await axios.get('https://app.zipcodebase.com/api/v1/radius', {
+    params: {
+      apikey: '8e627b60-cd03-11ed-9cbc-a586dd8a1425',
+      code: zip,
+      radius: '25',
+      country: 'us',
+      unit: 'miles',
+    }
+  });
+  let obj = response.data.results;
+  //map over the array and return the code property to add to an array
+  let codes = obj.map(item => item.code);
+  alert(codes);
+  // call handleSearchZip with the array of zip codes to query prisma
+  await handleSearchZip(codes);
+}
+// call api with zip code for testing
+ fetchDataTest = async () => {
+
+  let codes = ['84601', '84606', '84604', '84603', '84058', '84097', '84057', '84663', '84042', '84059', '84605', '84664', '84660', '84602', '84062', '84003', '84651', '84082', '84045', '84043'];;
+  // call handleSearchZip with the array of zip codes to query prisma
+  let items = await handleSearchZip(codes);
+  alert(items);
+
+}
+
+//this function is called until a length of 5 is reached
+ handleSearchZip = (event) => {
+  let value = event.target.value;
+  if (value.length === 5) {
+  alert(`You are searching for ${value}`);
+
+  //rename variable
+  let zip = value;
+  
+  //comment out to save requests
+  //this.fetchData(zip);
+  this.fetchDataTest();
+
+  }
+
+}
+
   render() {
     const { selectedOption, items } = this.state;
     return (
@@ -114,7 +163,19 @@ class Listings extends Component {
             <option value="Zucchini">Zucchini</option>
         </select>
 
-        <SearchBar/>
+        {/* Search Bar  */}
+        <div className="flex items-center">
+          <label htmlFor="default-search" className="mb-2 text-sm font-medium text-black-900 sr-only dark:text-white">Search</label>
+          <div className="relative w-80">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" strokeLinejoin="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+              </div>
+              <input onChange={this.handleSearchZip}   type="number" id="default-search" placeholder='ZipCode Near Me (5 Numbers)' className="block w-full p-4 pl-10 text-sm text-black border border-gray-300 rounded-lg bg-orange-100 focus:ring-blue-500 focus:border-blue-500  dark:border-gray-600  dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"  required>
+              </input>
+              {/* <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Zip</button> */}
+          </div>     
+        </div>
+
 
 
         </div>
@@ -134,6 +195,7 @@ export const getServerSideProps = async ({ query }) => {
     console.log(sub_category_name, category_name);
   
     let whereClause = {};
+    let items = {};
     if (sub_category_name) {
       whereClause = {
         product_sub_category: {
@@ -148,13 +210,71 @@ export const getServerSideProps = async ({ query }) => {
       };
     }
   
-    const items = await prisma.listing.findMany({
+   // define zip for testin here
+ zip = 84604;
+ if(!zip){
+      // if just a filter on  cateogry/sub category
+    items = await prisma.listing.findMany({
       where: whereClause,
       include: {
         listing_picture: true,
       },
     });
-  
+ }
+
+
+  else if (zip){
+
+          //call api with passed in paramaters
+      let response = await axios.get('https://app.zipcodebase.com/api/v1/radius', {
+        params: {
+          apikey: '8e627b60-cd03-11ed-9cbc-a586dd8a1425',
+          code: zip,
+          radius: '25',
+          country: 'us',
+          unit: 'miles',
+        }
+      });
+      let obj = response.data.results;
+      //map over the array and return the code property to add to an array
+      let codes = obj.map(item => item.code);
+
+
+      // get producers who have a zip code in the search area
+      let all_producers = await prisma.producer.findMany({
+        where: {
+            OR: codes.map((code) => ({ zip_code: code })),
+        },
+        include: {
+          listing: {
+            include: {
+              listing_picture: true,
+            },
+          },
+        },
+      })
+
+      // filter out producers with more than one listing
+        let producers = all_producers.filter((producer) => producer.listing.length >= 1);
+
+      // extract producer ID from producers who are in the zip area we want
+        const producerIDs = producers.map(producer => producer.producer_ID);
+            // get producers who have a zip code in the search area
+      // if just a filter on  cateogry/sub category
+       items = await prisma.listing.findMany({
+        where: {
+          OR: producerIDs.map((producer) => ({ producer_ID: producer })),
+      },
+        include: {
+          listing_picture: true,
+        },
+      });
+  }
+    
+
+
+      // get all listings attached to the producerID's that are in the zip codes that we want
+
     return {
       props: { items: makeSerializable(items) },
     };
