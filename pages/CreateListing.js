@@ -142,7 +142,7 @@ const createListingPicture = async (listingID) => {
       <main className="max-w-7xl mx-auto px-8 sm:px-16">
         <section className="pt-6"></section>
         <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-          <div className= "w-full max-w-3xl space-y-8">
+          <div className= "w-full  space-y-8">
             <div className="space-y-5 rounded-md shadow-xl p-5 columns-2 border-t-8 border-teal-800">
               <h2 className="text-left text-5xl font-normal tracking-tight text-gray-900">
                 Add A Listing
@@ -150,10 +150,10 @@ const createListingPicture = async (listingID) => {
             </div>
             <form onSubmit={submitHandler} type="POST" id="addlisting" className="mt-8 space-y-6">
               
-              <div className="rounded-md space-y-2 shadow-xl p-8 border-t-8 border-orange-400 flex flex-row justify-center items-center align-middle">
+              <div className="rounded-md space-y-2 shadow-xl p-8 border-t-8 border-orange-400 flex flex-row justify-around ">
 
                
-                <div className="flex w-80 px-5 flex-col">
+                <div className="flex w-3/6 px-5 flex-col">
                 <h4 className="text-xl font-medium">Enter Information </h4>
                  <div className="flex flex-col  drop-shadow-md  py-2">
                       <label htmlFor="title">Title</label>
@@ -278,10 +278,10 @@ const createListingPicture = async (listingID) => {
                       ) : null}
                     </div> */}
 
-                <div class="flex items-center justify-center m-6  ">
-                  <div class="flex flex-col items-center">
-                    <label required htmlFor="dropzone-file" class="flex flex-col items-center justify-center w-80 h-64 border-2 border-gray-300 shadow drop-shadow-md  rounded-lg cursor-pointer bg-white">
-                              <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                <div class="flex items-center content-center justify-center m-6  ">
+                  <div class="flex flex-col content-center items-center">
+                    <label required htmlFor="dropzone-file" class="flex flex-col items-center justify-center w-6/6 h-64 border-2 border-gray-300 shadow drop-shadow-md  rounded-lg cursor-pointer bg-white">
+                              <div class="flex flex-col content-center items-center justify-center pt-5 pb-6 px-10">
                                   <svg class="w-20 h-20 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                                   <p class="mb-2 text-sm text-black text-lg">ADD A PHOTO</p>
                                   <p class="mb-2 text-sm text-black"><span class="font-semibold">Click to upload</span> a PNG or JPG</p>

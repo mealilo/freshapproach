@@ -28,21 +28,22 @@ class Listings extends Component {
       urlParams.set("category_name", selectedOption);
       urlParams.delete("sub_category_name");
       urlParams.delete("zip");
+      localStorage.removeItem('zip');
     }
     // if only zip is selected 
      else if (/^\d{5}$/.test(selectedOption)) {
       urlParams.set("zip", selectedOption);
       urlParams.delete("category_name");
       urlParams.delete("sub_category_name");
+      //persist
+      localStorage.setItem('zip', selectedOption)
     } else if (sub_categories.includes(selectedOption))  {
       urlParams.set("sub_category_name", selectedOption);
       urlParams.delete("category_name");
       urlParams.delete("zip");
+      localStorage.removeItem('zip');
     }
 
-
-
-    
     const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
     window.history.pushState({}, "", newUrl);
     // Reload the page with the updated query parameter
@@ -53,9 +54,14 @@ class Listings extends Component {
       }
   }
 
+  //reload and clear all filters
+   clearFilters(event) {
+      window.location.href = "/listings";
+  }
   componentDidMount() {
     // Set the selectedOption state value to the value of the sub_category_name or category_name query parameter
-    const { sub_category_name, category_name, zip } = this.props.router.query;
+    const { sub_category_name, category_name} = this.props.router.query;
+    const zip = localStorage.getItem('zip');
     if (sub_category_name) {
       this.setState({ selectedOption: sub_category_name });
     }
@@ -102,17 +108,17 @@ class Listings extends Component {
                     {category}
                   </option>
                 ))}
-        </select>
+          </select>
 
-<p className='m-10'>OR</p>
+          <p className='m-10'>OR</p>
   
           {/* Search Bar  */}
-                      <input title="If no results are found, you will, all listings will be shown."onChange={this.handleSearchZip} maxLength="5"  type="number" id="zip-search" placeholder='Enter a Zip Code Near You' className="w-60 text-black text-center h-15 bg-green-100 text-black text-sm rounded-lg shadow-lg p-2.5"  required>
-                      </input>
-                      {/* <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Zip</button> */}
+            <input title="If no results are found, you will, all listings will be shown."onChange={this.handleSearchZip} maxLength="5"   defaultValue={this.props.router.query.zip || ''}
+  type="number" id="zip-search" placeholder='Enter a Zip Code Near You' className="w-60 text-black placeholder-black text-center h-15 bg-green-100 text-black text-sm rounded-lg shadow-lg p-2.5"  required>
+            </input>
+          {/* <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Zip</button> */}
 
-
-
+            <button onClick={this.clearFilters} className="bg-orange-200 m-10 hover:bg-orange-300 text-black  py-1.5 px-2.5  rounded-lg shadow-lg">Clear Filters</button>
         </div>
         <div className="flex justify-center flex-wrap">
           {items.map((item) => (
