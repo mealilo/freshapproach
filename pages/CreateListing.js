@@ -30,7 +30,7 @@ export const getServerSideProps = async (context) => {
   prisma.$disconnect();
   return {props: { categories, subcategories, producer: producerData }}
 }
-
+ 
 export default function Home({categories, subcategories, producer}) {
   // need to append date to make name unique
   const currentTime = new Date().toLocaleTimeString();
